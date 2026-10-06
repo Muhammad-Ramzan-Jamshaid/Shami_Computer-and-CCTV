@@ -244,4 +244,27 @@ function seedInitialData(database: SqlJsDatabaseWrapper) {
     }
     console.log('[DB] Default shop settings seeded.');
   }
+
+  // 4. Default Demo Products (for immediate POS testing)
+  const productCheck = database.prepare('SELECT COUNT(*) as count FROM products').get() as { count: number };
+  if (!productCheck || productCheck.count === 0) {
+    const demoProducts = [
+      { sku: 'CAM-2MP', name: 'Dahua 2MP Outdoor Bullet Camera', category_id: 8, brand: 'Dahua', purchase_price: 3500, selling_price: 4800, stock_quantity: 20, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'DVR-4CH', name: 'Hikvision 4-Channel HD DVR', category_id: 9, brand: 'Hikvision', purchase_price: 9000, selling_price: 12500, stock_quantity: 8, minimum_stock: 2, unit: 'pcs' },
+      { sku: 'HDD-1TB', name: 'WD Purple 1TB CCTV Hard Drive', category_id: 10, brand: 'Western Digital', purchase_price: 6500, selling_price: 8500, stock_quantity: 12, minimum_stock: 3, unit: 'pcs' },
+      { sku: 'MSE-USB', name: 'A4Tech Optical USB Mouse', category_id: 5, brand: 'A4Tech', purchase_price: 500, selling_price: 850, stock_quantity: 35, minimum_stock: 10, unit: 'pcs' },
+      { sku: 'PC-I5-6', name: 'Dell Core i5 6th Gen Desktop PC', category_id: 1, brand: 'Dell', purchase_price: 24000, selling_price: 29500, stock_quantity: 6, minimum_stock: 2, unit: 'pcs' }
+    ];
+
+    const insertProd = database.prepare(`
+      INSERT INTO products (sku, name, category_id, brand, purchase_price, selling_price, stock_quantity, minimum_stock, unit, active)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+    `);
+
+    for (const p of demoProducts) {
+      insertProd.run(p.sku, p.name, p.category_id, p.brand, p.purchase_price, p.selling_price, p.stock_quantity, p.minimum_stock, p.unit);
+    }
+    console.log('[DB] Default demo products seeded.');
+  }
 }
+

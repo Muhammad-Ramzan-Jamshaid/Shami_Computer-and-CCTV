@@ -308,55 +308,84 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
         <div style={{
           flex: 1,
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(170px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
           gap: '12px',
           overflowY: 'auto',
           alignContent: 'start'
         }}>
-          {filteredProducts.map(prod => {
-            const isOutOfStock = prod.stock_quantity <= 0;
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map(prod => {
+              const isOutOfStock = prod.stock_quantity <= 0;
 
-            return (
-              <div
-                key={prod.id}
-                onClick={() => !isOutOfStock && addToCart(prod)}
-                style={{
-                  backgroundColor: isOutOfStock ? '#111827' : '#1e293b',
-                  border: '1px solid #334155',
-                  borderRadius: '10px',
-                  padding: '12px',
-                  cursor: isOutOfStock ? 'not-allowed' : 'pointer',
-                  opacity: isOutOfStock ? 0.5 : 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  transition: 'transform 0.1s ease, border-color 0.1s ease'
-                }}
-                onMouseEnter={e => { if (!isOutOfStock) e.currentTarget.style.borderColor = '#2563eb'; }}
-                onMouseLeave={e => { if (!isOutOfStock) e.currentTarget.style.borderColor = '#334155'; }}
-              >
-                <div>
-                  <span style={{ fontSize: '10px', color: '#60a5fa', fontFamily: 'monospace' }}>{prod.sku}</span>
-                  <h4 style={{ fontSize: '13px', fontWeight: 'bold', color: '#f8fafc', margin: '4px 0 6px 0', lineHeight: '1.2' }}>{prod.name}</h4>
-                  <p style={{ fontSize: '11px', color: '#94a3b8' }}>{prod.category_name}</p>
-                </div>
+              return (
+                <div
+                  key={prod.id}
+                  style={{
+                    backgroundColor: isOutOfStock ? '#111827' : '#1e293b',
+                    border: '1px solid #334155',
+                    borderRadius: '10px',
+                    padding: '12px',
+                    opacity: isOutOfStock ? 0.6 : 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    transition: 'border-color 0.15s ease'
+                  }}
+                >
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '10px', color: '#60a5fa', fontFamily: 'monospace' }}>{prod.sku}</span>
+                      <span style={{
+                        fontSize: '10px',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                        backgroundColor: isOutOfStock ? 'rgba(239,68,68,0.2)' : 'rgba(16,185,129,0.2)',
+                        color: isOutOfStock ? '#ef4444' : '#10b981',
+                        fontWeight: 'bold'
+                      }}>
+                        {prod.stock_quantity} {prod.unit}
+                      </span>
+                    </div>
+                    <h4 style={{ fontSize: '13px', fontWeight: 'bold', color: '#f8fafc', margin: '2px 0 4px 0', lineHeight: '1.2' }}>{prod.name}</h4>
+                    <p style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '8px' }}>{prod.category_name}</p>
+                  </div>
 
-                <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#10b981' }}>Rs {prod.selling_price.toLocaleString()}</span>
-                  <span style={{
-                    fontSize: '10px',
-                    padding: '2px 6px',
-                    borderRadius: '4px',
-                    backgroundColor: isOutOfStock ? 'rgba(239,68,68,0.2)' : 'rgba(16,185,129,0.2)',
-                    color: isOutOfStock ? '#ef4444' : '#10b981',
-                    fontWeight: 'bold'
-                  }}>
-                    {prod.stock_quantity} {prod.unit}
-                  </span>
+                  <div>
+                    <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#10b981', marginBottom: '8px' }}>
+                      Rs {prod.selling_price.toLocaleString()}
+                    </div>
+                    <button
+                      onClick={() => !isOutOfStock && addToCart(prod)}
+                      disabled={isOutOfStock}
+                      style={{
+                        width: '100%',
+                        padding: '6px 10px',
+                        backgroundColor: isOutOfStock ? '#334155' : '#2563eb',
+                        color: '#ffffff',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        cursor: isOutOfStock ? 'not-allowed' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px'
+                      }}
+                    >
+                      <ShoppingCart size={14} /> {isOutOfStock ? 'Out of Stock' : '+ Add to Cart'}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <div style={{ gridColumn: '1 / -1', padding: '40px', textAlign: 'center', color: '#94a3b8', backgroundColor: '#1e293b', borderRadius: '10px', border: '1px solid #334155' }}>
+              <ShoppingCart size={40} color="#64748b" style={{ marginBottom: '12px' }} />
+              <h3 style={{ color: '#f8fafc', fontSize: '16px', fontWeight: 'bold', marginBottom: '6px' }}>No Products Found</h3>
+              <p style={{ fontSize: '13px', marginBottom: '16px' }}>There are no active products in stock matching your search.</p>
+            </div>
+          )}
         </div>
       </div>
 
