@@ -60,12 +60,12 @@ export class SaleService {
         const saleInfo = saleStmt.run(
           invoiceNumber,
           saleInput.customer_id || null,
-          saleInput.subtotal,
-          saleInput.discount,
-          saleInput.total,
-          saleInput.amount_paid,
-          saleInput.payment_method,
-          saleInput.created_by
+          saleInput.subtotal || 0,
+          saleInput.discount || 0,
+          saleInput.total || 0,
+          saleInput.amount_paid || 0,
+          saleInput.payment_method || 'CASH',
+          saleInput.created_by || 1
         );
 
         const saleId = saleInfo.lastInsertRowid as number;
@@ -90,25 +90,25 @@ export class SaleService {
           itemStmt.run(
             saleId,
             item.product_id,
-            item.product_name_snapshot,
-            item.sku_snapshot,
-            item.quantity,
-            item.purchase_price_snapshot,
-            item.selling_price,
-            item.discount,
-            item.line_total
+            item.product_name_snapshot || '',
+            item.sku_snapshot || '',
+            item.quantity || 1,
+            item.purchase_price_snapshot || 0,
+            item.selling_price || 0,
+            item.discount || 0,
+            item.line_total || 0
           );
 
           // Deduct product stock
-          updateStockStmt.run(item.quantity, item.product_id);
+          updateStockStmt.run(item.quantity || 1, item.product_id);
 
           // Record stock movement
           movementStmt.run(
             item.product_id,
-            -item.quantity,
+            -(item.quantity || 1),
             saleId,
             `Sale Invoice ${invoiceNumber}`,
-            saleInput.created_by
+            saleInput.created_by || 1
           );
         }
 

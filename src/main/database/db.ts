@@ -28,6 +28,7 @@ export function getDatabasePath(): string {
 export class SqlJsDatabaseWrapper {
   private db: SqlJsDatabase;
   private dbPath: string;
+  private inTransaction: boolean = false;
 
   constructor(db: SqlJsDatabase, dbPath: string) {
     this.db = db;
@@ -35,6 +36,7 @@ export class SqlJsDatabaseWrapper {
   }
 
   save() {
+    if (this.inTransaction) return;
     try {
       const data = this.db.export();
       const buffer = Buffer.from(data);
@@ -57,14 +59,18 @@ export class SqlJsDatabaseWrapper {
     return this;
   }
 
+  private sanitizeParams(params: any[]): any[] {
+    return params.flat().map(p => (p === undefined ? null : p));
+  }
+
   prepare(sql: string) {
     const wrapper = this;
     const db = this.db;
 
     return {
       run(...params: any[]) {
-        const flattened = params.flat();
-        db.run(sql, flattened);
+        const sanitized = wrapper.sanitizeParams(params);
+        db.run(sql, sanitized);
         
         // Get last insert rowid
         let lastInsertRowid = 0;
@@ -79,9 +85,9 @@ export class SqlJsDatabaseWrapper {
         return { lastInsertRowid, changes: 1 };
       },
       get(...params: any[]) {
-        const flattened = params.flat();
+        const sanitized = wrapper.sanitizeParams(params);
         const stmt = db.prepare(sql);
-        stmt.bind(flattened);
+        stmt.bind(sanitized);
         let result: any = undefined;
         if (stmt.step()) {
           const rowObj: any = {};
@@ -96,9 +102,9 @@ export class SqlJsDatabaseWrapper {
         return result;
       },
       all(...params: any[]) {
-        const flattened = params.flat();
+        const sanitized = wrapper.sanitizeParams(params);
         const stmt = db.prepare(sql);
-        stmt.bind(flattened);
+        stmt.bind(sanitized);
         const rows: any[] = [];
         const colNames = stmt.getColumnNames();
         while (stmt.step()) {
@@ -119,13 +125,20 @@ export class SqlJsDatabaseWrapper {
     const wrapper = this;
     return () => {
       wrapper.db.exec('BEGIN TRANSACTION;');
+      wrapper.inTransaction = true;
       try {
         const result = fn();
         wrapper.db.exec('COMMIT;');
+        wrapper.inTransaction = false;
         wrapper.save();
         return result;
       } catch (err) {
-        wrapper.db.exec('ROLLBACK;');
+        try {
+          wrapper.db.exec('ROLLBACK;');
+        } catch {
+          // Ignore rollback error if SQLite auto-rolled back
+        }
+        wrapper.inTransaction = false;
         throw err;
       }
     };
