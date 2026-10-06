@@ -146,19 +146,29 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
     setCart(cart.filter((_, i) => i !== index));
   };
 
-  const clearCart = () => {
-    setCart([]);
-    setOverallDiscount(0);
-    setAmountPaid(0);
-    setErrorMessage('');
-  };
-
   // Calculations
   const subtotal = cart.reduce((acc, item) => acc + (item.quantity * item.unit_price), 0);
   const itemsDiscount = cart.reduce((acc, item) => acc + item.discount, 0);
   const totalDiscount = itemsDiscount + overallDiscount;
   const grandTotal = Math.max(0, subtotal - totalDiscount);
   const changeReturn = Math.max(0, amountPaid - grandTotal);
+
+  // Auto-sync Amount Paid with Grand Total (unless user custom types cash note amount)
+  const [isAmountPaidCustom, setIsAmountPaidCustom] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isAmountPaidCustom) {
+      setAmountPaid(grandTotal);
+    }
+  }, [grandTotal, isAmountPaidCustom]);
+
+  const clearCart = () => {
+    setCart([]);
+    setOverallDiscount(0);
+    setAmountPaid(0);
+    setIsAmountPaidCustom(false);
+    setErrorMessage('');
+  };
 
   // Submit Sale
   const handleCheckout = async () => {
@@ -489,8 +499,12 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               type="number"
               min="0"
               value={overallDiscount}
-              onChange={e => setOverallDiscount(parseFloat(e.target.value) || 0)}
-              style={{ width: '80px', padding: '4px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '4px', color: '#ef4444', fontWeight: 'bold', textAlign: 'right', fontSize: '12px' }}
+              onChange={e => {
+                const disc = parseFloat(e.target.value) || 0;
+                setOverallDiscount(disc);
+                setIsAmountPaidCustom(false); // Reset to auto-sync Grand Total
+              }}
+              style={{ width: '90px', padding: '4px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '4px', color: '#ef4444', fontWeight: 'bold', textAlign: 'right', fontSize: '12px' }}
             />
           </div>
 
@@ -524,12 +538,27 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
 
           {/* Amount Paid Input */}
           <div style={{ marginBottom: '16px' }}>
-            <label style={{ fontSize: '11px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Amount Paid by Customer (Rs)</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+              <label style={{ fontSize: '11px', color: '#94a3b8' }}>Amount Paid by Customer (Rs)</label>
+              <button
+                type="button"
+                onClick={() => {
+                  setAmountPaid(grandTotal);
+                  setIsAmountPaidCustom(false);
+                }}
+                style={{ background: 'none', border: 'none', color: '#38bdf8', fontSize: '10px', fontWeight: 'bold', cursor: 'pointer', textDecoration: 'underline' }}
+              >
+                Exact Cash (Rs {grandTotal.toLocaleString()})
+              </button>
+            </div>
             <input
               type="number"
               min="0"
               value={amountPaid}
-              onChange={e => setAmountPaid(parseFloat(e.target.value) || 0)}
+              onChange={e => {
+                setAmountPaid(parseFloat(e.target.value) || 0);
+                setIsAmountPaidCustom(true);
+              }}
               style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '15px', fontWeight: 'bold' }}
             />
             {amountPaid > grandTotal && (
