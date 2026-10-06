@@ -1,0 +1,100 @@
+export const CREATE_TABLES_SQL = `
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  username TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL CHECK(role IN ('ADMIN', 'CASHIER')),
+  active INTEGER NOT NULL DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE,
+  description TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  sku TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  category_id INTEGER NOT NULL,
+  brand TEXT,
+  purchase_price REAL NOT NULL DEFAULT 0,
+  selling_price REAL NOT NULL DEFAULT 0,
+  stock_quantity INTEGER NOT NULL DEFAULT 0,
+  minimum_stock INTEGER NOT NULL DEFAULT 5,
+  unit TEXT NOT NULL DEFAULT 'pcs',
+  description TEXT,
+  active INTEGER NOT NULL DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (category_id) REFERENCES categories (id)
+);
+
+CREATE TABLE IF NOT EXISTS customers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  address TEXT,
+  notes TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS sales (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  invoice_number TEXT NOT NULL UNIQUE,
+  customer_id INTEGER,
+  subtotal REAL NOT NULL,
+  discount REAL NOT NULL DEFAULT 0,
+  total REAL NOT NULL,
+  amount_paid REAL NOT NULL,
+  payment_method TEXT NOT NULL CHECK(payment_method IN ('CASH', 'BANK', 'OTHER')),
+  status TEXT NOT NULL DEFAULT 'COMPLETED' CHECK(status IN ('COMPLETED', 'CANCELLED')),
+  created_by INTEGER NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (customer_id) REFERENCES customers (id),
+  FOREIGN KEY (created_by) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS sale_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  sale_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  product_name_snapshot TEXT NOT NULL,
+  sku_snapshot TEXT NOT NULL,
+  quantity INTEGER NOT NULL CHECK(quantity > 0),
+  purchase_price_snapshot REAL NOT NULL,
+  selling_price REAL NOT NULL,
+  discount REAL NOT NULL DEFAULT 0,
+  line_total REAL NOT NULL,
+  FOREIGN KEY (sale_id) REFERENCES sales (id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES products (id)
+);
+
+CREATE TABLE IF NOT EXISTS stock_movements (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  product_id INTEGER NOT NULL,
+  movement_type TEXT NOT NULL CHECK(movement_type IN ('PURCHASE/IN', 'SALE/OUT', 'SALE_CANCEL/RETURN', 'MANUAL_ADJUSTMENT')),
+  quantity INTEGER NOT NULL,
+  reference_type TEXT,
+  reference_id INTEGER,
+  note TEXT,
+  created_by INTEGER NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products (id),
+  FOREIGN KEY (created_by) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  key TEXT NOT NULL UNIQUE,
+  value TEXT NOT NULL
+);
+`;
