@@ -38,13 +38,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, curre
 
   return (
     <aside style={{
-      width: '240px',
+      width: '220px',
+      minWidth: '200px',
+      flexShrink: 0,
       backgroundColor: '#111827',
       borderRight: '1px solid #1f2937',
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      overflowY: 'auto'
     }}>
       <div>
         {/* Brand Header */}

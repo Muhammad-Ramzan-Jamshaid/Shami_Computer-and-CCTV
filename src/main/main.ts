@@ -55,18 +55,24 @@ function setupAutoUpdater() {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1366,
-    height: 768,
-    minWidth: 1024,
-    minHeight: 680,
+    width: 1280,
+    height: 720,
+    minWidth: 960,
+    minHeight: 580,
     title: 'Shami Computer & CCTV — POS & Inventory System',
     autoHideMenuBar: true,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       nodeIntegration: false,
       contextIsolation: true,
       sandbox: false
     }
+  });
+
+  mainWindow.maximize();
+  mainWindow.once('ready-to-show', () => {
+    mainWindow?.show();
   });
 
   // Register IPC Communication

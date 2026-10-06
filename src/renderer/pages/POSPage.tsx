@@ -249,9 +249,9 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
   });
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 380px', height: '100%', width: '100%', overflow: 'hidden' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(290px, 360px)', height: '100%', width: '100%', overflow: 'hidden' }}>
       {/* Left: Product Selection Area */}
-      <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', height: '100%', minWidth: 0, overflow: 'hidden', borderRight: '1px solid var(--border-color, #334155)' }}>
+      <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', height: '100%', minWidth: 0, overflow: 'hidden', borderRight: '1px solid var(--border-color, #334155)' }}>
         {/* Search & Category Tabs */}
         <div style={{ marginBottom: '16px' }}>
           <div style={{ position: 'relative', marginBottom: '12px' }}>
@@ -400,7 +400,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
       </div>
 
       {/* Right: Cart & Checkout Billing Sidebar */}
-      <div style={{ backgroundColor: '#0f172a', padding: '20px', display: 'flex', flexDirection: 'column', height: '100%', width: '380px', minWidth: '380px', boxSizing: 'border-border', overflowY: 'auto' }}>
+      <div style={{ backgroundColor: '#0f172a', padding: '14px', display: 'flex', flexDirection: 'column', height: '100%', width: '100%', minWidth: 0, boxSizing: 'border-box', overflowY: 'auto' }}>
         {/* Customer Selector Header */}
         <div style={{ marginBottom: '16px', display: 'flex', gap: '8px', alignItems: 'center' }}>
           <select
