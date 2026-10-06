@@ -249,12 +249,22 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
   });
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(290px, 360px)', height: '100%', width: '100%', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', width: '100%', height: '100%', overflow: 'hidden' }}>
       {/* Left: Product Selection Area */}
-      <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', height: '100%', minWidth: 0, overflow: 'hidden', borderRight: '1px solid var(--border-color, #334155)' }}>
+      <div style={{
+        flex: 1,
+        minWidth: 0,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '16px',
+        overflow: 'hidden',
+        borderRight: '1px solid var(--border-color, #334155)',
+        boxSizing: 'border-box'
+      }}>
         {/* Search & Category Tabs */}
-        <div style={{ marginBottom: '16px' }}>
-          <div style={{ position: 'relative', marginBottom: '12px' }}>
+        <div style={{ marginBottom: '16px', width: '100%', minWidth: 0 }}>
+          <div style={{ position: 'relative', marginBottom: '12px', width: '100%' }}>
             <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
             <input
               type="text"
@@ -269,13 +279,14 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                 border: '1px solid #334155',
                 borderRadius: '8px',
                 color: '#f8fafc',
-                fontSize: '14px'
+                fontSize: '14px',
+                boxSizing: 'border-box'
               }}
             />
           </div>
 
           {/* Category Badges Horizontal Scroll */}
-          <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '6px' }}>
+          <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', width: '100%', minWidth: 0, paddingBottom: '6px' }}>
             <button
               onClick={() => setSelectedCategory('ALL')}
               style={{
@@ -317,8 +328,10 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
         {/* Product Cards Grid */}
         <div style={{
           flex: 1,
+          minHeight: 0,
+          width: '100%',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
           gap: '12px',
           overflowY: 'auto',
           alignContent: 'start'
@@ -400,7 +413,19 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
       </div>
 
       {/* Right: Cart & Checkout Billing Sidebar */}
-      <div style={{ backgroundColor: '#0f172a', padding: '14px', display: 'flex', flexDirection: 'column', height: '100%', width: '100%', minWidth: 0, boxSizing: 'border-box', overflowY: 'auto' }}>
+      <div style={{
+        width: '340px',
+        minWidth: '340px',
+        maxWidth: '340px',
+        flexShrink: 0,
+        height: '100%',
+        backgroundColor: '#0f172a',
+        padding: '14px',
+        display: 'flex',
+        flexDirection: 'column',
+        boxSizing: 'border-box',
+        overflowY: 'auto'
+      }}>
         {/* Customer Selector Header */}
         <div style={{ marginBottom: '16px', display: 'flex', gap: '8px', alignItems: 'center' }}>
           <select
