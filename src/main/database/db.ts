@@ -258,15 +258,45 @@ function seedInitialData(database: SqlJsDatabaseWrapper) {
     console.log('[DB] Default shop settings seeded.');
   }
 
-  // 4. Default Demo Products (for immediate POS testing)
+  // 4. Default Products Catalog (CCTV, Computer, Cables, Storage, Accessories)
   const productCheck = database.prepare('SELECT COUNT(*) as count FROM products').get() as { count: number };
   if (!productCheck || productCheck.count === 0) {
     const demoProducts = [
-      { sku: 'CAM-2MP', name: 'Dahua 2MP Outdoor Bullet Camera', category_id: 8, brand: 'Dahua', purchase_price: 3500, selling_price: 4800, stock_quantity: 20, minimum_stock: 5, unit: 'pcs' },
-      { sku: 'DVR-4CH', name: 'Hikvision 4-Channel HD DVR', category_id: 9, brand: 'Hikvision', purchase_price: 9000, selling_price: 12500, stock_quantity: 8, minimum_stock: 2, unit: 'pcs' },
-      { sku: 'HDD-1TB', name: 'WD Purple 1TB CCTV Hard Drive', category_id: 10, brand: 'Western Digital', purchase_price: 6500, selling_price: 8500, stock_quantity: 12, minimum_stock: 3, unit: 'pcs' },
-      { sku: 'MSE-USB', name: 'A4Tech Optical USB Mouse', category_id: 5, brand: 'A4Tech', purchase_price: 500, selling_price: 850, stock_quantity: 35, minimum_stock: 10, unit: 'pcs' },
-      { sku: 'PC-I5-6', name: 'Dell Core i5 6th Gen Desktop PC', category_id: 1, brand: 'Dell', purchase_price: 24000, selling_price: 29500, stock_quantity: 6, minimum_stock: 2, unit: 'pcs' }
+      // Cables
+      { sku: 'CBL-CAT6-305', name: 'Cat6 UTP Network Cable 305m Full Roll', category_id: 13, brand: 'Tensun', purchase_price: 11000, selling_price: 14500, stock_quantity: 8, minimum_stock: 2, unit: 'Roll' },
+      { sku: 'CBL-CCTV-31', name: '3+1 CCTV Coaxial Cable 90m Copper Roll', category_id: 13, brand: 'Tensun', purchase_price: 4200, selling_price: 5800, stock_quantity: 15, minimum_stock: 3, unit: 'Roll' },
+      { sku: 'CBL-HDMI-15M', name: 'HDMI Cable 1.5 Meter 4K Ultra HD', category_id: 13, brand: 'Generic', purchase_price: 250, selling_price: 450, stock_quantity: 40, minimum_stock: 10, unit: 'pcs' },
+      { sku: 'CBL-HDMI-5M', name: 'HDMI Cable 5 Meter 4K Heavy Braided', category_id: 13, brand: 'Generic', purchase_price: 550, selling_price: 950, stock_quantity: 25, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'CBL-HDMI-10M', name: 'HDMI Cable 10 Meter 4K Heavy Braided', category_id: 13, brand: 'Generic', purchase_price: 1100, selling_price: 1800, stock_quantity: 18, minimum_stock: 4, unit: 'pcs' },
+      { sku: 'CBL-VGA-3M', name: 'VGA Cable 3 Meter Double Shielded', category_id: 13, brand: 'Generic', purchase_price: 350, selling_price: 600, stock_quantity: 20, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'CBL-BNC-DC', name: 'Pre-Made BNC + DC CCTV Cable 20 Meter', category_id: 13, brand: 'Generic', purchase_price: 450, selling_price: 750, stock_quantity: 30, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'CBL-PWR-PC', name: 'PC Power Cord Cable 1.5m Heavy Duty', category_id: 13, brand: 'Generic', purchase_price: 180, selling_price: 350, stock_quantity: 50, minimum_stock: 10, unit: 'pcs' },
+      { sku: 'CBL-PATCH-3M', name: 'Cat6 RJ45 Network Patch Cord 3 Meter', category_id: 13, brand: 'D-Link', purchase_price: 150, selling_price: 300, stock_quantity: 60, minimum_stock: 10, unit: 'pcs' },
+
+      // Hard Disks & SSDs
+      { sku: 'HDD-500GB', name: 'Seagate 500GB Desktop 3.5" SATA Hard Disk', category_id: 10, brand: 'Seagate', purchase_price: 2200, selling_price: 3200, stock_quantity: 25, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'HDD-1TB', name: 'WD Purple 1TB CCTV Surveillance Hard Drive', category_id: 10, brand: 'Western Digital', purchase_price: 6500, selling_price: 8500, stock_quantity: 12, minimum_stock: 3, unit: 'pcs' },
+      { sku: 'HDD-2TB', name: 'WD Purple 2TB CCTV Surveillance Hard Drive', category_id: 10, brand: 'Western Digital', purchase_price: 11500, selling_price: 14800, stock_quantity: 8, minimum_stock: 2, unit: 'pcs' },
+      { sku: 'SSD-128GB', name: 'Lexar 128GB 2.5" SATA III Internal SSD', category_id: 11, brand: 'Lexar', purchase_price: 2400, selling_price: 3400, stock_quantity: 30, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'SSD-256GB', name: 'Kingston 256GB NVMe M.2 SSD High Speed', category_id: 11, brand: 'Kingston', purchase_price: 4200, selling_price: 5800, stock_quantity: 20, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'SSD-512GB', name: 'Lexar 512GB NVMe M.2 High Speed SSD', category_id: 11, brand: 'Lexar', purchase_price: 7500, selling_price: 9800, stock_quantity: 14, minimum_stock: 3, unit: 'pcs' },
+
+      // CCTV Cameras & DVRs
+      { sku: 'CAM-2MP-OUT', name: 'Dahua 2MP Outdoor NightVision Bullet Camera', category_id: 8, brand: 'Dahua', purchase_price: 3500, selling_price: 4800, stock_quantity: 20, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'CAM-2MP-DOM', name: 'Dahua 2MP Indoor HD Dome Camera', category_id: 8, brand: 'Dahua', purchase_price: 3200, selling_price: 4400, stock_quantity: 22, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'CAM-HIK-2MP', name: 'Hikvision 2MP Turbo HD Bullet Camera', category_id: 8, brand: 'Hikvision', purchase_price: 3600, selling_price: 4900, stock_quantity: 18, minimum_stock: 4, unit: 'pcs' },
+      { sku: 'DVR-4CH', name: 'Dahua 4-Channel Cooper XVR / DVR', category_id: 9, brand: 'Dahua', purchase_price: 8500, selling_price: 11500, stock_quantity: 10, minimum_stock: 2, unit: 'pcs' },
+      { sku: 'DVR-8CH', name: 'Dahua 8-Channel WizSense XVR / DVR', category_id: 9, brand: 'Dahua', purchase_price: 13500, selling_price: 17800, stock_quantity: 6, minimum_stock: 2, unit: 'pcs' },
+
+      // Power Supplies & Accessories
+      { sku: 'PWR-12V2A', name: '12V 2A Single CCTV Camera Power Adapter', category_id: 14, brand: 'Generic', purchase_price: 300, selling_price: 550, stock_quantity: 50, minimum_stock: 10, unit: 'pcs' },
+      { sku: 'PWR-12V10A', name: '12V 10A Centralized Metal Power Box 9-Port', category_id: 14, brand: 'Huntkey', purchase_price: 2200, selling_price: 3400, stock_quantity: 12, minimum_stock: 3, unit: 'pcs' },
+      { sku: 'PWR-12V20A', name: '12V 20A Centralized Metal Power Box 18-Port', category_id: 14, brand: 'Huntkey', purchase_price: 3500, selling_price: 5200, stock_quantity: 8, minimum_stock: 2, unit: 'pcs' },
+      { sku: 'MSE-A4T', name: 'A4Tech OP-620D USB Optical Mouse', category_id: 5, brand: 'A4Tech', purchase_price: 500, selling_price: 850, stock_quantity: 35, minimum_stock: 10, unit: 'pcs' },
+      { sku: 'MSE-WIRELESS', name: 'A4Tech G3-200N Wireless Optical Mouse', category_id: 5, brand: 'A4Tech', purchase_price: 1200, selling_price: 1850, stock_quantity: 15, minimum_stock: 4, unit: 'pcs' },
+      { sku: 'KBD-A4T', name: 'A4Tech KR-85 USB Standard Keyboard', category_id: 4, brand: 'A4Tech', purchase_price: 950, selling_price: 1450, stock_quantity: 20, minimum_stock: 5, unit: 'pcs' },
+      { sku: 'NET-SW-8P', name: 'TP-Link 8-Port Desktop Network Switch', category_id: 15, brand: 'TP-Link', purchase_price: 1800, selling_price: 2600, stock_quantity: 16, minimum_stock: 4, unit: 'pcs' },
+      { sku: 'NET-POE-4P', name: 'Dahua 4-Port PoE Switch for IP Cameras', category_id: 15, brand: 'Dahua', purchase_price: 5500, selling_price: 7800, stock_quantity: 7, minimum_stock: 2, unit: 'pcs' }
     ];
 
     const insertProd = database.prepare(`
@@ -277,7 +307,8 @@ function seedInitialData(database: SqlJsDatabaseWrapper) {
     for (const p of demoProducts) {
       insertProd.run(p.sku, p.name, p.category_id, p.brand, p.purchase_price, p.selling_price, p.stock_quantity, p.minimum_stock, p.unit);
     }
-    console.log('[DB] Default demo products seeded.');
+    console.log('[DB] Comprehensive CCTV & Computer shop product catalog seeded.');
   }
 }
+
 

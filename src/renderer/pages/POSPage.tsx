@@ -240,12 +240,19 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
     }
   };
 
+  const [selectedBrand, setSelectedBrand] = useState<string>('ALL');
+
+  // Extract unique brands list
+  const uniqueBrands = Array.from(new Set(products.map(p => p.brand).filter(Boolean) as string[])).sort();
+
   // Product Grid Filter
   const filteredProducts = products.filter((p: Product) => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          p.sku.toLowerCase().includes(searchQuery.toLowerCase());
+                          p.sku.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          (p.brand && p.brand.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesCat = selectedCategory === 'ALL' || p.category_id === parseInt(selectedCategory);
-    return matchesSearch && matchesCat;
+    const matchesBrand = selectedBrand === 'ALL' || (p.brand && p.brand.toLowerCase() === selectedBrand.toLowerCase());
+    return matchesSearch && matchesCat && matchesBrand;
   });
 
   return (
@@ -264,25 +271,46 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
       }}>
         {/* Search & Category Tabs */}
         <div style={{ marginBottom: '16px', width: '100%', minWidth: 0 }}>
-          <div style={{ position: 'relative', marginBottom: '12px', width: '100%' }}>
-            <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
-            <input
-              type="text"
-              placeholder="Search product by name or scan SKU barcode..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              autoFocus
+          <div style={{ display: 'flex', gap: '10px', marginBottom: '12px', width: '100%' }}>
+            <div style={{ flex: 1, position: 'relative' }}>
+              <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+              <input
+                type="text"
+                placeholder="Search product by name, brand, or scan SKU..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                autoFocus
+                style={{
+                  width: '100%',
+                  padding: '10px 12px 10px 40px',
+                  backgroundColor: '#1e293b',
+                  border: '1px solid #334155',
+                  borderRadius: '8px',
+                  color: '#f8fafc',
+                  fontSize: '14px',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+
+            {/* Brand Filter Dropdown */}
+            <select
+              value={selectedBrand}
+              onChange={e => setSelectedBrand(e.target.value)}
               style={{
-                width: '100%',
-                padding: '10px 12px 10px 40px',
+                padding: '8px 12px',
                 backgroundColor: '#1e293b',
                 border: '1px solid #334155',
                 borderRadius: '8px',
                 color: '#f8fafc',
-                fontSize: '14px',
-                boxSizing: 'border-box'
+                fontSize: '13px'
               }}
-            />
+            >
+              <option value="ALL">🏷️ All Brands</option>
+              {uniqueBrands.map(b => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
           </div>
 
           {/* Category Badges Horizontal Scroll */}
