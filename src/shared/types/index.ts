@@ -18,13 +18,23 @@ export interface Category {
   updated_at: string;
 }
 
+export interface Subcategory {
+  id: number;
+  category_id: number;
+  category_name?: string;
+  name: string;
+  description?: string;
+  created_at: string;
+}
+
 export interface Product {
   id: number;
   sku: string;
   name: string;
   category_id: number;
   category_name?: string;
-  brand?: string;
+  subcategory_id?: number | null;
+  subcategory_name?: string;
   purchase_price: number;
   selling_price: number;
   stock_quantity: number;
@@ -40,7 +50,6 @@ export interface Customer {
   id: number;
   name: string;
   phone: string;
-  address?: string;
   notes?: string;
   created_at: string;
   updated_at: string;

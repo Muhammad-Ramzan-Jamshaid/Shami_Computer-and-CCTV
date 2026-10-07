@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import path from 'path';
 import pkg from 'electron-updater';
 const { autoUpdater } = pkg;
@@ -99,8 +99,13 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  // Initialize Async Database
-  await initDatabaseAsync();
+  try {
+    // Initialize Async Database
+    await initDatabaseAsync();
+  } catch (err: any) {
+    console.error('[DB Fatal Initialization Error]', err);
+    dialog.showErrorBox('Database Startup Error', err?.stack || err?.message || String(err));
+  }
 
   createWindow();
 

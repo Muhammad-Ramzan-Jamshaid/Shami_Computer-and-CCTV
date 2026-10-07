@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Users, Plus, Search, Edit3, Phone, MapPin, FileText } from 'lucide-react';
+import { Users, Plus, Search, Edit3, Phone, FileText } from 'lucide-react';
 import { Customer } from '../../shared/types';
 
 export const CustomersPage: React.FC = () => {
@@ -10,7 +10,6 @@ export const CustomersPage: React.FC = () => {
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [name, setName] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
 
   const loadCustomers = async () => {
@@ -32,7 +31,6 @@ export const CustomersPage: React.FC = () => {
     setEditingCustomer(null);
     setName('');
     setPhone('');
-    setAddress('');
     setNotes('');
     setShowModal(true);
   };
@@ -41,7 +39,6 @@ export const CustomersPage: React.FC = () => {
     setEditingCustomer(cust);
     setName(cust.name);
     setPhone(cust.phone);
-    setAddress(cust.address || '');
     setNotes(cust.notes || '');
     setShowModal(true);
   };
@@ -51,9 +48,9 @@ export const CustomersPage: React.FC = () => {
     if (!name.trim() || !phone.trim()) return;
 
     if (editingCustomer) {
-      await window.api.updateCustomer({ id: editingCustomer.id, name, phone, address, notes });
+      await window.api.updateCustomer({ id: editingCustomer.id, name, phone, notes });
     } else {
-      await window.api.addCustomer({ name, phone, address, notes });
+      await window.api.addCustomer({ name, phone, notes });
     }
     setShowModal(false);
     loadCustomers();
@@ -68,8 +65,8 @@ export const CustomersPage: React.FC = () => {
     <div style={{ padding: '24px', height: '100%', overflowY: 'auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div>
-          <h1 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc' }}>Customer Management</h1>
-          <p style={{ fontSize: '13px', color: '#94a3b8' }}>Maintain client phone directory, addresses & notes</p>
+          <h1 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc' }}>Customer Directory</h1>
+          <p style={{ fontSize: '13px', color: '#94a3b8' }}>Client phone numbers and purchase records</p>
         </div>
 
         <button
@@ -88,7 +85,7 @@ export const CustomersPage: React.FC = () => {
             cursor: 'pointer'
           }}
         >
-          <Plus size={16} /> Add Customer
+          <Plus size={16} /> Add New Customer
         </button>
       </div>
 
@@ -111,8 +108,7 @@ export const CustomersPage: React.FC = () => {
             <tr style={{ backgroundColor: '#0f172a', color: '#94a3b8', textAlign: 'left' }}>
               <th style={{ padding: '12px' }}>Customer Name</th>
               <th style={{ padding: '12px' }}>Phone Number</th>
-              <th style={{ padding: '12px' }}>Address</th>
-              <th style={{ padding: '12px' }}>Notes</th>
+              <th style={{ padding: '12px' }}>Notes / Remarks</th>
               <th style={{ padding: '12px', textAlign: 'center' }}>Action</th>
             </tr>
           </thead>
@@ -121,22 +117,21 @@ export const CustomersPage: React.FC = () => {
               filtered.map(cust => (
                 <tr key={cust.id} style={{ borderBottom: '1px solid #334155' }}>
                   <td style={{ padding: '12px', fontWeight: 'bold', color: '#f8fafc' }}>{cust.name}</td>
-                  <td style={{ padding: '12px', color: '#60a5fa', fontFamily: 'monospace' }}>{cust.phone}</td>
-                  <td style={{ padding: '12px', color: '#cbd5e1' }}>{cust.address || '-'}</td>
+                  <td style={{ padding: '12px', color: '#38bdf8', fontFamily: 'monospace', fontWeight: 'bold' }}>{cust.phone}</td>
                   <td style={{ padding: '12px', color: '#94a3b8' }}>{cust.notes || '-'}</td>
                   <td style={{ padding: '12px', textAlign: 'center' }}>
                     <button
                       onClick={() => openEditModal(cust)}
-                      style={{ backgroundColor: '#334155', border: 'none', color: '#f8fafc', padding: '6px', borderRadius: '4px', cursor: 'pointer' }}
+                      style={{ backgroundColor: '#334155', border: 'none', color: '#f8fafc', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}
                     >
-                      <Edit3 size={14} />
+                      <Edit3 size={14} /> Edit
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={5} style={{ padding: '30px', textAlign: 'center', color: '#64748b' }}>No customers registered.</td>
+                <td colSpan={4} style={{ padding: '30px', textAlign: 'center', color: '#64748b' }}>No customers registered.</td>
               </tr>
             )}
           </tbody>
@@ -151,19 +146,15 @@ export const CustomersPage: React.FC = () => {
             </h3>
             <form onSubmit={handleSubmit}>
               <div style={{ marginBottom: '12px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Name *</label>
+                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Customer Name *</label>
                 <input type="text" required value={name} onChange={e => setName(e.target.value)} style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }} />
               </div>
               <div style={{ marginBottom: '12px' }}>
                 <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Phone Number *</label>
                 <input type="text" required value={phone} onChange={e => setPhone(e.target.value)} style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }} />
               </div>
-              <div style={{ marginBottom: '12px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Address</label>
-                <input type="text" value={address} onChange={e => setAddress(e.target.value)} style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }} />
-              </div>
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Notes</label>
+                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Notes (Optional)</label>
                 <input type="text" value={notes} onChange={e => setNotes(e.target.value)} style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }} />
               </div>
               <div style={{ display: 'flex', gap: '10px' }}>

@@ -4,6 +4,7 @@ import {
   Printer, 
   Eye, 
   XCircle, 
+  Trash2,
   Calendar,
   Filter
 } from 'lucide-react';
@@ -235,9 +236,35 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
                         {!isCancelled && currentUser?.role === 'ADMIN' && (
                           <button
                             onClick={() => handleOpenCancelModal(sale)}
-                            title="Cancel / Void Sale"
+                            title="Cancel / Void Sale (Mark as Cancelled)"
                             style={{
                               backgroundColor: '#334155',
+                              border: 'none',
+                              color: '#f59e0b',
+                              padding: '6px',
+                              borderRadius: '4px',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <XCircle size={14} />
+                          </button>
+                        )}
+
+                        {currentUser?.role === 'ADMIN' && (
+                          <button
+                            onClick={async () => {
+                              if (confirm(`Are you sure you want to PERMANENTLY DELETE invoice #${sale.invoice_number}? This will remove it from all records and restore stock.`)) {
+                                const res = await window.api.deleteSale(sale.id, currentUser.id);
+                                if (res.success) {
+                                  loadSales();
+                                } else {
+                                  alert(res.error || 'Failed to delete sale');
+                                }
+                              }
+                            }}
+                            title="Permanently Delete Invoice from Database"
+                            style={{
+                              backgroundColor: 'rgba(239, 68, 68, 0.2)',
                               border: 'none',
                               color: '#ef4444',
                               padding: '6px',
@@ -245,7 +272,7 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
                               cursor: 'pointer'
                             }}
                           >
-                            <XCircle size={14} />
+                            <Trash2 size={14} />
                           </button>
                         )}
                       </div>

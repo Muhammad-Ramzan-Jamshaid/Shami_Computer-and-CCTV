@@ -10,12 +10,20 @@ export const api = {
   // Categories
   getCategories: () => ipcRenderer.invoke('categories:get'),
   addCategory: (name: string, description?: string) => ipcRenderer.invoke('categories:add', { name, description }),
+  updateCategory: (id: number, name: string, description?: string) => ipcRenderer.invoke('categories:update', { id, name, description }),
   deleteCategory: (id: number) => ipcRenderer.invoke('categories:delete', { id }),
+
+  // Subcategories
+  getSubcategories: (categoryId?: number) => ipcRenderer.invoke('subcategories:get', { categoryId }),
+  addSubcategory: (categoryId: number, name: string, description?: string) => ipcRenderer.invoke('subcategories:add', { categoryId, name, description }),
+  updateSubcategory: (id: number, categoryId: number, name: string, description?: string) => ipcRenderer.invoke('subcategories:update', { id, categoryId, name, description }),
+  deleteSubcategory: (id: number) => ipcRenderer.invoke('subcategories:delete', { id }),
 
   // Products
   getProducts: () => ipcRenderer.invoke('products:get'),
   addProduct: (productData: any) => ipcRenderer.invoke('products:add', productData),
   updateProduct: (id: number, productData: any) => ipcRenderer.invoke('products:update', { id, productData }),
+  deleteProduct: (id: number) => ipcRenderer.invoke('products:delete', { id }),
   adjustStock: (productId: number, quantityToAdd: number, note: string, userId: number) =>
     ipcRenderer.invoke('products:adjustStock', { productId, quantityToAdd, note, userId }),
   getLowStockProducts: () => ipcRenderer.invoke('products:getLowStock'),
@@ -30,6 +38,7 @@ export const api = {
   getSales: (filter?: any) => ipcRenderer.invoke('sales:get', filter),
   getSaleById: (id: number) => ipcRenderer.invoke('sales:getById', { id }),
   cancelSale: (saleId: number, userId: number, reason?: string) => ipcRenderer.invoke('sales:cancel', { saleId, userId, reason }),
+  deleteSale: (saleId: number, userId: number) => ipcRenderer.invoke('sales:delete', { saleId, userId }),
 
   // Reports
   getDashboardStats: () => ipcRenderer.invoke('reports:getDashboard'),

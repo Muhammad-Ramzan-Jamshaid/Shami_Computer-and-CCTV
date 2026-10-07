@@ -1,6 +1,7 @@
 import { ipcMain, BrowserWindow } from 'electron';
 import { AuthService } from '../services/AuthService';
 import { CategoryService } from '../services/CategoryService';
+import { SubcategoryService } from '../services/SubcategoryService';
 import { ProductService } from '../services/ProductService';
 import { CustomerService } from '../services/CustomerService';
 import { SaleService } from '../services/SaleService';
@@ -30,8 +31,25 @@ export function registerIpcHandlers() {
   ipcMain.handle('categories:add', async (_, { name, description }) => {
     return CategoryService.addCategory(name, description);
   });
+  ipcMain.handle('categories:update', async (_, { id, name, description }) => {
+    return CategoryService.updateCategory(id, name, description);
+  });
   ipcMain.handle('categories:delete', async (_, { id }) => {
     return CategoryService.deleteCategory(id);
+  });
+
+  // Subcategories
+  ipcMain.handle('subcategories:get', async (_, { categoryId }) => {
+    return SubcategoryService.getSubcategories(categoryId);
+  });
+  ipcMain.handle('subcategories:add', async (_, { categoryId, name, description }) => {
+    return SubcategoryService.addSubcategory(categoryId, name, description);
+  });
+  ipcMain.handle('subcategories:update', async (_, { id, categoryId, name, description }) => {
+    return SubcategoryService.updateSubcategory(id, categoryId, name, description);
+  });
+  ipcMain.handle('subcategories:delete', async (_, { id }) => {
+    return SubcategoryService.deleteSubcategory(id);
   });
 
   // Products
@@ -44,6 +62,9 @@ export function registerIpcHandlers() {
   ipcMain.handle('products:update', async (_, { id, productData }) => {
     return ProductService.updateProduct(id, productData);
   });
+  ipcMain.handle('products:delete', async (_, { id }) => {
+    return ProductService.deleteProduct(id);
+  });
   ipcMain.handle('products:adjustStock', async (_, { productId, quantityToAdd, note, userId }) => {
     return ProductService.adjustStock(productId, quantityToAdd, note, userId);
   });
@@ -55,11 +76,11 @@ export function registerIpcHandlers() {
   ipcMain.handle('customers:get', async () => {
     return CustomerService.getCustomers();
   });
-  ipcMain.handle('customers:add', async (_, { name, phone, address, notes }) => {
-    return CustomerService.addCustomer(name, phone, address, notes);
+  ipcMain.handle('customers:add', async (_, { name, phone, notes }) => {
+    return CustomerService.addCustomer(name, phone, '', notes);
   });
-  ipcMain.handle('customers:update', async (_, { id, name, phone, address, notes }) => {
-    return CustomerService.updateCustomer(id, name, phone, address, notes);
+  ipcMain.handle('customers:update', async (_, { id, name, phone, notes }) => {
+    return CustomerService.updateCustomer(id, name, phone, '', notes);
   });
 
   // Sales
@@ -74,6 +95,9 @@ export function registerIpcHandlers() {
   });
   ipcMain.handle('sales:cancel', async (_, { saleId, userId, reason }) => {
     return SaleService.cancelSale(saleId, userId, reason);
+  });
+  ipcMain.handle('sales:delete', async (_, { saleId, userId }) => {
+    return SaleService.deleteSale(saleId, userId);
   });
 
   // Reports

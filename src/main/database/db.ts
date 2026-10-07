@@ -150,13 +150,46 @@ export class SqlJsDatabaseWrapper {
   }
 }
 
+function runSchemaMigrations(database: SqlJsDatabaseWrapper) {
+  try {
+    database.exec('ALTER TABLE products ADD COLUMN subcategory_id INTEGER;');
+  } catch (e) {
+    // Column already exists or table freshly created
+  }
+
+  try {
+    database.exec('ALTER TABLE products ADD COLUMN brand_id INTEGER;');
+  } catch (e) {
+    // Column already exists or table freshly created
+  }
+}
+
 export async function initDatabaseAsync(customPath?: string): Promise<SqlJsDatabaseWrapper> {
   if (dbInstance) return dbInstance;
 
   const dbPath = customPath || getDatabasePath();
   console.log('[DB] Connecting sql.js SQLite database at:', dbPath);
 
-  const SQL = await initSqlJs();
+  const SQL = await initSqlJs({
+    locateFile: (file) => {
+      if (file.endsWith('.wasm')) {
+        const candidates = [
+          path.join(__dirname, file),
+          path.join(process.resourcesPath || '', file),
+          path.join(process.cwd(), 'node_modules/sql.js/dist', file),
+          path.join(app ? app.getAppPath() : '', 'dist-electron/main', file),
+          path.join(app ? app.getAppPath() : '', file),
+        ];
+        for (const cand of candidates) {
+          if (cand && fs.existsSync(cand)) {
+            console.log('[DB] Found WASM binary at:', cand);
+            return cand;
+          }
+        }
+      }
+      return file;
+    }
+  });
 
   let sqliteDb: SqlJsDatabase;
   if (fs.existsSync(dbPath)) {
@@ -168,8 +201,9 @@ export async function initDatabaseAsync(customPath?: string): Promise<SqlJsDatab
 
   dbInstance = new SqlJsDatabaseWrapper(sqliteDb, dbPath);
 
-  // Execute Schema & Seed
+  // Execute Schema & Migrations & Seed
   dbInstance.exec(CREATE_TABLES_SQL);
+  runSchemaMigrations(dbInstance);
   seedInitialData(dbInstance);
 
   return dbInstance;
@@ -232,6 +266,92 @@ function seedInitialData(database: SqlJsDatabaseWrapper) {
       insertStmt.run(cat, `${cat} equipment & accessories`);
     }
     console.log('[DB] Default categories seeded.');
+  }
+
+  // Seed Default Brands
+  const brandCheck = database.prepare('SELECT COUNT(*) as count FROM brands').get() as { count: number };
+  if (!brandCheck || brandCheck.count === 0) {
+    const defaultBrands = [
+      'Dahua', 'Hikvision', 'Tensun', 'Western Digital', 'Seagate',
+      'A4Tech', 'TP-Link', 'D-Link', 'Lexar', 'Kingston', 'Huntkey',
+      'Generic / China', 'Dell', 'HP', 'Lenovo'
+    ];
+    const insertBrand = database.prepare('INSERT INTO brands (name, description) VALUES (?, ?)');
+    for (const b of defaultBrands) {
+      insertBrand.run(b, `${b} products & hardware`);
+    }
+    console.log('[DB] Default brands seeded.');
+  }
+
+  // Seed Default Subcategories
+  const subCatCheck = database.prepare('SELECT COUNT(*) as count FROM subcategories').get() as { count: number };
+  if (!subCatCheck || subCatCheck.count === 0) {
+    // Fetch category IDs map
+    const catRows = database.prepare('SELECT id, name FROM categories').all() as { id: number; name: string }[];
+    const catMap = new Map(catRows.map(c => [c.name, c.id]));
+
+    const defaultSubcategories: { category: string; name: string }[] = [
+      // Cable
+      { category: 'Cable', name: 'HDMI Cable 2K / HD' },
+      { category: 'Cable', name: 'HDMI Cable 4K Ultra HD' },
+      { category: 'Cable', name: 'VGA Cable' },
+      { category: 'Cable', name: 'Power Cable (Branded)' },
+      { category: 'Cable', name: 'Power Cable (China)' },
+      { category: 'Cable', name: 'VCR / BNC CCTV Cable' },
+      { category: 'Cable', name: 'Cat6 Network UTP Cable' },
+      { category: 'Cable', name: '3+1 CCTV Coaxial Cable' },
+      { category: 'Cable', name: 'RJ45 Patch Cord' },
+
+      // Mouse
+      { category: 'Mouse', name: 'Wired Optical Mouse' },
+      { category: 'Mouse', name: 'Wireless 2.4G Mouse' },
+      { category: 'Mouse', name: 'Bluetooth Mouse' },
+      { category: 'Mouse', name: 'Gaming RGB Mouse' },
+      { category: 'Mouse', name: 'Branded Mouse (A4Tech / Logitech)' },
+      { category: 'Mouse', name: 'China / Generic Mouse' },
+
+      // Keyboard
+      { category: 'Keyboard', name: 'Standard USB Keyboard' },
+      { category: 'Keyboard', name: 'Wireless Keyboard & Mouse Combo' },
+      { category: 'Keyboard', name: 'Gaming Keyboard' },
+
+      // Power Supply
+      { category: 'Power Supply', name: '12V 2A Single Camera Adapter' },
+      { category: 'Power Supply', name: '12V Central Metal Power Box' },
+      { category: 'Power Supply', name: 'Branded Power Supply' },
+      { category: 'Power Supply', name: 'China Power Supply' },
+
+      // CCTV Camera
+      { category: 'CCTV Camera', name: '2MP HD Bullet Camera' },
+      { category: 'CCTV Camera', name: '2MP HD Dome Camera' },
+      { category: 'CCTV Camera', name: 'IP Network Camera' },
+      { category: 'CCTV Camera', name: 'PTZ Speed Dome' },
+      { category: 'CCTV Camera', name: 'WiFi Smart Wireless Cam' },
+
+      // DVR/NVR
+      { category: 'DVR/NVR', name: '4-Channel XVR / DVR' },
+      { category: 'DVR/NVR', name: '8-Channel XVR / DVR' },
+      { category: 'DVR/NVR', name: '16-Channel XVR / NVR' },
+
+      // Hard Disk
+      { category: 'Hard Disk', name: '3.5" Desktop SATA Hard Drive' },
+      { category: 'Hard Disk', name: 'CCTV Surveillance HDD (WD Purple / SkyHawk)' },
+      { category: 'Hard Disk', name: '2.5" Laptop Hard Drive' },
+
+      // SSD
+      { category: 'SSD', name: '2.5" SATA III SSD' },
+      { category: 'SSD', name: 'NVMe M.2 High Speed SSD' },
+      { category: 'SSD', name: 'mSATA SSD' }
+    ];
+
+    const insertSubCat = database.prepare('INSERT INTO subcategories (category_id, name, description) VALUES (?, ?, ?)');
+    for (const item of defaultSubcategories) {
+      const catId = catMap.get(item.category);
+      if (catId) {
+        insertSubCat.run(catId, item.name, `${item.name} under ${item.category}`);
+      }
+    }
+    console.log('[DB] Default subcategories seeded.');
   }
 
   // 3. Default Shop Settings

@@ -5,20 +5,27 @@ export class ProductService {
   static getProducts(): Product[] {
     const db = getDb();
     const rows = db.prepare(`
-      SELECT p.*, c.name as category_name
+      SELECT p.*, 
+             c.name as category_name,
+             sc.name as subcategory_name
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
+      LEFT JOIN subcategories sc ON p.subcategory_id = sc.id
       ORDER BY p.name ASC
     `).all();
+
     return rows as Product[];
   }
 
   static getProductById(id: number): Product | undefined {
     const db = getDb();
     return db.prepare(`
-      SELECT p.*, c.name as category_name
+      SELECT p.*, 
+             c.name as category_name,
+             sc.name as subcategory_name
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
+      LEFT JOIN subcategories sc ON p.subcategory_id = sc.id
       WHERE p.id = ?
     `).get(id) as Product | undefined;
   }
@@ -27,17 +34,17 @@ export class ProductService {
     const db = getDb();
     try {
       const info = db.prepare(`
-        INSERT INTO products (sku, name, category_id, brand, purchase_price, selling_price, stock_quantity, minimum_stock, unit, description, active)
+        INSERT INTO products (sku, name, category_id, subcategory_id, purchase_price, selling_price, stock_quantity, minimum_stock, unit, description, active)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `).run(
         productData.sku.trim(),
         productData.name.trim(),
         productData.category_id,
-        productData.brand || '',
-        productData.purchase_price,
-        productData.selling_price,
-        productData.stock_quantity,
-        productData.minimum_stock,
+        productData.subcategory_id || null,
+        productData.purchase_price || 0,
+        productData.selling_price || 0,
+        productData.stock_quantity || 0,
+        productData.minimum_stock || 5,
         productData.unit || 'pcs',
         productData.description || '',
         productData.active ? 1 : 0
@@ -68,7 +75,7 @@ export class ProductService {
           sku = COALESCE(?, sku),
           name = COALESCE(?, name),
           category_id = COALESCE(?, category_id),
-          brand = COALESCE(?, brand),
+          subcategory_id = ?,
           purchase_price = COALESCE(?, purchase_price),
           selling_price = COALESCE(?, selling_price),
           minimum_stock = COALESCE(?, minimum_stock),
@@ -81,7 +88,7 @@ export class ProductService {
         productData.sku,
         productData.name,
         productData.category_id,
-        productData.brand,
+        productData.subcategory_id !== undefined ? productData.subcategory_id : null,
         productData.purchase_price,
         productData.selling_price,
         productData.minimum_stock,
@@ -119,6 +126,20 @@ export class ProductService {
 
       const newStock = transaction();
       return { success: true, newStock };
+    } catch (err: any) {
+      return { success: false, error: err.message };
+    }
+  }
+
+  static deleteProduct(id: number): { success: boolean; error?: string } {
+    const db = getDb();
+    try {
+      const transaction = db.transaction(() => {
+        db.prepare('DELETE FROM stock_movements WHERE product_id = ?').run(id);
+        db.prepare('DELETE FROM products WHERE id = ?').run(id);
+      });
+      transaction();
+      return { success: true };
     } catch (err: any) {
       return { success: false, error: err.message };
     }

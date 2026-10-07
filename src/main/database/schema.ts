@@ -18,29 +18,38 @@ CREATE TABLE IF NOT EXISTS categories (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS subcategories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  category_id INTEGER NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   sku TEXT NOT NULL UNIQUE,
   name TEXT NOT NULL,
   category_id INTEGER NOT NULL,
-  brand TEXT,
+  subcategory_id INTEGER,
   purchase_price REAL NOT NULL DEFAULT 0,
   selling_price REAL NOT NULL DEFAULT 0,
-  stock_quantity INTEGER NOT NULL DEFAULT 0,
+  stock_quantity REAL NOT NULL DEFAULT 0,
   minimum_stock INTEGER NOT NULL DEFAULT 5,
   unit TEXT NOT NULL DEFAULT 'pcs',
   description TEXT,
   active INTEGER NOT NULL DEFAULT 1,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (category_id) REFERENCES categories (id)
+  FOREIGN KEY (category_id) REFERENCES categories (id),
+  FOREIGN KEY (subcategory_id) REFERENCES subcategories (id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS customers (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
   phone TEXT NOT NULL,
-  address TEXT,
   notes TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -69,7 +78,7 @@ CREATE TABLE IF NOT EXISTS sale_items (
   product_id INTEGER NOT NULL,
   product_name_snapshot TEXT NOT NULL,
   sku_snapshot TEXT NOT NULL,
-  quantity INTEGER NOT NULL CHECK(quantity > 0),
+  quantity REAL NOT NULL CHECK(quantity > 0),
   purchase_price_snapshot REAL NOT NULL,
   selling_price REAL NOT NULL,
   discount REAL NOT NULL DEFAULT 0,
@@ -82,7 +91,7 @@ CREATE TABLE IF NOT EXISTS stock_movements (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   product_id INTEGER NOT NULL,
   movement_type TEXT NOT NULL CHECK(movement_type IN ('PURCHASE/IN', 'SALE/OUT', 'SALE_CANCEL/RETURN', 'MANUAL_ADJUSTMENT')),
-  quantity INTEGER NOT NULL,
+  quantity REAL NOT NULL,
   reference_type TEXT,
   reference_id INTEGER,
   note TEXT,

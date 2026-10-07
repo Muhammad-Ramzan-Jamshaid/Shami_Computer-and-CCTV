@@ -1,14 +1,14 @@
 {
   "name": "desktop-shami-cctv",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shami Computer and CCTV Desktop POS and Inventory Application",
   "author": "Shami Computer & CCTV",
   "main": "dist-electron/main/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "package": "vite build && electron-builder --win",
+    "build": "vite build && powershell -Command \"Copy-Item node_modules/sql.js/dist/sql-wasm.wasm dist-electron/main/sql-wasm.wasm -Force\"",
+    "package": "vite build && powershell -Command \"Copy-Item node_modules/sql.js/dist/sql-wasm.wasm dist-electron/main/sql-wasm.wasm -Force\" && electron-builder --win",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -51,6 +51,12 @@
     "files": [
       "dist/**/*",
       "dist-electron/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "node_modules/sql.js/dist/sql-wasm.wasm",
+        "to": "sql-wasm.wasm"
+      }
     ],
     "asarUnpack": [
       "**/node_modules/better-sqlite3/**"

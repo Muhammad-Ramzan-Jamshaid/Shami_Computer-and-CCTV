@@ -218,4 +218,39 @@ export class SaleService {
       return { success: false, error: err.message };
     }
   }
+
+  static deleteSale(saleId: number, userId: number): { success: boolean; error?: string } {
+    const db = getDb();
+    try {
+      const transaction = db.transaction(() => {
+        const sale = db.prepare('SELECT status, invoice_number FROM sales WHERE id = ?').get(saleId) as any;
+        if (!sale) throw new Error('Sale invoice not found');
+
+        const items = db.prepare('SELECT * FROM sale_items WHERE sale_id = ?').all(saleId) as any[];
+
+        // Restore stock if sale was active
+        if (sale.status !== 'CANCELLED') {
+          const updateStock = db.prepare('UPDATE products SET stock_quantity = stock_quantity + ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?');
+          const insertMovement = db.prepare(`
+            INSERT INTO stock_movements (product_id, movement_type, quantity, reference_type, reference_id, note, created_by)
+            VALUES (?, 'SALE_CANCEL/RETURN', ?, 'SALE_DELETE', ?, ?, ?)
+          `);
+
+          for (const item of items) {
+            updateStock.run(item.quantity, item.product_id);
+            insertMovement.run(item.product_id, item.quantity, saleId, `Permanently Deleted Invoice ${sale.invoice_number}`, userId);
+          }
+        }
+
+        // Delete permanently from database
+        db.prepare('DELETE FROM sale_items WHERE sale_id = ?').run(saleId);
+        db.prepare('DELETE FROM sales WHERE id = ?').run(saleId);
+      });
+
+      transaction();
+      return { success: true };
+    } catch (err: any) {
+      return { success: false, error: err.message };
+    }
+  }
 }
