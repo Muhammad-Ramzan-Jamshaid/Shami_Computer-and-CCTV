@@ -23,7 +23,11 @@ export class CategoryService {
   static updateCategory(id: number, name: string, description?: string): { success: boolean; error?: string } {
     const db = getDb();
     try {
-      db.prepare('UPDATE categories SET name = ?, description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?').run(name.trim(), description || '', id);
+      try {
+        db.prepare('UPDATE categories SET name = ?, description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?').run(name.trim(), description || '', id);
+      } catch {
+        db.prepare('UPDATE categories SET name = ?, description = ? WHERE id = ?').run(name.trim(), description || '', id);
+      }
       return { success: true };
     } catch (err: any) {
       if (err.message?.includes('UNIQUE')) {

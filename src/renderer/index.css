@@ -36,7 +36,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  user-select: none;
 }
 
 body {
@@ -49,25 +48,26 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Scrollbars */
+/* Scrollbars - clean, visible and easy to scroll */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-body);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 3px;
+  background: #334155;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  background: #475569;
 }
 
-/* Input text selectable */
-input, textarea, select, .selectable {
-  user-select: text !important;
+/* Input text selectable & editable */
+input, textarea, select, [contenteditable="true"], .selectable {
+  user-select: auto !important;
+  -webkit-user-select: auto !important;
 }
 
 /* Print CSS for A4 Invoice */

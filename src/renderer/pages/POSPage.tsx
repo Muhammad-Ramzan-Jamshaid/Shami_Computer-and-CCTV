@@ -357,15 +357,15 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
       {/* TOP SEARCH BAR & FILTERS */}
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '12px', width: '100%' }}>
         
-        {/* MEDICAL STORE STYLE SMART SEARCH INPUT */}
+        {/* SEARCH INPUT */}
         <div style={{ flex: 1, position: 'relative' }}>
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             <div style={{ flex: 1, position: 'relative' }}>
-              <Search size={18} color="#38bdf8" style={{ position: 'absolute', left: '12px', top: '11px', pointerEvents: 'none' }} />
+              <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px', pointerEvents: 'none' }} />
               <input
                 ref={searchInputRef}
                 type="text"
-                placeholder="⚡ Search product by name, model, SKU or scan barcode... (Press Enter to add)"
+                placeholder="Search product by name, model, SKU or scan barcode... (Press Enter to add)"
                 value={searchQuery}
                 onChange={e => {
                   setSearchQuery(e.target.value);
@@ -380,11 +380,11 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                   width: '100%',
                   padding: '10px 12px 10px 40px',
                   backgroundColor: '#1e293b',
-                  border: showSearchDropdown && searchQuery ? '2px solid #38bdf8' : '1px solid #334155',
+                  border: showSearchDropdown && searchQuery ? '1px solid #2563eb' : '1px solid #334155',
                   borderRadius: '8px',
                   color: '#ffffff',
                   fontSize: '14px',
-                  fontWeight: 'bold',
+                  fontWeight: '500',
                   boxSizing: 'border-box',
                   outline: 'none'
                 }}
@@ -419,7 +419,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                 fontSize: '12px'
               }}
             >
-              <option value="ALL">📁 All Categories</option>
+              <option value="ALL">All Categories</option>
               {categories.map(cat => (
                 <option key={cat.id} value={cat.id.toString()}>{cat.name}</option>
               ))}
@@ -438,7 +438,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                 fontSize: '12px'
               }}
             >
-              <option value="ALL">📂 All Subcategories</option>
+              <option value="ALL">All Subcategories</option>
               {filterAvailableSubcategories.map(sc => (
                 <option key={sc.id} value={sc.id.toString()}>{sc.name}</option>
               ))}
@@ -450,7 +450,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               style={{
                 backgroundColor: '#1e293b',
                 border: '1px solid #334155',
-                color: '#38bdf8',
+                color: '#cbd5e1',
                 padding: '10px 14px',
                 borderRadius: '8px',
                 cursor: 'pointer',
@@ -474,9 +474,9 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               left: 0,
               right: 0,
               backgroundColor: '#0f172a',
-              border: '2px solid #38bdf8',
+              border: '1px solid #334155',
               borderRadius: '8px',
-              boxShadow: '0 12px 32px rgba(0,0,0,0.8)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.6)',
               maxHeight: '380px',
               overflowY: 'auto',
               zIndex: 1000
@@ -512,7 +512,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                             opacity: isOut ? 0.5 : 1
                           }}
                         >
-                          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#60a5fa', fontSize: '11px' }}>{prod.sku}</td>
+                          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#94a3b8', fontSize: '11px' }}>{prod.sku}</td>
                           <td style={{ padding: '10px 12px', color: '#f8fafc', fontWeight: 'bold' }}>{prod.name}</td>
                           <td style={{ padding: '10px 12px', color: '#94a3b8', fontSize: '12px' }}>
                             {prod.category_name} {prod.subcategory_name && `(${prod.subcategory_name})`}

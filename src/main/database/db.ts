@@ -162,6 +162,12 @@ function runSchemaMigrations(database: SqlJsDatabaseWrapper) {
   } catch (e) {
     // Column already exists or table freshly created
   }
+
+  try {
+    database.exec('ALTER TABLE categories ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP;');
+  } catch (e) {
+    // Column already exists
+  }
 }
 
 export async function initDatabaseAsync(customPath?: string): Promise<SqlJsDatabaseWrapper> {
