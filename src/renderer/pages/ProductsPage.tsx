@@ -525,13 +525,13 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
             <thead style={{ position: 'sticky', top: 0, zIndex: 5, backgroundColor: '#0f172a' }}>
               <tr style={{ color: '#94a3b8', borderBottom: '1px solid #334155' }}>
-                <th style={{ padding: '10px 14px', fontWeight: '600', fontSize: '12px' }}>SKU</th>
-                <th style={{ padding: '10px 14px', fontWeight: '600', fontSize: '12px' }}>Product Name</th>
-                <th style={{ padding: '10px 14px', fontWeight: '600', fontSize: '12px' }}>Category & Subcategory</th>
-                <th style={{ padding: '10px 14px', textAlign: 'right', fontWeight: '600', fontSize: '12px' }}>Cost Price</th>
-                <th style={{ padding: '10px 14px', textAlign: 'right', fontWeight: '600', fontSize: '12px' }}>Sell Price</th>
-                <th style={{ padding: '10px 14px', textAlign: 'center', fontWeight: '600', fontSize: '12px' }}>Stock</th>
-                <th style={{ padding: '10px 14px', textAlign: 'center', fontWeight: '600', fontSize: '12px' }}>Actions</th>
+                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '12px' }}>SKU</th>
+                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '12px' }}>Product Name</th>
+                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '12px' }}>Category & Subcategory</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', fontSize: '12px' }}>Cost Price</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', fontSize: '12px' }}>Sell Price</th>
+                <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '12px' }}>Stock</th>
+                <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '12px' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -548,20 +548,20 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                         backgroundColor: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)'
                       }}
                     >
-                      <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#94a3b8', fontSize: '12px' }}>{p.sku}</td>
-                      <td style={{ padding: '10px 14px', color: '#f8fafc', fontWeight: '600' }}>
+                      <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#94a3b8', fontSize: '12px' }}>{p.sku}</td>
+                      <td style={{ padding: '12px 16px', color: '#f8fafc', fontWeight: '600' }}>
                         {p.name}
-                        {p.description && <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 'normal' }}>{p.description}</div>}
+                        {p.description && <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 'normal', marginTop: '2px' }}>{p.description}</div>}
                       </td>
-                      <td style={{ padding: '10px 14px', color: '#cbd5e1' }}>
+                      <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>
                         <span>{p.category_name}</span>
-                        {p.subcategory_name && <span style={{ fontSize: '11px', color: '#94a3b8', display: 'block' }}>↳ {p.subcategory_name}</span>}
+                        {p.subcategory_name && <span style={{ fontSize: '11px', color: '#94a3b8', display: 'block', marginTop: '2px' }}>↳ {p.subcategory_name}</span>}
                       </td>
-                      <td style={{ padding: '10px 14px', textAlign: 'right', color: '#94a3b8' }}>Rs {p.purchase_price.toLocaleString()}</td>
-                      <td style={{ padding: '10px 14px', textAlign: 'right', color: '#f8fafc', fontWeight: 'bold' }}>Rs {p.selling_price.toLocaleString()}</td>
-                      <td style={{ padding: '10px 14px', textAlign: 'center' }}>
+                      <td style={{ padding: '12px 16px', textAlign: 'right', color: '#94a3b8' }}>Rs {p.purchase_price.toLocaleString()}</td>
+                      <td style={{ padding: '12px 16px', textAlign: 'right', color: '#f8fafc', fontWeight: 'bold' }}>Rs {p.selling_price.toLocaleString()}</td>
+                      <td style={{ padding: '12px 16px', textAlign: 'center' }}>
                         <span style={{
-                          padding: '3px 8px',
+                          padding: '3px 10px',
                           borderRadius: '4px',
                           fontSize: '11px',
                           fontWeight: '600',
@@ -572,7 +572,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                           {p.stock_quantity} {p.unit}
                         </span>
                       </td>
-                      <td style={{ padding: '10px 14px', textAlign: 'center' }}>
+                      <td style={{ padding: '12px 16px', textAlign: 'center' }}>
                         <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
                           <button
                             onClick={() => {
@@ -581,7 +581,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                               setStockNote('');
                               setShowStockModal(true);
                             }}
-                            style={{ backgroundColor: '#0f172a', color: '#cbd5e1', border: '1px solid #334155', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                            style={{ backgroundColor: '#0f172a', color: '#cbd5e1', border: '1px solid #334155', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                             title="Adjust Stock"
                           >
                             <ArrowUpDown size={12} /> Stock
@@ -589,7 +589,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
 
                           <button
                             onClick={() => openEditModal(p)}
-                            style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                            style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                             title="Edit Product"
                           >
                             <Edit3 size={12} /> Edit
@@ -597,7 +597,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
 
                           <button
                             onClick={() => handleDeleteProduct(p)}
-                            style={{ backgroundColor: '#334155', color: '#f87171', border: '1px solid #475569', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                            style={{ backgroundColor: '#334155', color: '#f87171', border: '1px solid #475569', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                             title="Delete Product"
                           >
                             <Trash2 size={12} /> Delete
@@ -712,32 +712,30 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
             )}
 
             <form onSubmit={handleSaveProduct}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
-
-                <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Product Name *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. HDMI Cable 5 Meter"
-                    value={formData.name}
-                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
-                  />
-                </div>
+              {/* Product Name Full Width */}
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Product Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. HDMI Cable 5 Meter / A4Tech Wireless Mouse"
+                  value={formData.name}
+                  onChange={e => setFormData({ ...formData, name: e.target.value })}
+                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '14px', fontWeight: '500' }}
+                />
               </div>
 
               {/* Category & Subcategory Row */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Parent Category *</label>
+                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Parent Category *</label>
                   <select
                     value={formData.category_id}
                     onChange={e => {
                       const newCatId = parseInt(e.target.value);
                       setFormData({ ...formData, category_id: newCatId, subcategory_id: null });
                     }}
-                    style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
                   >
                     {categories.map(c => (
                       <option key={c.id} value={c.id}>{c.name}</option>
@@ -746,13 +744,13 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Subcategory</label>
+                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Subcategory</label>
                   <select
                     value={formData.subcategory_id || ''}
                     onChange={e => setFormData({ ...formData, subcategory_id: e.target.value ? parseInt(e.target.value) : null })}
-                    style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#cbd5e1', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#cbd5e1', fontSize: '13px' }}
                   >
-                    <option value="">Select any one </option>
+                    <option value="">Select subcategory...</option>
                     {formFilteredSubcategories.map(sc => (
                       <option key={sc.id} value={sc.id}>{sc.name}</option>
                     ))}
@@ -761,21 +759,21 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
               </div>
 
               {/* Prices & Stock Row */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '12px', marginBottom: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '12px', marginBottom: '14px' }}>
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Cost Price (Rs)</label>
+                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Cost Price (Rs)</label>
                   <input
                     type="number"
                     min="0"
                     value={formData.purchase_price === 0 ? '' : formData.purchase_price}
                     onFocus={e => e.target.select()}
                     onChange={e => setFormData({ ...formData, purchase_price: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 })}
-                    style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Selling Price (Rs) *</label>
+                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Selling Price (Rs) *</label>
                   <input
                     type="number"
                     min="0"
@@ -783,12 +781,12 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                     value={formData.selling_price === 0 ? '' : formData.selling_price}
                     onFocus={e => e.target.select()}
                     onChange={e => setFormData({ ...formData, selling_price: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 })}
-                    style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontWeight: 'bold', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontWeight: 'bold', fontSize: '13px' }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Initial Stock</label>
+                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Initial Stock</label>
                   <input
                     type="number"
                     min="0"
@@ -797,16 +795,16 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                     value={formData.stock_quantity === 0 ? '' : formData.stock_quantity}
                     onFocus={e => e.target.select()}
                     onChange={e => setFormData({ ...formData, stock_quantity: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 })}
-                    style={{ width: '100%', padding: '8px', backgroundColor: editingProduct ? '#334155' : '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: editingProduct ? '#334155' : '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Unit Type</label>
+                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Unit Type</label>
                   <select
                     value={formData.unit}
                     onChange={e => setFormData({ ...formData, unit: e.target.value })}
-                    style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
                   >
                     <option value="pcs">pcs (Pieces)</option>
                     <option value="meter">meter (Length/Meters)</option>
@@ -818,28 +816,28 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
               </div>
 
               {/* Profit Calculation Info Box */}
-              <div style={{ backgroundColor: '#0f172a', padding: '8px 12px', borderRadius: '6px', marginBottom: '14px', display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#94a3b8' }}>
+              <div style={{ backgroundColor: '#0f172a', padding: '10px 14px', borderRadius: '6px', marginBottom: '14px', display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#94a3b8', border: '1px solid #334155' }}>
                 <span>Profit per Unit: <strong style={{ color: '#f8fafc' }}>Rs {(formData.selling_price - formData.purchase_price).toLocaleString()}</strong></span>
                 <span>Margin: <strong style={{ color: '#cbd5e1' }}>{profitMarginPercent}%</strong></span>
               </div>
 
               {/* Description */}
-              <div style={{ marginBottom: '18px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Description / Specification</label>
+              <div style={{ marginBottom: '20px' }}>
+                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Description / Specification (Optional)</label>
                 <input
                   type="text"
-                  placeholder=""
+                  placeholder="e.g. Copper wire, 1 Year warranty, Gold plated"
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
-                  style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
                 />
               </div>
 
               <div style={{ display: 'flex', gap: '10px' }}>
-                <button type="submit" style={{ flex: 1, padding: '9px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', cursor: 'pointer' }}>
+                <button type="submit" style={{ flex: 1, padding: '12px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '14px', cursor: 'pointer' }}>
                   {editingProduct ? 'Save Changes' : 'Create Product'}
                 </button>
-                <button type="button" onClick={() => setShowProductModal(false)} style={{ padding: '9px 16px', backgroundColor: '#334155', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+                <button type="button" onClick={() => setShowProductModal(false)} style={{ padding: '12px 20px', backgroundColor: '#334155', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>
                   Cancel
                 </button>
               </div>
