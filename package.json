@@ -7,8 +7,8 @@
   "main": "dist-electron/main/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && powershell -Command \"Copy-Item node_modules/sql.js/dist/sql-wasm.wasm dist-electron/main/sql-wasm.wasm -Force\"",
-    "package": "vite build && powershell -Command \"Copy-Item node_modules/sql.js/dist/sql-wasm.wasm dist-electron/main/sql-wasm.wasm -Force\" && electron-builder --win",
+    "build": "vite build && powershell -Command \"Copy-Item node_modules/sql.js/dist/sql-wasm.wasm dist-electron/main/sql-wasm.wasm -Force; Copy-Item src/main/database/default_shami_pos.db dist-electron/main/default_shami_pos.db -Force -ErrorAction SilentlyContinue\"",
+    "package": "vite build && powershell -Command \"Copy-Item node_modules/sql.js/dist/sql-wasm.wasm dist-electron/main/sql-wasm.wasm -Force; Copy-Item src/main/database/default_shami_pos.db dist-electron/main/default_shami_pos.db -Force -ErrorAction SilentlyContinue\" && electron-builder --win",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -56,6 +56,10 @@
       {
         "from": "node_modules/sql.js/dist/sql-wasm.wasm",
         "to": "sql-wasm.wasm"
+      },
+      {
+        "from": "src/main/database/default_shami_pos.db",
+        "to": "default_shami_pos.db"
       }
     ],
     "asarUnpack": [

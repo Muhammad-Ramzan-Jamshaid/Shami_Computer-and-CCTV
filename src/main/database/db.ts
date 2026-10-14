@@ -197,6 +197,27 @@ export async function initDatabaseAsync(customPath?: string): Promise<SqlJsDatab
     }
   });
 
+  // If database does not exist yet on this machine, initialize from bundled pre-seeded template
+  if (!fs.existsSync(dbPath)) {
+    const candidateTemplates = [
+      path.join(process.resourcesPath || '', 'default_shami_pos.db'),
+      path.join(__dirname, 'default_shami_pos.db'),
+      path.join(app ? app.getAppPath() : '', 'dist-electron/main/default_shami_pos.db'),
+      path.join(process.cwd(), 'src/main/database/default_shami_pos.db')
+    ];
+    for (const tpl of candidateTemplates) {
+      if (tpl && fs.existsSync(tpl)) {
+        try {
+          fs.copyFileSync(tpl, dbPath);
+          console.log('[DB] Pre-seeded database initialized from:', tpl);
+          break;
+        } catch (e) {
+          console.error('[DB] Failed to copy default database template:', e);
+        }
+      }
+    }
+  }
+
   let sqliteDb: SqlJsDatabase;
   if (fs.existsSync(dbPath)) {
     const filebuffer = fs.readFileSync(dbPath);
