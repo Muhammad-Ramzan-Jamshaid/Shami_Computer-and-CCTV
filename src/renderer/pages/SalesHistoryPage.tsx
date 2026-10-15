@@ -84,10 +84,10 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
   };
 
   return (
-    <div style={{ padding: '24px', height: '100%', overflowY: 'auto' }}>
+    <div style={{ padding: '24px', height: '100%', overflowY: 'auto', backgroundColor: '#f1f5f9' }}>
       <div style={{ marginBottom: '20px' }}>
-        <h1 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc' }}>Sales History</h1>
-        <p style={{ fontSize: '13px', color: '#94a3b8' }}>View past invoices, reprint A4 bills, and void cancelled sales</p>
+        <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#0f172a' }}>Sales History</h1>
+        <p style={{ fontSize: '14px', color: '#64748b', marginTop: '3px' }}>View past invoices, reprint A4 bills, and void cancelled sales</p>
       </div>
 
       {/* Filters Bar */}
@@ -96,21 +96,22 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
         flexWrap: 'wrap',
         gap: '12px',
         marginBottom: '20px',
-        backgroundColor: '#1e293b',
+        backgroundColor: '#ffffff',
         padding: '16px',
         borderRadius: '10px',
-        border: '1px solid #334155',
-        alignItems: 'center'
+        border: '1px solid #e2e8f0',
+        alignItems: 'center',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
       }}>
         {/* Invoice Search */}
-        <div style={{ flex: 1, minWidth: '200px', position: 'relative' }}>
-          <Search size={16} color="#94a3b8" style={{ position: 'absolute', left: '10px', top: '10px' }} />
+        <div style={{ flex: 1, minWidth: '220px', position: 'relative' }}>
+          <Search size={17} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px' }} />
           <input
             type="text"
             placeholder="Filter by Invoice Number..."
             value={invoiceSearch}
             onChange={e => setInvoiceSearch(e.target.value)}
-            style={{ width: '100%', padding: '7px 10px 7px 34px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+            style={{ width: '100%', padding: '9px 12px 9px 38px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
           />
         </div>
 
@@ -118,7 +119,7 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
         <select
           value={dateFilterType}
           onChange={e => setDateFilterType(e.target.value)}
-          style={{ padding: '7px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+          style={{ padding: '9px 14px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px' }}
         >
           <option value="ALL">All Time</option>
           <option value="TODAY">Today</option>
@@ -133,14 +134,14 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
               type="date"
               value={startDate}
               onChange={e => setStartDate(e.target.value)}
-              style={{ padding: '6px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '12px' }}
+              style={{ padding: '8px 10px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px' }}
             />
-            <span style={{ color: '#94a3b8' }}>to</span>
+            <span style={{ color: '#64748b', fontSize: '14px' }}>to</span>
             <input
               type="date"
               value={endDate}
               onChange={e => setEndDate(e.target.value)}
-              style={{ padding: '6px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '12px' }}
+              style={{ padding: '8px 10px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px' }}
             />
           </div>
         )}
@@ -149,7 +150,7 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
         <select
           value={paymentFilter}
           onChange={e => setPaymentFilter(e.target.value)}
-          style={{ padding: '7px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+          style={{ padding: '9px 14px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px' }}
         >
           <option value="ALL">All Payment Methods</option>
           <option value="CASH">Cash</option>
@@ -159,17 +160,17 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
       </div>
 
       {/* Sales Table */}
-      <div style={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '10px', overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+      <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
-            <tr style={{ backgroundColor: '#0f172a', color: '#94a3b8', textAlign: 'left' }}>
-              <th style={{ padding: '12px' }}>Invoice #</th>
-              <th style={{ padding: '12px' }}>Date & Time</th>
-              <th style={{ padding: '12px' }}>Customer</th>
-              <th style={{ padding: '12px', textAlign: 'right' }}>Total (Rs)</th>
-              <th style={{ padding: '12px', textAlign: 'center' }}>Payment Method</th>
-              <th style={{ padding: '12px', textAlign: 'center' }}>Status</th>
-              <th style={{ padding: '12px', textAlign: 'center' }}>Actions</th>
+            <tr style={{ backgroundColor: '#f8fafc', color: '#475569', textAlign: 'left', borderBottom: '1px solid #e2e8f0' }}>
+              <th style={{ padding: '12px 14px', fontSize: '13.5px', fontWeight: '600' }}>Invoice #</th>
+              <th style={{ padding: '12px 14px', fontSize: '13.5px', fontWeight: '600' }}>Date & Time</th>
+              <th style={{ padding: '12px 14px', fontSize: '13.5px', fontWeight: '600' }}>Customer</th>
+              <th style={{ padding: '12px 14px', textAlign: 'right', fontSize: '13.5px', fontWeight: '600' }}>Total (Rs)</th>
+              <th style={{ padding: '12px 14px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600' }}>Payment Method</th>
+              <th style={{ padding: '12px 14px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600' }}>Status</th>
+              <th style={{ padding: '12px 14px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -178,37 +179,37 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
                 const isCancelled = sale.status === 'CANCELLED';
 
                 return (
-                  <tr key={sale.id} style={{ borderBottom: '1px solid #334155', opacity: isCancelled ? 0.6 : 1 }}>
-                    <td style={{ padding: '12px', fontFamily: 'monospace', fontWeight: 'bold', color: '#60a5fa' }}>
+                  <tr key={sale.id} style={{ borderBottom: '1px solid #f1f5f9', opacity: isCancelled ? 0.6 : 1 }}>
+                    <td style={{ padding: '12px 14px', fontFamily: 'monospace', fontWeight: 'bold', color: '#2563eb', fontSize: '14px' }}>
                       {sale.invoice_number}
                     </td>
-                    <td style={{ padding: '12px', color: '#cbd5e1' }}>
+                    <td style={{ padding: '12px 14px', color: '#64748b', fontSize: '13.5px' }}>
                       {new Date(sale.created_at).toLocaleString()}
                     </td>
-                    <td style={{ padding: '12px', color: '#f8fafc', fontWeight: '500' }}>
+                    <td style={{ padding: '12px 14px', color: '#0f172a', fontWeight: '500', fontSize: '14.5px' }}>
                       {sale.customer_name || 'Walk-in Customer'}
                     </td>
-                    <td style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold', color: isCancelled ? '#94a3b8' : '#10b981' }}>
+                    <td style={{ padding: '12px 14px', textAlign: 'right', fontWeight: 'bold', color: isCancelled ? '#64748b' : '#16a34a', fontSize: '15.5px' }}>
                       Rs {sale.total.toLocaleString()}
                     </td>
-                    <td style={{ padding: '12px', textAlign: 'center' }}>
-                      <span style={{ fontSize: '11px', padding: '2px 8px', borderRadius: '4px', backgroundColor: '#0f172a', color: '#cbd5e1' }}>
+                    <td style={{ padding: '12px 14px', textAlign: 'center' }}>
+                      <span style={{ fontSize: '12.5px', padding: '3px 10px', borderRadius: '4px', backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', fontWeight: '500' }}>
                         {sale.payment_method}
                       </span>
                     </td>
-                    <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <td style={{ padding: '12px 14px', textAlign: 'center' }}>
                       <span style={{
-                        fontSize: '11px',
-                        padding: '3px 8px',
+                        fontSize: '12.5px',
+                        padding: '4px 10px',
                         borderRadius: '12px',
                         fontWeight: 'bold',
-                        backgroundColor: isCancelled ? 'rgba(239, 68, 68, 0.2)' : 'rgba(16, 185, 129, 0.2)',
-                        color: isCancelled ? '#ef4444' : '#10b981'
+                        backgroundColor: isCancelled ? '#fee2e2' : '#dcfce7',
+                        color: isCancelled ? '#b91c1c' : '#15803d'
                       }}>
                         {sale.status}
                       </span>
                     </td>
-                    <td style={{ padding: '12px', textAlign: 'center' }}>
+                    <td style={{ padding: '12px 14px', textAlign: 'center' }}>
                       <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
                         <button
                           onClick={async () => {
@@ -220,17 +221,18 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
                             backgroundColor: '#2563eb',
                             border: 'none',
                             color: '#ffffff',
-                            padding: '6px 10px',
-                            borderRadius: '4px',
+                            padding: '7px 12px',
+                            borderRadius: '5px',
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '4px',
-                            fontSize: '11px',
-                            fontWeight: 'bold'
+                            gap: '5px',
+                            fontSize: '13px',
+                            fontWeight: '600',
+                            boxShadow: '0 1px 2px rgba(37,99,235,0.2)'
                           }}
                         >
-                          <Printer size={13} /> Reprint
+                          <Printer size={15} /> Reprint
                         </button>
 
                         {!isCancelled && currentUser?.role === 'ADMIN' && (
@@ -238,15 +240,15 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
                             onClick={() => handleOpenCancelModal(sale)}
                             title="Cancel / Void Sale (Mark as Cancelled)"
                             style={{
-                              backgroundColor: '#334155',
-                              border: 'none',
-                              color: '#f59e0b',
-                              padding: '6px',
-                              borderRadius: '4px',
+                              backgroundColor: '#fef3c7',
+                              border: '1px solid #fde68a',
+                              color: '#d97706',
+                              padding: '7px 9px',
+                              borderRadius: '5px',
                               cursor: 'pointer'
                             }}
                           >
-                            <XCircle size={14} />
+                            <XCircle size={16} />
                           </button>
                         )}
 
@@ -264,15 +266,15 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
                             }}
                             title="Permanently Delete Invoice from Database"
                             style={{
-                              backgroundColor: 'rgba(239, 68, 68, 0.2)',
-                              border: 'none',
-                              color: '#ef4444',
-                              padding: '6px',
-                              borderRadius: '4px',
+                              backgroundColor: '#fee2e2',
+                              border: '1px solid #fecaca',
+                              color: '#dc2626',
+                              padding: '7px 9px',
+                              borderRadius: '5px',
                               cursor: 'pointer'
                             }}
                           >
-                            <Trash2 size={14} />
+                            <Trash2 size={16} />
                           </button>
                         )}
                       </div>
@@ -282,7 +284,7 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
               })
             ) : (
               <tr>
-                <td colSpan={7} style={{ padding: '30px', textAlign: 'center', color: '#64748b' }}>
+                <td colSpan={7} style={{ padding: '36px', textAlign: 'center', color: '#64748b', fontSize: '14.5px' }}>
                   No sales invoices recorded.
                 </td>
               </tr>
@@ -293,36 +295,36 @@ export const SalesHistoryPage: React.FC<SalesHistoryPageProps> = ({ currentUser,
 
       {/* Cancel Sale Modal */}
       {showCancelModal && cancelSaleTarget && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-          <div style={{ backgroundColor: '#1e293b', border: '1px solid #ef4444', borderRadius: '12px', width: '420px', padding: '24px' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#ef4444', marginBottom: '12px' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', width: '450px', padding: '24px', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
+            <h3 style={{ fontSize: '17px', fontWeight: 'bold', color: '#dc2626', marginBottom: '12px' }}>
               Confirm Cancel Sale Invoice #{cancelSaleTarget.invoice_number}
             </h3>
-            <p style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '16px' }}>
+            <p style={{ fontSize: '14px', color: '#475569', marginBottom: '16px' }}>
               Cancelling this sale will automatically restore all sold quantities back into stock inventory.
             </p>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Reason for Cancellation</label>
+            <div style={{ marginBottom: '18px' }}>
+              <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Reason for Cancellation</label>
               <input
                 type="text"
                 placeholder="e.g. Customer returned items / Wrong billing"
                 value={cancelReason}
                 onChange={e => setCancelReason(e.target.value)}
-                style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
               />
             </div>
 
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ display: 'flex', gap: '12px' }}>
               <button
                 onClick={handleConfirmCancel}
-                style={{ flex: 1, padding: '10px', backgroundColor: '#ef4444', color: '#ffffff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}
+                style={{ flex: 1, padding: '12px', backgroundColor: '#dc2626', color: '#ffffff', border: 'none', borderRadius: '6px', fontWeight: 'bold', fontSize: '14.5px', cursor: 'pointer' }}
               >
                 Yes, Void & Restore Stock
               </button>
               <button
                 onClick={() => setShowCancelModal(false)}
-                style={{ padding: '10px 16px', backgroundColor: '#334155', color: '#ffffff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
+                style={{ padding: '12px 18px', backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontSize: '14px' }}
               >
                 Keep Invoice
               </button>

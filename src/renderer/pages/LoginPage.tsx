@@ -66,15 +66,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
       justifyContent: 'center',
       height: '100vh',
       width: '100vw',
-      backgroundColor: '#0b132b'
+      backgroundColor: '#f1f5f9'
     }}>
       <div style={{
-        backgroundColor: '#1e293b',
-        border: '1px solid #334155',
+        backgroundColor: '#ffffff',
+        border: '1px solid #e2e8f0',
         borderRadius: '16px',
         width: '420px',
-        padding: '32px',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+        padding: '36px',
+        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.08)'
       }}>
         {/* Header Branding */}
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
@@ -86,27 +86,28 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            margin: '0 auto 16px auto'
+            margin: '0 auto 16px auto',
+            boxShadow: '0 4px 12px rgba(37,99,235,0.25)'
           }}>
             <ShieldCheck size={32} color="#ffffff" />
           </div>
-          <h1 style={{ fontSize: '20px', fontWeight: 'bold', color: '#f8fafc' }}>
+          <h1 style={{ fontSize: '22px', fontWeight: 'bold', color: '#0f172a' }}>
             Shami Computer & CCTV
           </h1>
-          <p style={{ fontSize: '13px', color: '#94a3b8', marginTop: '4px' }}>
+          <p style={{ fontSize: '14px', color: '#64748b', marginTop: '4px' }}>
             Desktop POS & Inventory System
           </p>
         </div>
 
         {errorMessage && (
           <div style={{
-            backgroundColor: 'rgba(239, 68, 68, 0.2)',
-            border: '1px solid #ef4444',
-            color: '#ef4444',
-            padding: '10px',
+            backgroundColor: '#fee2e2',
+            border: '1px solid #fca5a5',
+            color: '#dc2626',
+            padding: '12px',
             borderRadius: '8px',
             marginBottom: '20px',
-            fontSize: '13px',
+            fontSize: '14px',
             textAlign: 'center'
           }}>
             {errorMessage}
@@ -114,12 +115,12 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
         )}
 
         <form onSubmit={handleLogin}>
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px', fontWeight: '500' }}>
+          <div style={{ marginBottom: '18px' }}>
+            <label style={{ fontSize: '13.5px', color: '#475569', display: 'block', marginBottom: '6px', fontWeight: '600' }}>
               Username
             </label>
             <div style={{ position: 'relative' }}>
-              <UserIcon size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px' }} />
+              <UserIcon size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '13px' }} />
               <input
                 type="text"
                 required
@@ -128,23 +129,23 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
                 onChange={e => setUsername(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '10px 12px 10px 38px',
-                  backgroundColor: '#0f172a',
-                  border: '1px solid #334155',
+                  padding: '11px 14px 11px 40px',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #cbd5e1',
                   borderRadius: '8px',
-                  color: '#f8fafc',
-                  fontSize: '14px'
+                  color: '#0f172a',
+                  fontSize: '15px'
                 }}
               />
             </div>
           </div>
 
           <div style={{ marginBottom: '24px' }}>
-            <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px', fontWeight: '500' }}>
+            <label style={{ fontSize: '13.5px', color: '#475569', display: 'block', marginBottom: '6px', fontWeight: '600' }}>
               Password
             </label>
             <div style={{ position: 'relative' }}>
-              <Lock size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px' }} />
+              <Lock size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '13px' }} />
               <input
                 type="password"
                 required
@@ -153,12 +154,12 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
                 onChange={e => setPassword(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '10px 12px 10px 38px',
-                  backgroundColor: '#0f172a',
-                  border: '1px solid #334155',
+                  padding: '11px 14px 11px 40px',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #cbd5e1',
                   borderRadius: '8px',
-                  color: '#f8fafc',
-                  fontSize: '14px'
+                  color: '#0f172a',
+                  fontSize: '15px'
                 }}
               />
             </div>
@@ -169,14 +170,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             disabled={loading}
             style={{
               width: '100%',
-              padding: '12px',
+              padding: '12px 20px',
               backgroundColor: '#2563eb',
               color: '#ffffff',
               border: 'none',
               borderRadius: '8px',
               fontWeight: 'bold',
-              fontSize: '14px',
-              cursor: loading ? 'not-allowed' : 'pointer'
+              fontSize: '15px',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              boxShadow: '0 2px 4px rgba(37,99,235,0.2)'
             }}
           >
             {loading ? 'Authenticating...' : 'Sign In'}
@@ -184,17 +186,17 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
         </form>
 
         {/* Quick Demo Login Preset Buttons */}
-        <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid #334155', textAlign: 'center' }}>
-          <p style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '10px' }}>Quick Demo Logins:</p>
+        <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid #e2e8f0', textAlign: 'center' }}>
+          <p style={{ fontSize: '13px', color: '#64748b', marginBottom: '10px' }}>Quick Demo Logins:</p>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
             <button
               onClick={() => fillDemoAccount('admin', 'admin123')}
               style={{
-                fontSize: '11px',
-                padding: '6px 12px',
-                backgroundColor: '#334155',
-                color: '#60a5fa',
-                border: 'none',
+                fontSize: '13px',
+                padding: '8px 14px',
+                backgroundColor: '#f1f5f9',
+                color: '#2563eb',
+                border: '1px solid #cbd5e1',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 fontWeight: 'bold'
@@ -205,11 +207,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             <button
               onClick={() => fillDemoAccount('cashier', 'cashier123')}
               style={{
-                fontSize: '11px',
-                padding: '6px 12px',
-                backgroundColor: '#334155',
+                fontSize: '13px',
+                padding: '8px 14px',
+                backgroundColor: '#f1f5f9',
                 color: '#d97706',
-                border: 'none',
+                border: '1px solid #cbd5e1',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 fontWeight: 'bold'

@@ -20,20 +20,6 @@ export function App() {
   const [shopSettings, setShopSettings] = useState<ShopSettings | null>(null);
   const [previewSale, setPreviewSale] = useState<Sale | null>(null);
 
-  // Dark / Light Theme State
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    return (localStorage.getItem('app_theme') as 'dark' | 'light') || 'dark';
-  });
-
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('app_theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
   const loadShopSettings = async () => {
     try {
       if (window.api) {
@@ -64,7 +50,7 @@ export function App() {
   }
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden', backgroundColor: '#f1f5f9' }}>
       {/* Left Sidebar */}
       <Sidebar
         activeTab={activeTab}
@@ -78,11 +64,9 @@ export function App() {
         <Header
           currentUser={currentUser}
           shopSettings={shopSettings}
-          theme={theme}
-          onToggleTheme={toggleTheme}
         />
 
-        <main style={{ flex: 1, overflow: 'hidden', backgroundColor: 'var(--bg-body)' }}>
+        <main style={{ flex: 1, overflow: 'hidden', backgroundColor: '#f1f5f9' }}>
           {activeTab === 'dashboard' && (
             <DashboardPage
               setActiveTab={setActiveTab}

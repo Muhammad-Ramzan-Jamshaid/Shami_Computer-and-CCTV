@@ -40,7 +40,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
   }, []);
 
   return (
-    <div style={{ padding: '24px', height: '100%', overflowY: 'auto' }}>
+    <div style={{ padding: '24px', height: '100%', overflowY: 'auto', backgroundColor: '#f1f5f9' }}>
       {/* Top Banner & Quick Actions */}
       <div style={{
         display: 'flex',
@@ -49,8 +49,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
         marginBottom: '24px'
       }}>
         <div>
-          <h1 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc' }}>Dashboard</h1>
-          <p style={{ fontSize: '13px', color: '#94a3b8' }}>Real-time daily sales, inventory status, and quick shop actions</p>
+          <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#0f172a' }}>Dashboard</h1>
+          <p style={{ fontSize: '14px', color: '#64748b', marginTop: '3px' }}>Real-time daily sales, inventory status, and quick shop actions</p>
         </div>
 
         <div style={{ display: 'flex', gap: '12px' }}>
@@ -62,15 +62,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
               gap: '8px',
               backgroundColor: '#2563eb',
               color: '#ffffff',
-              padding: '10px 18px',
+              padding: '10px 20px',
               borderRadius: '8px',
               border: 'none',
               fontWeight: '600',
-              fontSize: '13px',
-              cursor: 'pointer'
+              fontSize: '14px',
+              cursor: 'pointer',
+              boxShadow: '0 1px 2px rgba(37,99,235,0.2)'
             }}
           >
-            <ShoppingCart size={16} /> New Sale
+            <ShoppingCart size={18} /> New Sale
           </button>
           <button
             onClick={() => setActiveTab('products')}
@@ -78,17 +79,18 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              backgroundColor: '#059669',
+              backgroundColor: '#16a34a',
               color: '#ffffff',
-              padding: '10px 18px',
+              padding: '10px 20px',
               borderRadius: '8px',
               border: 'none',
               fontWeight: '600',
-              fontSize: '13px',
-              cursor: 'pointer'
+              fontSize: '14px',
+              cursor: 'pointer',
+              boxShadow: '0 1px 2px rgba(22,163,74,0.2)'
             }}
           >
-            <PlusCircle size={16} /> Add Product
+            <PlusCircle size={18} /> Add Product
           </button>
           <button
             onClick={() => setActiveTab('backup')}
@@ -96,17 +98,18 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              backgroundColor: '#334155',
-              color: '#f8fafc',
-              padding: '10px 16px',
+              backgroundColor: '#ffffff',
+              color: '#334155',
+              padding: '10px 18px',
               borderRadius: '8px',
-              border: '1px solid #475569',
+              border: '1px solid #cbd5e1',
               fontWeight: '500',
-              fontSize: '13px',
-              cursor: 'pointer'
+              fontSize: '14px',
+              cursor: 'pointer',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
             }}
           >
-            <Database size={16} /> Backup
+            <Database size={18} color="#64748b" /> Backup
           </button>
         </div>
       </div>
@@ -120,20 +123,21 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
       }}>
         {/* Today Sales Card */}
         <div style={{
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
           padding: '20px',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px'
+          gap: '16px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
-          <div style={{ backgroundColor: 'rgba(37, 99, 235, 0.2)', padding: '12px', borderRadius: '10px' }}>
-            <TrendingUp size={24} color="#3b82f6" />
+          <div style={{ backgroundColor: '#eff6ff', padding: '12px', borderRadius: '10px' }}>
+            <TrendingUp size={26} color="#2563eb" />
           </div>
           <div>
-            <p style={{ fontSize: '12px', color: '#94a3b8', fontWeight: '500' }}>Today's Sales</p>
-            <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc', marginTop: '2px' }}>
+            <p style={{ fontSize: '13.5px', color: '#64748b', fontWeight: '600' }}>Today's Sales</p>
+            <h2 style={{ fontSize: '26px', fontWeight: 'bold', color: '#0f172a', marginTop: '2px' }}>
               Rs {stats?.todaySalesTotal ? stats.todaySalesTotal.toLocaleString() : 0}
             </h2>
           </div>
@@ -141,20 +145,21 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
 
         {/* Today Invoices */}
         <div style={{
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
           padding: '20px',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px'
+          gap: '16px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
-          <div style={{ backgroundColor: 'rgba(168, 85, 247, 0.2)', padding: '12px', borderRadius: '10px' }}>
-            <FileText size={24} color="#c084fc" />
+          <div style={{ backgroundColor: '#f5f3ff', padding: '12px', borderRadius: '10px' }}>
+            <FileText size={26} color="#7c3aed" />
           </div>
           <div>
-            <p style={{ fontSize: '12px', color: '#94a3b8', fontWeight: '500' }}>Invoices Created</p>
-            <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc', marginTop: '2px' }}>
+            <p style={{ fontSize: '13.5px', color: '#64748b', fontWeight: '600' }}>Invoices Created</p>
+            <h2 style={{ fontSize: '26px', fontWeight: 'bold', color: '#0f172a', marginTop: '2px' }}>
               {stats?.todayInvoicesCount || 0}
             </h2>
           </div>
@@ -162,20 +167,21 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
 
         {/* Today Profit */}
         <div style={{
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
           padding: '20px',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px'
+          gap: '16px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
-          <div style={{ backgroundColor: 'rgba(16, 185, 129, 0.2)', padding: '12px', borderRadius: '10px' }}>
-            <DollarSign size={24} color="#10b981" />
+          <div style={{ backgroundColor: '#ecfdf5', padding: '12px', borderRadius: '10px' }}>
+            <DollarSign size={26} color="#059669" />
           </div>
           <div>
-            <p style={{ fontSize: '12px', color: '#94a3b8', fontWeight: '500' }}>Today's Profit</p>
-            <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#10b981', marginTop: '2px' }}>
+            <p style={{ fontSize: '13.5px', color: '#64748b', fontWeight: '600' }}>Today's Profit</p>
+            <h2 style={{ fontSize: '26px', fontWeight: 'bold', color: '#16a34a', marginTop: '2px' }}>
               Rs {stats?.todayProfitTotal ? stats.todayProfitTotal.toLocaleString() : 0}
             </h2>
           </div>
@@ -183,20 +189,21 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
 
         {/* Total Products */}
         <div style={{
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
           padding: '20px',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px'
+          gap: '16px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
-          <div style={{ backgroundColor: 'rgba(14, 165, 233, 0.2)', padding: '12px', borderRadius: '10px' }}>
-            <Package size={24} color="#38bdf8" />
+          <div style={{ backgroundColor: '#f0f9ff', padding: '12px', borderRadius: '10px' }}>
+            <Package size={26} color="#0284c7" />
           </div>
           <div>
-            <p style={{ fontSize: '12px', color: '#94a3b8', fontWeight: '500' }}>Total Products</p>
-            <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc', marginTop: '2px' }}>
+            <p style={{ fontSize: '13.5px', color: '#64748b', fontWeight: '600' }}>Total Products</p>
+            <h2 style={{ fontSize: '26px', fontWeight: 'bold', color: '#0f172a', marginTop: '2px' }}>
               {stats?.totalProducts || 0}
             </h2>
           </div>
@@ -204,20 +211,21 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
 
         {/* Low Stock Warning */}
         <div style={{
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
           padding: '20px',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px'
+          gap: '16px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
-          <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.2)', padding: '12px', borderRadius: '10px' }}>
-            <AlertTriangle size={24} color="#ef4444" />
+          <div style={{ backgroundColor: '#fef2f2', padding: '12px', borderRadius: '10px' }}>
+            <AlertTriangle size={26} color="#dc2626" />
           </div>
           <div>
-            <p style={{ fontSize: '12px', color: '#94a3b8', fontWeight: '500' }}>Low Stock Items</p>
-            <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#ef4444', marginTop: '2px' }}>
+            <p style={{ fontSize: '13.5px', color: '#64748b', fontWeight: '600' }}>Low Stock Items</p>
+            <h2 style={{ fontSize: '26px', fontWeight: 'bold', color: '#dc2626', marginTop: '2px' }}>
               {stats?.lowStockCount || 0}
             </h2>
           </div>
@@ -228,37 +236,38 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
         {/* Recent Sales Table */}
         <div style={{
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
-          padding: '20px'
+          padding: '20px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: 'bold', color: '#f8fafc' }}>Recent Invoices</h3>
+            <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#0f172a' }}>Recent Invoices</h3>
             <button
               onClick={() => setActiveTab('sales-history')}
-              style={{ fontSize: '12px', color: '#60a5fa', background: 'none', border: 'none', cursor: 'pointer' }}
+              style={{ fontSize: '13.5px', color: '#2563eb', fontWeight: '600', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               View All →
             </button>
           </div>
 
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8', textAlign: 'left' }}>
-                <th style={{ padding: '8px' }}>Invoice</th>
-                <th style={{ padding: '8px' }}>Customer</th>
-                <th style={{ padding: '8px', textAlign: 'right' }}>Total</th>
-                <th style={{ padding: '8px', textAlign: 'center' }}>Action</th>
+              <tr style={{ borderBottom: '1px solid #e2e8f0', color: '#64748b', textAlign: 'left' }}>
+                <th style={{ padding: '10px 8px', fontSize: '13.5px', fontWeight: '600' }}>Invoice</th>
+                <th style={{ padding: '10px 8px', fontSize: '13.5px', fontWeight: '600' }}>Customer</th>
+                <th style={{ padding: '10px 8px', textAlign: 'right', fontSize: '13.5px', fontWeight: '600' }}>Total</th>
+                <th style={{ padding: '10px 8px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600' }}>Action</th>
               </tr>
             </thead>
             <tbody>
               {stats?.recentSales && stats.recentSales.length > 0 ? (
                 stats.recentSales.map((sale) => (
-                  <tr key={sale.id} style={{ borderBottom: '1px solid #1e293b' }}>
-                    <td style={{ padding: '10px 8px', fontFamily: 'monospace', color: '#60a5fa' }}>{sale.invoice_number}</td>
-                    <td style={{ padding: '10px 8px', color: '#cbd5e1' }}>{sale.customer_name || 'Walk-in'}</td>
-                    <td style={{ padding: '10px 8px', textAlign: 'right', fontWeight: 'bold', color: '#10b981' }}>
+                  <tr key={sale.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '10px 8px', fontFamily: 'monospace', color: '#2563eb', fontWeight: '600', fontSize: '13.5px' }}>{sale.invoice_number}</td>
+                    <td style={{ padding: '10px 8px', color: '#334155', fontWeight: '500' }}>{sale.customer_name || 'Walk-in'}</td>
+                    <td style={{ padding: '10px 8px', textAlign: 'right', fontWeight: 'bold', color: '#16a34a', fontSize: '15px' }}>
                       Rs {sale.total.toLocaleString()}
                     </td>
                     <td style={{ padding: '10px 8px', textAlign: 'center' }}>
@@ -268,22 +277,23 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
                           if (fullSale) onViewInvoice(fullSale);
                         }}
                         style={{
-                          backgroundColor: '#334155',
-                          border: 'none',
-                          color: '#f8fafc',
-                          padding: '4px 8px',
+                          backgroundColor: '#f1f5f9',
+                          border: '1px solid #cbd5e1',
+                          color: '#334155',
+                          padding: '6px 10px',
                           borderRadius: '4px',
                           cursor: 'pointer'
                         }}
+                        title="Print / View Invoice"
                       >
-                        <Printer size={14} />
+                        <Printer size={16} />
                       </button>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={4} style={{ padding: '20px', textAlign: 'center', color: '#64748b' }}>No sales recorded today yet.</td>
+                  <td colSpan={4} style={{ padding: '24px', textAlign: 'center', color: '#64748b' }}>No sales recorded today yet.</td>
                 </tr>
               )}
             </tbody>
@@ -292,57 +302,59 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ setActiveTab, onVi
 
         {/* Low Stock Warning Box */}
         <div style={{
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          border: '1px solid #e2e8f0',
           borderRadius: '12px',
-          padding: '20px'
+          padding: '20px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: 'bold', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <AlertTriangle size={18} /> Low Stock Alerts
+            <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#dc2626', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <AlertTriangle size={20} /> Low Stock Alerts
             </h3>
             <button
               onClick={() => setActiveTab('products')}
-              style={{ fontSize: '12px', color: '#60a5fa', background: 'none', border: 'none', cursor: 'pointer' }}
+              style={{ fontSize: '13.5px', color: '#2563eb', fontWeight: '600', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               Update Stock →
             </button>
           </div>
 
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8', textAlign: 'left' }}>
-                <th style={{ padding: '8px' }}>Product</th>
-                <th style={{ padding: '8px' }}>Category</th>
-                <th style={{ padding: '8px', textAlign: 'center' }}>Available</th>
-                <th style={{ padding: '8px', textAlign: 'center' }}>Min Limit</th>
+              <tr style={{ borderBottom: '1px solid #e2e8f0', color: '#64748b', textAlign: 'left' }}>
+                <th style={{ padding: '10px 8px', fontSize: '13.5px', fontWeight: '600' }}>Product</th>
+                <th style={{ padding: '10px 8px', fontSize: '13.5px', fontWeight: '600' }}>Category</th>
+                <th style={{ padding: '10px 8px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600' }}>Available</th>
+                <th style={{ padding: '10px 8px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600' }}>Min Limit</th>
               </tr>
             </thead>
             <tbody>
               {stats?.lowStockProducts && stats.lowStockProducts.length > 0 ? (
                 stats.lowStockProducts.map((prod) => (
-                  <tr key={prod.id} style={{ borderBottom: '1px solid #1e293b' }}>
-                    <td style={{ padding: '10px 8px', fontWeight: 'bold', color: '#f8fafc' }}>{prod.name}</td>
-                    <td style={{ padding: '10px 8px', color: '#94a3b8' }}>{prod.category_name}</td>
+                  <tr key={prod.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '10px 8px', fontWeight: 'bold', color: '#0f172a' }}>{prod.name}</td>
+                    <td style={{ padding: '10px 8px', color: '#64748b' }}>{prod.category_name}</td>
                     <td style={{ padding: '10px 8px', textAlign: 'center' }}>
                       <span style={{
-                        padding: '2px 8px',
-                        borderRadius: '10px',
-                        backgroundColor: 'rgba(239, 68, 68, 0.2)',
-                        color: '#ef4444',
-                        fontWeight: 'bold'
+                        padding: '3px 10px',
+                        borderRadius: '4px',
+                        backgroundColor: '#fee2e2',
+                        color: '#b91c1c',
+                        fontWeight: 'bold',
+                        fontSize: '12.5px'
                       }}>
                         {prod.stock_quantity} {prod.unit}
                       </span>
                     </td>
-                    <td style={{ padding: '10px 8px', textAlign: 'center', color: '#94a3b8' }}>
+                    <td style={{ padding: '10px 8px', textAlign: 'center', color: '#64748b' }}>
                       {prod.minimum_stock}
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={4} style={{ padding: '20px', textAlign: 'center', color: '#10b981' }}>All products are well stocked!</td>
+                  <td colSpan={4} style={{ padding: '24px', textAlign: 'center', color: '#16a34a' }}>All products are well stocked!</td>
                 </tr>
               )}
             </tbody>

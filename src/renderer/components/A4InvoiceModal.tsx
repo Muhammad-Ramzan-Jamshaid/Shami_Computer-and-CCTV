@@ -26,7 +26,7 @@ export const A4InvoiceModal: React.FC<A4InvoiceModalProps> = ({ sale, shopSettin
     <div style={{
       position: 'fixed',
       inset: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.75)',
+      backgroundColor: 'rgba(15, 23, 42, 0.45)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -40,22 +40,23 @@ export const A4InvoiceModal: React.FC<A4InvoiceModalProps> = ({ sale, shopSettin
         width: '210mm',
         maxHeight: '90vh',
         overflowY: 'auto',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.15)',
         display: 'flex',
         flexDirection: 'column'
       }}>
         {/* Header toolbar for screen display */}
         <div className="no-print" style={{
           padding: '12px 20px',
-          backgroundColor: '#1e293b',
-          color: '#ffffff',
+          backgroundColor: '#f8fafc',
+          borderBottom: '1px solid #e2e8f0',
+          color: '#0f172a',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           borderTopLeftRadius: '8px',
           borderTopRightRadius: '8px'
         }}>
-          <h3 style={{ fontSize: '15px', fontWeight: 'bold' }}>A4 Invoice Preview — {sale.invoice_number}</h3>
+          <h3 style={{ fontSize: '17px', fontWeight: 'bold', margin: 0, color: '#0f172a' }}>A4 Invoice Preview — {sale.invoice_number}</h3>
           <div style={{ display: 'flex', gap: '10px' }}>
             <button
               onClick={handlePrint}
@@ -63,27 +64,30 @@ export const A4InvoiceModal: React.FC<A4InvoiceModalProps> = ({ sale, shopSettin
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '8px 16px',
+                padding: '9px 18px',
                 backgroundColor: '#2563eb',
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: '6px',
                 fontWeight: 'bold',
-                cursor: 'pointer'
+                fontSize: '14.5px',
+                cursor: 'pointer',
+                boxShadow: '0 1px 2px rgba(37,99,235,0.2)'
               }}
             >
-              <Printer size={16} /> Print A4 Invoice
+              <Printer size={18} /> Print A4 Invoice
             </button>
             <button
               onClick={onClose}
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                padding: '8px',
-                backgroundColor: '#475569',
-                color: '#ffffff',
-                border: 'none',
+                padding: '9px 12px',
+                backgroundColor: '#f1f5f9',
+                color: '#475569',
+                border: '1px solid #cbd5e1',
                 borderRadius: '6px',
+                fontSize: '14.5px',
                 cursor: 'pointer'
               }}
             >

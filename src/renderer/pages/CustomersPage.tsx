@@ -62,11 +62,11 @@ export const CustomersPage: React.FC = () => {
   );
 
   return (
-    <div style={{ padding: '24px', height: '100%', overflowY: 'auto' }}>
+    <div style={{ padding: '24px', height: '100%', overflowY: 'auto', backgroundColor: '#f1f5f9' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div>
-          <h1 style={{ fontSize: '22px', fontWeight: 'bold', color: '#f8fafc' }}>Customer Directory</h1>
-          <p style={{ fontSize: '13px', color: '#94a3b8' }}>Client phone numbers and purchase records</p>
+          <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#0f172a' }}>Customer Directory</h1>
+          <p style={{ fontSize: '14px', color: '#64748b', marginTop: '3px' }}>Client phone numbers and purchase records</p>
         </div>
 
         <button
@@ -77,61 +77,62 @@ export const CustomersPage: React.FC = () => {
             gap: '8px',
             backgroundColor: '#2563eb',
             color: '#ffffff',
-            padding: '10px 18px',
+            padding: '10px 20px',
             borderRadius: '8px',
             border: 'none',
             fontWeight: '600',
-            fontSize: '13px',
-            cursor: 'pointer'
+            fontSize: '14px',
+            cursor: 'pointer',
+            boxShadow: '0 1px 2px rgba(37,99,235,0.2)'
           }}
         >
-          <Plus size={16} /> Add New Customer
+          <Plus size={18} /> Add New Customer
         </button>
       </div>
 
-      <div style={{ marginBottom: '20px', backgroundColor: '#1e293b', padding: '16px', borderRadius: '10px', border: '1px solid #334155' }}>
-        <div style={{ position: 'relative', width: '300px' }}>
-          <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '10px', top: '10px' }} />
+      <div style={{ marginBottom: '20px', backgroundColor: '#ffffff', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
+        <div style={{ position: 'relative', width: '360px' }}>
+          <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px' }} />
           <input
             type="text"
             placeholder="Search customer by name or phone..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            style={{ width: '100%', padding: '8px 12px 8px 36px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+            style={{ width: '100%', padding: '9px 12px 9px 38px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
           />
         </div>
       </div>
 
-      <div style={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '10px', overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+      <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
-            <tr style={{ backgroundColor: '#0f172a', color: '#94a3b8', textAlign: 'left' }}>
-              <th style={{ padding: '12px' }}>Customer Name</th>
-              <th style={{ padding: '12px' }}>Phone Number</th>
-              <th style={{ padding: '12px' }}>Notes / Remarks</th>
-              <th style={{ padding: '12px', textAlign: 'center' }}>Action</th>
+            <tr style={{ backgroundColor: '#f8fafc', color: '#475569', textAlign: 'left', borderBottom: '1px solid #e2e8f0' }}>
+              <th style={{ padding: '12px 16px', fontSize: '13.5px', fontWeight: '600' }}>Customer Name</th>
+              <th style={{ padding: '12px 16px', fontSize: '13.5px', fontWeight: '600' }}>Phone Number</th>
+              <th style={{ padding: '12px 16px', fontSize: '13.5px', fontWeight: '600' }}>Notes / Remarks</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center', fontSize: '13.5px', fontWeight: '600' }}>Action</th>
             </tr>
           </thead>
           <tbody>
             {filtered.length > 0 ? (
               filtered.map(cust => (
-                <tr key={cust.id} style={{ borderBottom: '1px solid #334155' }}>
-                  <td style={{ padding: '12px', fontWeight: 'bold', color: '#f8fafc' }}>{cust.name}</td>
-                  <td style={{ padding: '12px', color: '#38bdf8', fontFamily: 'monospace', fontWeight: 'bold' }}>{cust.phone}</td>
-                  <td style={{ padding: '12px', color: '#94a3b8' }}>{cust.notes || '-'}</td>
-                  <td style={{ padding: '12px', textAlign: 'center' }}>
+                <tr key={cust.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <td style={{ padding: '12px 16px', fontWeight: 'bold', color: '#0f172a', fontSize: '15px' }}>{cust.name}</td>
+                  <td style={{ padding: '12px 16px', color: '#2563eb', fontFamily: 'monospace', fontWeight: 'bold', fontSize: '14.5px' }}>{cust.phone}</td>
+                  <td style={{ padding: '12px 16px', color: '#64748b', fontSize: '14px' }}>{cust.notes || '-'}</td>
+                  <td style={{ padding: '12px 16px', textAlign: 'center' }}>
                     <button
                       onClick={() => openEditModal(cust)}
-                      style={{ backgroundColor: '#334155', border: 'none', color: '#f8fafc', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}
+                      style={{ backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', color: '#334155', padding: '7px 14px', borderRadius: '4px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
                     >
-                      <Edit3 size={14} /> Edit
+                      <Edit3 size={15} /> Edit
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={4} style={{ padding: '30px', textAlign: 'center', color: '#64748b' }}>No customers registered.</td>
+                <td colSpan={4} style={{ padding: '36px', textAlign: 'center', color: '#64748b', fontSize: '14.5px' }}>No customers registered.</td>
               </tr>
             )}
           </tbody>
@@ -139,27 +140,27 @@ export const CustomersPage: React.FC = () => {
       </div>
 
       {showModal && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-          <div style={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '12px', width: '420px', padding: '24px' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#f8fafc', marginBottom: '16px' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', width: '450px', padding: '24px', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
+            <h3 style={{ fontSize: '17px', fontWeight: 'bold', color: '#0f172a', marginBottom: '16px' }}>
               {editingCustomer ? 'Edit Customer' : 'Add New Customer'}
             </h3>
             <form onSubmit={handleSubmit}>
-              <div style={{ marginBottom: '12px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Customer Name *</label>
-                <input type="text" required value={name} onChange={e => setName(e.target.value)} style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }} />
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Customer Name *</label>
+                <input type="text" required value={name} onChange={e => setName(e.target.value)} style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }} />
               </div>
-              <div style={{ marginBottom: '12px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Phone Number *</label>
-                <input type="text" required value={phone} onChange={e => setPhone(e.target.value)} style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }} />
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Phone Number *</label>
+                <input type="text" required value={phone} onChange={e => setPhone(e.target.value)} style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }} />
               </div>
-              <div style={{ marginBottom: '16px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Notes (Optional)</label>
-                <input type="text" value={notes} onChange={e => setNotes(e.target.value)} style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }} />
+              <div style={{ marginBottom: '20px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Notes (Optional)</label>
+                <input type="text" value={notes} onChange={e => setNotes(e.target.value)} style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }} />
               </div>
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <button type="submit" style={{ flex: 1, padding: '10px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}>Save Customer</button>
-                <button type="button" onClick={() => setShowModal(false)} style={{ padding: '10px 16px', backgroundColor: '#334155', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Cancel</button>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button type="submit" style={{ flex: 1, padding: '12px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', fontSize: '14.5px', cursor: 'pointer', boxShadow: '0 1px 2px rgba(37,99,235,0.2)' }}>Save Customer</button>
+                <button type="button" onClick={() => setShowModal(false)} style={{ padding: '12px 18px', backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontSize: '14px' }}>Cancel</button>
               </div>
             </form>
           </div>

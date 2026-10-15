@@ -358,15 +358,15 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
     : '0';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', padding: '16px 20px', boxSizing: 'border-box', backgroundColor: '#0f172a', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', padding: '16px 20px', boxSizing: 'border-box', backgroundColor: '#f1f5f9', overflow: 'hidden' }}>
 
       {/* Header Bar */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexShrink: 0 }}>
         <div>
-          <h1 style={{ fontSize: '20px', fontWeight: 'bold', color: '#f8fafc', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Package size={22} color="#cbd5e1" /> Products & Inventory Management
+          <h1 style={{ fontSize: '22px', fontWeight: 'bold', color: '#0f172a', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Package size={24} color="#2563eb" /> Products & Inventory Management
           </h1>
-          <p style={{ fontSize: '13px', color: '#94a3b8', margin: '3px 0 0 0' }}>
+          <p style={{ fontSize: '14px', color: '#64748b', margin: '4px 0 0 0' }}>
             Manage catalog, categories, pricing and stock levels.
           </p>
         </div>
@@ -375,20 +375,21 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
           <button
             onClick={() => setShowCategoryModal(true)}
             style={{
-              backgroundColor: '#1e293b',
-              border: '1px solid #334155',
-              color: '#e2e8f0',
-              padding: '9px 15px',
+              backgroundColor: '#ffffff',
+              border: '1px solid #cbd5e1',
+              color: '#1e293b',
+              padding: '10px 16px',
               borderRadius: '6px',
               fontWeight: '600',
-              fontSize: '13px',
+              fontSize: '14px',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '6px'
+              gap: '6px',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
             }}
           >
-            <Boxes size={16} color="#94a3b8" /> Manage Categories & Subcategories
+            <Boxes size={18} color="#64748b" /> Manage Categories & Subcategories
           </button>
 
           <button
@@ -397,26 +398,27 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
               backgroundColor: '#2563eb',
               color: '#ffffff',
               border: 'none',
-              padding: '9px 16px',
+              padding: '10px 18px',
               borderRadius: '6px',
               fontWeight: '600',
-              fontSize: '13px',
+              fontSize: '14px',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '6px'
+              gap: '6px',
+              boxShadow: '0 1px 2px rgba(37,99,235,0.2)'
             }}
           >
-            <Plus size={16} /> Add Product
+            <Plus size={18} /> Add Product
           </button>
         </div>
       </div>
 
       {/* FILTER & SEARCH BAR */}
-      <div style={{ backgroundColor: '#1e293b', padding: '12px 14px', borderRadius: '8px', border: '1px solid #334155', marginBottom: '14px', display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center', flexShrink: 0 }}>
+      <div style={{ backgroundColor: '#ffffff', padding: '12px 16px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '14px', display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', flexShrink: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
         {/* Search */}
-        <div style={{ flex: 2, minWidth: '220px', position: 'relative' }}>
-          <Search size={15} color="#94a3b8" style={{ position: 'absolute', left: '10px', top: '10px' }} />
+        <div style={{ flex: 2, minWidth: '240px', position: 'relative' }}>
+          <Search size={17} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px' }} />
           <input
             type="text"
             placeholder="Search by SKU, product name, model..."
@@ -427,18 +429,19 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
             }}
             style={{
               width: '100%',
-              padding: '7px 10px 7px 32px',
-              backgroundColor: '#0f172a',
-              border: '1px solid #334155',
+              padding: '9px 12px 9px 38px',
+              backgroundColor: '#ffffff',
+              border: '1px solid #cbd5e1',
               borderRadius: '6px',
-              color: '#f8fafc',
-              fontSize: '13px'
+              color: '#0f172a',
+              fontSize: '14.5px',
+              boxSizing: 'border-box'
             }}
           />
         </div>
 
         {/* Parent Category Filter */}
-        <div style={{ flex: 1, minWidth: '150px' }}>
+        <div style={{ flex: 1, minWidth: '160px' }}>
           <select
             value={selectedCategory}
             onChange={e => {
@@ -448,12 +451,12 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
             }}
             style={{
               width: '100%',
-              padding: '7px 10px',
-              backgroundColor: '#0f172a',
-              border: '1px solid #334155',
+              padding: '9px 12px',
+              backgroundColor: '#ffffff',
+              border: '1px solid #cbd5e1',
               borderRadius: '6px',
-              color: '#f8fafc',
-              fontSize: '13px'
+              color: '#0f172a',
+              fontSize: '14px'
             }}
           >
             <option value="ALL">All Categories</option>
@@ -464,7 +467,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
         </div>
 
         {/* Subcategory Filter */}
-        <div style={{ flex: 1, minWidth: '160px' }}>
+        <div style={{ flex: 1, minWidth: '170px' }}>
           <select
             value={selectedSubcategory}
             onChange={e => {
@@ -473,12 +476,12 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
             }}
             style={{
               width: '100%',
-              padding: '7px 10px',
-              backgroundColor: '#0f172a',
-              border: '1px solid #334155',
+              padding: '9px 12px',
+              backgroundColor: '#ffffff',
+              border: '1px solid #cbd5e1',
               borderRadius: '6px',
-              color: '#f8fafc',
-              fontSize: '13px'
+              color: '#0f172a',
+              fontSize: '14px'
             }}
           >
             <option value="ALL">All Subcategories</option>
@@ -495,43 +498,43 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
             setCurrentPage(1);
           }}
           style={{
-            padding: '7px 12px',
+            padding: '9px 14px',
             borderRadius: '6px',
-            border: lowStockOnly ? '1px solid #ef4444' : '1px solid #334155',
-            backgroundColor: lowStockOnly ? 'rgba(239, 68, 68, 0.12)' : '#0f172a',
-            color: lowStockOnly ? '#ef4444' : '#94a3b8',
+            border: lowStockOnly ? '1px solid #ef4444' : '1px solid #cbd5e1',
+            backgroundColor: lowStockOnly ? '#fee2e2' : '#ffffff',
+            color: lowStockOnly ? '#b91c1c' : '#475569',
             fontWeight: '600',
-            fontSize: '12px',
+            fontSize: '13.5px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             gap: '6px'
           }}
         >
-          <AlertCircle size={14} /> Low Stock Only
+          <AlertCircle size={15} /> Low Stock Only
         </button>
 
         {/* Total Count Badge */}
-        <div style={{ backgroundColor: '#0f172a', border: '1px solid #334155', padding: '6px 12px', borderRadius: '6px', fontSize: '12px', color: '#cbd5e1', fontWeight: '500' }}>
-          Total: <strong style={{ color: '#f8fafc' }}>{filteredProducts.length}</strong>
+        <div style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '8px 14px', borderRadius: '6px', fontSize: '13.5px', color: '#64748b', fontWeight: '500' }}>
+          Total: <strong style={{ color: '#0f172a' }}>{filteredProducts.length}</strong>
         </div>
       </div>
 
       {/* PRODUCTS TABLE CONTAINER WITH SCROLL */}
-      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', backgroundColor: '#1e293b', borderRadius: '8px', border: '1px solid #334155', overflow: 'hidden' }}>
+      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
 
         {/* Scrollable Table Area */}
         <div style={{ flex: 1, overflowY: 'auto', overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
-            <thead style={{ position: 'sticky', top: 0, zIndex: 5, backgroundColor: '#0f172a' }}>
-              <tr style={{ color: '#94a3b8', borderBottom: '1px solid #334155' }}>
-                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '12px' }}>SKU</th>
-                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '12px' }}>Product Name</th>
-                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '12px' }}>Category & Subcategory</th>
-                <th style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', fontSize: '12px' }}>Cost Price</th>
-                <th style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', fontSize: '12px' }}>Sell Price</th>
-                <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '12px' }}>Stock</th>
-                <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '12px' }}>Actions</th>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px', textAlign: 'left' }}>
+            <thead style={{ position: 'sticky', top: 0, zIndex: 5, backgroundColor: '#f8fafc' }}>
+              <tr style={{ color: '#475569', borderBottom: '1px solid #e2e8f0' }}>
+                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '13.5px' }}>SKU</th>
+                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '13.5px' }}>Product Name</th>
+                <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '13.5px' }}>Category & Subcategory</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', fontSize: '13.5px' }}>Cost Price</th>
+                <th style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', fontSize: '13.5px' }}>Sell Price</th>
+                <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '13.5px' }}>Stock</th>
+                <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '13.5px' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -544,30 +547,30 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                     <tr
                       key={p.id}
                       style={{
-                        borderBottom: '1px solid #293548',
-                        backgroundColor: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)'
+                        borderBottom: '1px solid #f1f5f9',
+                        backgroundColor: idx % 2 === 0 ? '#ffffff' : '#f8fafc'
                       }}
                     >
-                      <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#94a3b8', fontSize: '12px' }}>{p.sku}</td>
-                      <td style={{ padding: '12px 16px', color: '#f8fafc', fontWeight: '600' }}>
+                      <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#64748b', fontSize: '13.5px' }}>{p.sku}</td>
+                      <td style={{ padding: '12px 16px', color: '#0f172a', fontWeight: '600', fontSize: '15px' }}>
                         {p.name}
-                        {p.description && <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 'normal', marginTop: '2px' }}>{p.description}</div>}
+                        {p.description && <div style={{ fontSize: '13px', color: '#64748b', fontWeight: 'normal', marginTop: '3px' }}>{p.description}</div>}
                       </td>
-                      <td style={{ padding: '12px 16px', color: '#cbd5e1' }}>
+                      <td style={{ padding: '12px 16px', color: '#334155', fontSize: '14px' }}>
                         <span>{p.category_name}</span>
-                        {p.subcategory_name && <span style={{ fontSize: '11px', color: '#94a3b8', display: 'block', marginTop: '2px' }}>↳ {p.subcategory_name}</span>}
+                        {p.subcategory_name && <span style={{ fontSize: '12.5px', color: '#64748b', display: 'block', marginTop: '2px' }}>↳ {p.subcategory_name}</span>}
                       </td>
-                      <td style={{ padding: '12px 16px', textAlign: 'right', color: '#94a3b8' }}>Rs {p.purchase_price.toLocaleString()}</td>
-                      <td style={{ padding: '12px 16px', textAlign: 'right', color: '#f8fafc', fontWeight: 'bold' }}>Rs {p.selling_price.toLocaleString()}</td>
+                      <td style={{ padding: '12px 16px', textAlign: 'right', color: '#64748b', fontSize: '14.5px' }}>Rs {p.purchase_price.toLocaleString()}</td>
+                      <td style={{ padding: '12px 16px', textAlign: 'right', color: '#0f172a', fontWeight: 'bold', fontSize: '15.5px' }}>Rs {p.selling_price.toLocaleString()}</td>
                       <td style={{ padding: '12px 16px', textAlign: 'center' }}>
                         <span style={{
-                          padding: '3px 10px',
+                          padding: '4px 11px',
                           borderRadius: '4px',
-                          fontSize: '11px',
+                          fontSize: '13px',
                           fontWeight: '600',
-                          backgroundColor: isOut ? 'rgba(239, 68, 68, 0.15)' : isLow ? 'rgba(245, 158, 11, 0.15)' : '#0f172a',
-                          border: isOut ? '1px solid rgba(239, 68, 68, 0.3)' : isLow ? '1px solid rgba(245, 158, 11, 0.3)' : '1px solid #334155',
-                          color: isOut ? '#ef4444' : isLow ? '#f59e0b' : '#cbd5e1'
+                          backgroundColor: isOut ? '#fee2e2' : isLow ? '#fef3c7' : '#f1f5f9',
+                          border: isOut ? '1px solid #fca5a5' : isLow ? '1px solid #fcd34d' : '1px solid #e2e8f0',
+                          color: isOut ? '#991b1b' : isLow ? '#92400e' : '#334155'
                         }}>
                           {p.stock_quantity} {p.unit}
                         </span>
@@ -581,26 +584,26 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                               setStockNote('');
                               setShowStockModal(true);
                             }}
-                            style={{ backgroundColor: '#0f172a', color: '#cbd5e1', border: '1px solid #334155', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                            style={{ backgroundColor: '#ffffff', color: '#334155', border: '1px solid #cbd5e1', padding: '6px 11px', borderRadius: '4px', fontSize: '12.5px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                             title="Adjust Stock"
                           >
-                            <ArrowUpDown size={12} /> Stock
+                            <ArrowUpDown size={14} /> Stock
                           </button>
 
                           <button
                             onClick={() => openEditModal(p)}
-                            style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                            style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '6px 11px', borderRadius: '4px', fontSize: '12.5px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                             title="Edit Product"
                           >
-                            <Edit3 size={12} /> Edit
+                            <Edit3 size={14} /> Edit
                           </button>
 
                           <button
                             onClick={() => handleDeleteProduct(p)}
-                            style={{ backgroundColor: '#334155', color: '#f87171', border: '1px solid #475569', padding: '5px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                            style={{ backgroundColor: '#fee2e2', color: '#dc2626', border: '1px solid #fecaca', padding: '6px 11px', borderRadius: '4px', fontSize: '12.5px', fontWeight: '500', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                             title="Delete Product"
                           >
-                            <Trash2 size={12} /> Delete
+                            <Trash2 size={14} /> Delete
                           </button>
                         </div>
                       </td>
@@ -609,7 +612,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                 })
               ) : (
                 <tr>
-                  <td colSpan={7} style={{ padding: '40px', textAlign: 'center', color: '#94a3b8' }}>
+                  <td colSpan={7} style={{ padding: '40px', textAlign: 'center', color: '#64748b', fontSize: '14px' }}>
                     No products found matching your filters.
                   </td>
                 </tr>
@@ -619,9 +622,9 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
         </div>
 
         {/* Table Footer & View Pagination */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', backgroundColor: '#0f172a', borderTop: '1px solid #334155', fontSize: '12px', color: '#94a3b8', flexShrink: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', fontSize: '13.5px', color: '#64748b', flexShrink: 0 }}>
           <div>
-            Showing <strong style={{ color: '#f8fafc' }}>{displayedProducts.length}</strong> of <strong style={{ color: '#f8fafc' }}>{filteredProducts.length}</strong> products
+            Showing <strong style={{ color: '#0f172a' }}>{displayedProducts.length}</strong> of <strong style={{ color: '#0f172a' }}>{filteredProducts.length}</strong> products
             {products.length !== filteredProducts.length && (
               <span> (Filtered from total {products.length})</span>
             )}
@@ -639,12 +642,12 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                   setCurrentPage(1);
                 }}
                 style={{
-                  backgroundColor: '#1e293b',
-                  border: '1px solid #334155',
-                  color: '#f8fafc',
-                  padding: '3px 8px',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #cbd5e1',
+                  color: '#0f172a',
+                  padding: '5px 10px',
                   borderRadius: '4px',
-                  fontSize: '12px'
+                  fontSize: '13.5px'
                 }}
               >
                 <option value="ALL">All ({filteredProducts.length})</option>
@@ -661,30 +664,32 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                   disabled={safeCurrentPage <= 1}
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   style={{
-                    backgroundColor: '#1e293b',
-                    border: '1px solid #334155',
-                    color: safeCurrentPage <= 1 ? '#475569' : '#cbd5e1',
-                    padding: '3px 8px',
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #cbd5e1',
+                    color: safeCurrentPage <= 1 ? '#94a3b8' : '#334155',
+                    padding: '4px 10px',
                     borderRadius: '4px',
-                    cursor: safeCurrentPage <= 1 ? 'not-allowed' : 'pointer'
+                    cursor: safeCurrentPage <= 1 ? 'not-allowed' : 'pointer',
+                    fontSize: '13.5px'
                   }}
                 >
-                  <ChevronLeft size={14} />
+                  <ChevronLeft size={16} />
                 </button>
                 <span>Page {safeCurrentPage} of {totalPages}</span>
                 <button
                   disabled={safeCurrentPage >= totalPages}
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   style={{
-                    backgroundColor: '#1e293b',
-                    border: '1px solid #334155',
-                    color: safeCurrentPage >= totalPages ? '#475569' : '#cbd5e1',
-                    padding: '3px 8px',
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #cbd5e1',
+                    color: safeCurrentPage >= totalPages ? '#94a3b8' : '#334155',
+                    padding: '4px 10px',
                     borderRadius: '4px',
-                    cursor: safeCurrentPage >= totalPages ? 'not-allowed' : 'pointer'
+                    cursor: safeCurrentPage >= totalPages ? 'not-allowed' : 'pointer',
+                    fontSize: '13.5px'
                   }}
                 >
-                  <ChevronRight size={14} />
+                  <ChevronRight size={16} />
                 </button>
               </div>
             )}
@@ -694,48 +699,48 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
 
       {/* ADD / EDIT PRODUCT MODAL */}
       {showProductModal && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-          <div style={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '10px', width: '640px', maxHeight: '90vh', overflowY: 'auto', padding: '22px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: '600', color: '#f8fafc', margin: 0 }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', width: '680px', maxHeight: '90vh', overflowY: 'auto', padding: '24px', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px' }}>
+              <h3 style={{ fontSize: '17px', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>
                 {editingProduct ? 'Edit Product' : 'Add New Product'}
               </h3>
-              <button onClick={() => setShowProductModal(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
-                <X size={18} />
+              <button onClick={() => setShowProductModal(false)} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer' }}>
+                <X size={20} />
               </button>
             </div>
 
             {errorMessage && (
-              <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', color: '#ef4444', padding: '9px 12px', borderRadius: '6px', marginBottom: '14px', fontSize: '12px' }}>
+              <div style={{ backgroundColor: '#fee2e2', border: '1px solid #fca5a5', color: '#dc2626', padding: '10px 14px', borderRadius: '6px', marginBottom: '14px', fontSize: '13.5px' }}>
                 {errorMessage}
               </div>
             )}
 
             <form onSubmit={handleSaveProduct}>
               {/* Product Name Full Width */}
-              <div style={{ marginBottom: '14px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Product Name *</label>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Product Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. HDMI Cable 5 Meter / A4Tech Wireless Mouse"
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
-                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '14px', fontWeight: '500' }}
+                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', fontWeight: '500', boxSizing: 'border-box' }}
                 />
               </div>
 
               {/* Category & Subcategory Row */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '16px' }}>
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Parent Category *</label>
+                  <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Parent Category *</label>
                   <select
                     value={formData.category_id}
                     onChange={e => {
                       const newCatId = parseInt(e.target.value);
                       setFormData({ ...formData, category_id: newCatId, subcategory_id: null });
                     }}
-                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px', boxSizing: 'border-box' }}
                   >
                     {categories.map(c => (
                       <option key={c.id} value={c.id}>{c.name}</option>
@@ -744,11 +749,11 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Subcategory</label>
+                  <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Subcategory</label>
                   <select
                     value={formData.subcategory_id || ''}
                     onChange={e => setFormData({ ...formData, subcategory_id: e.target.value ? parseInt(e.target.value) : null })}
-                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#cbd5e1', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px', boxSizing: 'border-box' }}
                   >
                     <option value="">Select subcategory...</option>
                     {formFilteredSubcategories.map(sc => (
@@ -759,21 +764,21 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
               </div>
 
               {/* Prices & Stock Row */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '12px', marginBottom: '14px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '12px', marginBottom: '16px' }}>
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Cost Price (Rs)</label>
+                  <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Cost Price (Rs)</label>
                   <input
                     type="number"
                     min="0"
                     value={formData.purchase_price === 0 ? '' : formData.purchase_price}
                     onFocus={e => e.target.select()}
                     onChange={e => setFormData({ ...formData, purchase_price: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 })}
-                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Selling Price (Rs) *</label>
+                  <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Selling Price (Rs) *</label>
                   <input
                     type="number"
                     min="0"
@@ -781,12 +786,12 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                     value={formData.selling_price === 0 ? '' : formData.selling_price}
                     onFocus={e => e.target.select()}
                     onChange={e => setFormData({ ...formData, selling_price: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 })}
-                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontWeight: 'bold', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontWeight: 'bold', fontSize: '14.5px', boxSizing: 'border-box' }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Initial Stock</label>
+                  <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Initial Stock</label>
                   <input
                     type="number"
                     min="0"
@@ -795,16 +800,16 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                     value={formData.stock_quantity === 0 ? '' : formData.stock_quantity}
                     onFocus={e => e.target.select()}
                     onChange={e => setFormData({ ...formData, stock_quantity: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 })}
-                    style={{ width: '100%', padding: '10px 12px', backgroundColor: editingProduct ? '#334155' : '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: editingProduct ? '#f1f5f9' : '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: editingProduct ? '#94a3b8' : '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Unit Type</label>
+                  <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Unit Type</label>
                   <select
                     value={formData.unit}
                     onChange={e => setFormData({ ...formData, unit: e.target.value })}
-                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px', boxSizing: 'border-box' }}
                   >
                     <option value="pcs">pcs (Pieces)</option>
                     <option value="meter">meter (Length/Meters)</option>
@@ -816,28 +821,28 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
               </div>
 
               {/* Profit Calculation Info Box */}
-              <div style={{ backgroundColor: '#0f172a', padding: '10px 14px', borderRadius: '6px', marginBottom: '14px', display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#94a3b8', border: '1px solid #334155' }}>
-                <span>Profit per Unit: <strong style={{ color: '#f8fafc' }}>Rs {(formData.selling_price - formData.purchase_price).toLocaleString()}</strong></span>
-                <span>Margin: <strong style={{ color: '#cbd5e1' }}>{profitMarginPercent}%</strong></span>
+              <div style={{ backgroundColor: '#f8fafc', padding: '12px 16px', borderRadius: '6px', marginBottom: '16px', display: 'flex', justifyContent: 'space-between', fontSize: '14px', color: '#475569', border: '1px solid #e2e8f0' }}>
+                <span>Profit per Unit: <strong style={{ color: '#0f172a' }}>Rs {(formData.selling_price - formData.purchase_price).toLocaleString()}</strong></span>
+                <span>Margin: <strong style={{ color: '#16a34a' }}>{profitMarginPercent}%</strong></span>
               </div>
 
               {/* Description */}
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Description / Specification (Optional)</label>
+              <div style={{ marginBottom: '22px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Description / Specification (Optional)</label>
                 <input
                   type="text"
                   placeholder="e.g. Copper wire, 1 Year warranty, Gold plated"
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
-                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
                 />
               </div>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <button type="submit" style={{ flex: 1, padding: '12px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '14px', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button type="submit" style={{ flex: 1, padding: '13px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '15px', cursor: 'pointer' }}>
                   {editingProduct ? 'Save Changes' : 'Create Product'}
                 </button>
-                <button type="button" onClick={() => setShowProductModal(false)} style={{ padding: '12px 20px', backgroundColor: '#334155', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>
+                <button type="button" onClick={() => setShowProductModal(false)} style={{ padding: '13px 22px', backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '14.5px' }}>
                   Cancel
                 </button>
               </div>
@@ -848,31 +853,31 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
 
       {/* MANAGE CATEGORIES & SUBCATEGORIES MODAL */}
       {showCategoryModal && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-          <div style={{ backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '10px', width: '740px', height: '560px', display: 'flex', flexDirection: 'column', padding: '20px', boxSizing: 'border-box' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', width: '780px', height: '600px', display: 'flex', flexDirection: 'column', padding: '22px', boxSizing: 'border-box', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
 
             {/* Modal Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', borderBottom: '1px solid #1e293b', paddingBottom: '10px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: '600', color: '#f8fafc', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Boxes size={18} color="#cbd5e1" /> Category & Subcategory Management
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px' }}>
+              <h3 style={{ fontSize: '17px', fontWeight: 'bold', color: '#0f172a', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Boxes size={20} color="#2563eb" /> Category & Subcategory Management
               </h3>
-              <button onClick={() => setShowCategoryModal(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
-                <X size={18} />
+              <button onClick={() => setShowCategoryModal(false)} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer' }}>
+                <X size={20} />
               </button>
             </div>
 
             {/* Sub-tabs Header */}
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', borderBottom: '1px solid #334155', paddingBottom: '8px' }}>
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '14px', borderBottom: '1px solid #e2e8f0', paddingBottom: '10px' }}>
               <button
                 onClick={() => setMgmtTab('SUBCATEGORIES')}
                 style={{
-                  padding: '7px 14px',
+                  padding: '8px 16px',
                   borderRadius: '6px',
                   border: 'none',
-                  backgroundColor: mgmtTab === 'SUBCATEGORIES' ? '#2563eb' : '#1e293b',
-                  color: '#ffffff',
+                  backgroundColor: mgmtTab === 'SUBCATEGORIES' ? '#2563eb' : '#f1f5f9',
+                  color: mgmtTab === 'SUBCATEGORIES' ? '#ffffff' : '#475569',
                   fontWeight: '600',
-                  fontSize: '12px',
+                  fontSize: '13.5px',
                   cursor: 'pointer'
                 }}
               >
@@ -881,13 +886,13 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
               <button
                 onClick={() => setMgmtTab('CATEGORIES')}
                 style={{
-                  padding: '7px 14px',
+                  padding: '8px 16px',
                   borderRadius: '6px',
                   border: 'none',
-                  backgroundColor: mgmtTab === 'CATEGORIES' ? '#2563eb' : '#1e293b',
-                  color: '#ffffff',
+                  backgroundColor: mgmtTab === 'CATEGORIES' ? '#2563eb' : '#f1f5f9',
+                  color: mgmtTab === 'CATEGORIES' ? '#ffffff' : '#475569',
                   fontWeight: '600',
-                  fontSize: '12px',
+                  fontSize: '13.5px',
                   cursor: 'pointer'
                 }}
               >
@@ -899,11 +904,11 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
             {mgmtTab === 'SUBCATEGORIES' && (
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
                 {/* Add Subcategory Bar */}
-                <div style={{ backgroundColor: '#1e293b', padding: '10px 12px', borderRadius: '6px', border: '1px solid #334155', marginBottom: '12px', display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <div style={{ backgroundColor: '#f8fafc', padding: '12px 14px', borderRadius: '6px', border: '1px solid #e2e8f0', marginBottom: '12px', display: 'flex', gap: '10px', alignItems: 'center' }}>
                   <select
                     value={subCatParentIdInput}
                     onChange={e => setSubCatParentIdInput(parseInt(e.target.value))}
-                    style={{ padding: '7px 10px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '12px', width: '160px' }}
+                    style={{ padding: '8px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '13.5px', width: '180px' }}
                   >
                     {categories.map(c => (
                       <option key={c.id} value={c.id}>{c.name}</option>
@@ -918,25 +923,25 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                     onKeyDown={e => {
                       if (e.key === 'Enter') handleAddSubcategory();
                     }}
-                    style={{ flex: 1, padding: '7px 10px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ flex: 1, padding: '8px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px' }}
                   />
 
                   <button
                     onClick={handleAddSubcategory}
-                    style={{ padding: '7px 14px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '12px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                    style={{ padding: '8px 16px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '13.5px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                   >
                     + Add Subcategory
                   </button>
                 </div>
 
                 {/* Subcategories List with Direct Inline Editing */}
-                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #334155', borderRadius: '6px', backgroundColor: '#1e293b' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
-                    <thead style={{ position: 'sticky', top: 0, backgroundColor: '#0f172a', zIndex: 2 }}>
-                      <tr style={{ color: '#94a3b8', borderBottom: '1px solid #334155' }}>
-                        <th style={{ padding: '9px 12px', fontWeight: '600', fontSize: '12px', width: '220px' }}>Parent Category</th>
-                        <th style={{ padding: '9px 12px', fontWeight: '600', fontSize: '12px' }}>Subcategory Name</th>
-                        <th style={{ padding: '9px 12px', textAlign: 'center', fontWeight: '600', fontSize: '12px', width: '130px' }}>Actions</th>
+                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: '#ffffff' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px', textAlign: 'left' }}>
+                    <thead style={{ position: 'sticky', top: 0, backgroundColor: '#f8fafc', zIndex: 2 }}>
+                      <tr style={{ color: '#475569', borderBottom: '1px solid #e2e8f0' }}>
+                        <th style={{ padding: '10px 14px', fontWeight: '600', fontSize: '13px', width: '220px' }}>Parent Category</th>
+                        <th style={{ padding: '10px 14px', fontWeight: '600', fontSize: '13px' }}>Subcategory Name</th>
+                        <th style={{ padding: '10px 14px', textAlign: 'center', fontWeight: '600', fontSize: '13px', width: '130px' }}>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -947,24 +952,24 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                           <tr
                             key={sc.id}
                             style={{
-                              borderBottom: '1px solid #293548',
-                              backgroundColor: isEditing ? 'rgba(37, 99, 235, 0.12)' : idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)'
+                              borderBottom: '1px solid #f1f5f9',
+                              backgroundColor: isEditing ? '#eff6ff' : idx % 2 === 0 ? '#ffffff' : '#f8fafc'
                             }}
                           >
                             {isEditing ? (
                               <>
-                                <td style={{ padding: '6px 10px' }}>
+                                <td style={{ padding: '8px 12px' }}>
                                   <select
                                     value={inlineSubCatParentId}
                                     onChange={e => setInlineSubCatParentId(parseInt(e.target.value))}
-                                    style={{ width: '100%', padding: '6px 8px', backgroundColor: '#0f172a', border: '1px solid #2563eb', borderRadius: '4px', color: '#f8fafc', fontSize: '12px' }}
+                                    style={{ width: '100%', padding: '7px 10px', backgroundColor: '#ffffff', border: '1px solid #2563eb', borderRadius: '4px', color: '#0f172a', fontSize: '13.5px' }}
                                   >
                                     {categories.map(c => (
                                       <option key={c.id} value={c.id}>{c.name}</option>
                                     ))}
                                   </select>
                                 </td>
-                                <td style={{ padding: '6px 10px' }}>
+                                <td style={{ padding: '8px 12px' }}>
                                   <input
                                     type="text"
                                     autoFocus
@@ -974,47 +979,47 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                                       if (e.key === 'Enter') handleSaveInlineSubcategory();
                                       if (e.key === 'Escape') cancelEditSubcategory();
                                     }}
-                                    style={{ width: '100%', padding: '6px 8px', backgroundColor: '#0f172a', border: '1px solid #2563eb', borderRadius: '4px', color: '#f8fafc', fontSize: '13px' }}
+                                    style={{ width: '100%', padding: '7px 10px', backgroundColor: '#ffffff', border: '1px solid #2563eb', borderRadius: '4px', color: '#0f172a', fontSize: '14px', boxSizing: 'border-box' }}
                                   />
                                 </td>
-                                <td style={{ padding: '6px 10px', textAlign: 'center' }}>
+                                <td style={{ padding: '8px 12px', textAlign: 'center' }}>
                                   <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
                                     <button
                                       onClick={handleSaveInlineSubcategory}
-                                      style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', fontWeight: 'bold' }}
+                                      style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12.5px', fontWeight: 'bold' }}
                                       title="Save"
                                     >
-                                      <Check size={13} /> Save
+                                      <Check size={14} /> Save
                                     </button>
                                     <button
                                       onClick={cancelEditSubcategory}
-                                      style={{ backgroundColor: '#334155', color: '#cbd5e1', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', fontSize: '11px' }}
+                                      style={{ backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', fontSize: '12.5px' }}
                                       title="Cancel"
                                     >
-                                      <X size={13} />
+                                      <X size={14} />
                                     </button>
                                   </div>
                                 </td>
                               </>
                             ) : (
                               <>
-                                <td style={{ padding: '9px 12px', color: '#cbd5e1' }}>{sc.category_name}</td>
-                                <td style={{ padding: '9px 12px', color: '#f8fafc', fontWeight: '500' }}>{sc.name}</td>
-                                <td style={{ padding: '9px 12px', textAlign: 'center' }}>
+                                <td style={{ padding: '10px 14px', color: '#334155' }}>{sc.category_name}</td>
+                                <td style={{ padding: '10px 14px', color: '#0f172a', fontWeight: '500' }}>{sc.name}</td>
+                                <td style={{ padding: '10px 14px', textAlign: 'center' }}>
                                   <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
                                     <button
                                       onClick={() => startEditSubcategory(sc)}
-                                      style={{ background: 'none', border: 'none', color: '#cbd5e1', cursor: 'pointer', padding: '3px' }}
+                                      style={{ background: 'none', border: 'none', color: '#2563eb', cursor: 'pointer', padding: '4px' }}
                                       title="Edit Subcategory"
                                     >
-                                      <Edit3 size={15} />
+                                      <Edit3 size={16} />
                                     </button>
                                     <button
                                       onClick={() => handleDeleteSubcategory(sc.id)}
-                                      style={{ background: 'none', border: 'none', color: '#f87171', cursor: 'pointer', padding: '3px' }}
+                                      style={{ background: 'none', border: 'none', color: '#dc2626', cursor: 'pointer', padding: '4px' }}
                                       title="Delete Subcategory"
                                     >
-                                      <Trash2 size={15} />
+                                      <Trash2 size={16} />
                                     </button>
                                   </div>
                                 </td>
@@ -1033,7 +1038,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
             {mgmtTab === 'CATEGORIES' && (
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
                 {/* Add Category Bar */}
-                <div style={{ backgroundColor: '#1e293b', padding: '10px 12px', borderRadius: '6px', border: '1px solid #334155', marginBottom: '12px', display: 'flex', gap: '8px' }}>
+                <div style={{ backgroundColor: '#f8fafc', padding: '12px 14px', borderRadius: '6px', border: '1px solid #e2e8f0', marginBottom: '12px', display: 'flex', gap: '10px' }}>
                   <input
                     type="text"
                     placeholder="New category name (e.g. Cable, Mouse, Camera)..."
@@ -1042,25 +1047,25 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                     onKeyDown={e => {
                       if (e.key === 'Enter') handleAddCategory();
                     }}
-                    style={{ flex: 1, padding: '7px 10px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                    style={{ flex: 1, padding: '8px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14px' }}
                   />
 
                   <button
                     onClick={handleAddCategory}
-                    style={{ padding: '7px 14px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '12px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                    style={{ padding: '8px 16px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '13.5px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                   >
                     + Add Category
                   </button>
                 </div>
 
                 {/* Categories List with Direct Inline Editing */}
-                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #334155', borderRadius: '6px', backgroundColor: '#1e293b' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
-                    <thead style={{ position: 'sticky', top: 0, backgroundColor: '#0f172a', zIndex: 2 }}>
-                      <tr style={{ color: '#94a3b8', borderBottom: '1px solid #334155' }}>
-                        <th style={{ padding: '9px 12px', fontWeight: '600', fontSize: '12px', width: '80px' }}>ID</th>
-                        <th style={{ padding: '9px 12px', fontWeight: '600', fontSize: '12px' }}>Category Name</th>
-                        <th style={{ padding: '9px 12px', textAlign: 'center', fontWeight: '600', fontSize: '12px', width: '130px' }}>Actions</th>
+                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: '#ffffff' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px', textAlign: 'left' }}>
+                    <thead style={{ position: 'sticky', top: 0, backgroundColor: '#f8fafc', zIndex: 2 }}>
+                      <tr style={{ color: '#475569', borderBottom: '1px solid #e2e8f0' }}>
+                        <th style={{ padding: '10px 14px', fontWeight: '600', fontSize: '13px', width: '80px' }}>ID</th>
+                        <th style={{ padding: '10px 14px', fontWeight: '600', fontSize: '13px' }}>Category Name</th>
+                        <th style={{ padding: '10px 14px', textAlign: 'center', fontWeight: '600', fontSize: '13px', width: '130px' }}>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1071,14 +1076,14 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                           <tr
                             key={cat.id}
                             style={{
-                              borderBottom: '1px solid #293548',
-                              backgroundColor: isEditing ? 'rgba(37, 99, 235, 0.12)' : idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)'
+                              borderBottom: '1px solid #f1f5f9',
+                              backgroundColor: isEditing ? '#eff6ff' : idx % 2 === 0 ? '#ffffff' : '#f8fafc'
                             }}
                           >
                             {isEditing ? (
                               <>
-                                <td style={{ padding: '6px 10px', color: '#94a3b8', fontSize: '12px' }}>#{cat.id}</td>
-                                <td style={{ padding: '6px 10px' }}>
+                                <td style={{ padding: '8px 12px', color: '#64748b', fontSize: '13px' }}>#{cat.id}</td>
+                                <td style={{ padding: '8px 12px' }}>
                                   <input
                                     type="text"
                                     autoFocus
@@ -1088,47 +1093,47 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                                       if (e.key === 'Enter') handleSaveInlineCategory();
                                       if (e.key === 'Escape') cancelEditCategory();
                                     }}
-                                    style={{ width: '100%', padding: '6px 8px', backgroundColor: '#0f172a', border: '1px solid #2563eb', borderRadius: '4px', color: '#f8fafc', fontSize: '13px' }}
+                                    style={{ width: '100%', padding: '7px 10px', backgroundColor: '#ffffff', border: '1px solid #2563eb', borderRadius: '4px', color: '#0f172a', fontSize: '14px', boxSizing: 'border-box' }}
                                   />
                                 </td>
-                                <td style={{ padding: '6px 10px', textAlign: 'center' }}>
+                                <td style={{ padding: '8px 12px', textAlign: 'center' }}>
                                   <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
                                     <button
                                       onClick={handleSaveInlineCategory}
-                                      style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', fontWeight: 'bold' }}
+                                      style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12.5px', fontWeight: 'bold' }}
                                       title="Save"
                                     >
-                                      <Check size={13} /> Save
+                                      <Check size={14} /> Save
                                     </button>
                                     <button
                                       onClick={cancelEditCategory}
-                                      style={{ backgroundColor: '#334155', color: '#cbd5e1', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', fontSize: '11px' }}
+                                      style={{ backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', fontSize: '12.5px' }}
                                       title="Cancel"
                                     >
-                                      <X size={13} />
+                                      <X size={14} />
                                     </button>
                                   </div>
                                 </td>
                               </>
                             ) : (
                               <>
-                                <td style={{ padding: '9px 12px', color: '#94a3b8', fontSize: '12px' }}>#{cat.id}</td>
-                                <td style={{ padding: '9px 12px', color: '#f8fafc', fontWeight: '500' }}>{cat.name}</td>
-                                <td style={{ padding: '9px 12px', textAlign: 'center' }}>
+                                <td style={{ padding: '10px 14px', color: '#64748b', fontSize: '13px' }}>#{cat.id}</td>
+                                <td style={{ padding: '10px 14px', color: '#0f172a', fontWeight: '500' }}>{cat.name}</td>
+                                <td style={{ padding: '10px 14px', textAlign: 'center' }}>
                                   <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
                                     <button
                                       onClick={() => startEditCategory(cat)}
-                                      style={{ background: 'none', border: 'none', color: '#cbd5e1', cursor: 'pointer', padding: '3px' }}
+                                      style={{ background: 'none', border: 'none', color: '#2563eb', cursor: 'pointer', padding: '4px' }}
                                       title="Edit / Rename Category"
                                     >
-                                      <Edit3 size={15} />
+                                      <Edit3 size={16} />
                                     </button>
                                     <button
                                       onClick={() => handleDeleteCategory(cat.id)}
-                                      style={{ background: 'none', border: 'none', color: '#f87171', cursor: 'pointer', padding: '3px' }}
+                                      style={{ background: 'none', border: 'none', color: '#dc2626', cursor: 'pointer', padding: '4px' }}
                                       title="Delete Category"
                                     >
-                                      <Trash2 size={15} />
+                                      <Trash2 size={16} />
                                     </button>
                                   </div>
                                 </td>
@@ -1148,15 +1153,15 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
 
       {/* STOCK ADJUSTMENT MODAL */}
       {showStockModal && stockAdjustProd && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-          <div style={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '10px', width: '420px', padding: '22px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: '600', color: '#f8fafc', marginBottom: '6px' }}>Adjust Stock Level</h3>
-            <p style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '14px', fontWeight: '500' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', width: '450px', padding: '24px', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
+            <h3 style={{ fontSize: '17px', fontWeight: 'bold', color: '#0f172a', marginBottom: '8px' }}>Adjust Stock Level</h3>
+            <p style={{ fontSize: '14px', color: '#475569', marginBottom: '16px', fontWeight: '500' }}>
               Product: {stockAdjustProd.name} (Current: {stockAdjustProd.stock_quantity} {stockAdjustProd.unit})
             </p>
 
-            <div style={{ marginBottom: '12px' }}>
-              <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Quantity to Add / Subtract</label>
+            <div style={{ marginBottom: '14px' }}>
+              <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Quantity to Add / Subtract</label>
               <input
                 type="number"
                 step="any"
@@ -1164,26 +1169,26 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ currentUser }) => {
                 onFocus={e => e.target.select()}
                 onChange={e => setStockAddQty(e.target.value === '' ? 0 : parseFloat(e.target.value) || 0)}
                 placeholder="e.g. 10 to add stock, -5 to subtract"
-                style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
               />
             </div>
 
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>Adjustment Note / Reference</label>
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Adjustment Note / Reference</label>
               <input
                 type="text"
                 value={stockNote}
                 onChange={e => setStockNote(e.target.value)}
                 placeholder="e.g. Stock shipment received"
-                style={{ width: '100%', padding: '8px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                style={{ width: '100%', padding: '10px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px', boxSizing: 'border-box' }}
               />
             </div>
 
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button onClick={handleAdjustStock} style={{ flex: 1, padding: '9px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button onClick={handleAdjustStock} style={{ flex: 1, padding: '12px', backgroundColor: '#2563eb', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '600', fontSize: '14.5px', cursor: 'pointer' }}>
                 Confirm Stock Change
               </button>
-              <button onClick={() => setShowStockModal(false)} style={{ padding: '9px 16px', backgroundColor: '#334155', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+              <button onClick={() => setShowStockModal(false)} style={{ padding: '12px 18px', backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontSize: '14px' }}>
                 Cancel
               </button>
             </div>

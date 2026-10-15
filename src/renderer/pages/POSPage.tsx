@@ -386,7 +386,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
     : subcategories.filter(sc => sc.category_id === parseInt(selectedCategory));
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', overflow: 'hidden', backgroundColor: '#0f172a', padding: '16px 20px', boxSizing: 'border-box' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', overflow: 'hidden', backgroundColor: '#f1f5f9', padding: '16px 20px', boxSizing: 'border-box' }}>
       
       {/* TOP SEARCH BAR & FILTERS */}
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '14px', width: '100%' }}>
@@ -395,7 +395,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
         <div style={{ flex: 1, position: 'relative' }}>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
             <div style={{ flex: 1, position: 'relative' }}>
-              <Search size={18} color="#94a3b8" style={{ position: 'absolute', left: '14px', top: '13px', pointerEvents: 'none' }} />
+              <Search size={18} color="#64748b" style={{ position: 'absolute', left: '14px', top: '13px', pointerEvents: 'none' }} />
               <input
                 ref={searchInputRef}
                 type="text"
@@ -413,14 +413,15 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                 style={{
                   width: '100%',
                   padding: '12px 14px 12px 42px',
-                  backgroundColor: '#1e293b',
-                  border: showSearchDropdown && searchQuery ? '1px solid #2563eb' : '1px solid #334155',
+                  backgroundColor: '#ffffff',
+                  border: showSearchDropdown && searchQuery ? '1px solid #2563eb' : '1px solid #cbd5e1',
                   borderRadius: '8px',
-                  color: '#ffffff',
+                  color: '#0f172a',
                   fontSize: '14px',
                   fontWeight: '500',
                   boxSizing: 'border-box',
-                  outline: 'none'
+                  outline: 'none',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
                 }}
               />
               {searchQuery && (
@@ -430,7 +431,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                     setShowSearchDropdown(false);
                     searchInputRef.current?.focus();
                   }}
-                  style={{ position: 'absolute', right: '12px', top: '12px', background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}
+                  style={{ position: 'absolute', right: '12px', top: '12px', background: 'none', border: 'none', color: '#64748b', cursor: 'pointer' }}
                 >
                   <X size={18} />
                 </button>
@@ -446,12 +447,13 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               }}
               style={{
                 padding: '12px 14px',
-                backgroundColor: '#1e293b',
-                border: '1px solid #334155',
+                backgroundColor: '#ffffff',
+                border: '1px solid #cbd5e1',
                 borderRadius: '8px',
-                color: '#f8fafc',
+                color: '#0f172a',
                 fontSize: '13px',
-                fontWeight: '500'
+                fontWeight: '500',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
               }}
             >
               <option value="ALL">All Categories</option>
@@ -466,12 +468,13 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               onChange={e => setSelectedSubcategory(e.target.value)}
               style={{
                 padding: '12px 14px',
-                backgroundColor: '#1e293b',
-                border: '1px solid #334155',
+                backgroundColor: '#ffffff',
+                border: '1px solid #cbd5e1',
                 borderRadius: '8px',
-                color: '#f8fafc',
-                fontSize: '13px',
-                fontWeight: '500'
+                color: '#0f172a',
+                fontSize: '14px',
+                fontWeight: '500',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
               }}
             >
               <option value="ALL">All Subcategories</option>
@@ -484,18 +487,19 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
             <button
               onClick={() => setShowFullCatalogModal(true)}
               style={{
-                backgroundColor: '#1e293b',
-                border: '1px solid #334155',
-                color: '#f8fafc',
+                backgroundColor: '#ffffff',
+                border: '1px solid #cbd5e1',
+                color: '#0f172a',
                 padding: '12px 18px',
                 borderRadius: '8px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '13px',
+                fontSize: '14px',
                 fontWeight: '600',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
               }}
             >
               <PackageCheck size={18} color="#2563eb" /> Catalog
@@ -509,31 +513,31 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               top: 'calc(100% + 6px)',
               left: 0,
               right: 0,
-              backgroundColor: '#0f172a',
-              border: '1px solid #334155',
+              backgroundColor: '#ffffff',
+              border: '1px solid #cbd5e1',
               borderRadius: '8px',
-              boxShadow: '0 12px 30px rgba(0,0,0,0.7)',
+              boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
               maxHeight: '400px',
               overflowY: 'auto',
               zIndex: 1000
             }}>
-              <div style={{ padding: '10px 16px', backgroundColor: '#1e293b', borderBottom: '1px solid #334155', display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#cbd5e1', fontWeight: '600' }}>
+              <div style={{ padding: '10px 16px', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', fontSize: '13.5px', color: '#475569', fontWeight: '600' }}>
                 <span>FOUND {searchResults.length} MATCHING PRODUCTS</span>
-                <span style={{ color: '#94a3b8', fontSize: '11px' }}>
-                  Use <strong style={{ color: '#f8fafc' }}>↑ ↓</strong> arrow keys to select, press <strong style={{ color: '#2563eb' }}>Enter</strong> to add
+                <span style={{ color: '#64748b', fontSize: '13px' }}>
+                  Use <strong style={{ color: '#0f172a' }}>↑ ↓</strong> arrow keys to select, press <strong style={{ color: '#2563eb' }}>Enter</strong> to add
                 </span>
               </div>
 
               {searchResults.length > 0 ? (
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14.5px' }}>
                   <thead>
-                    <tr style={{ color: '#94a3b8', borderBottom: '1px solid #1e293b', textAlign: 'left', backgroundColor: '#0f172a' }}>
-                      <th style={{ padding: '10px 16px', fontWeight: '600' }}>SKU</th>
-                      <th style={{ padding: '10px 16px', fontWeight: '600' }}>Product Name</th>
-                      <th style={{ padding: '10px 16px', fontWeight: '600' }}>Category / Subcategory</th>
-                      <th style={{ padding: '10px 16px', textAlign: 'center', fontWeight: '600' }}>Stock</th>
-                      <th style={{ padding: '10px 16px', textAlign: 'right', fontWeight: '600' }}>Price</th>
-                      <th style={{ padding: '10px 16px', textAlign: 'center', fontWeight: '600' }}>Action</th>
+                    <tr style={{ color: '#475569', borderBottom: '1px solid #e2e8f0', textAlign: 'left', backgroundColor: '#f1f5f9' }}>
+                      <th style={{ padding: '10px 16px', fontWeight: '600', fontSize: '13.5px' }}>SKU</th>
+                      <th style={{ padding: '10px 16px', fontWeight: '600', fontSize: '13.5px' }}>Product Name</th>
+                      <th style={{ padding: '10px 16px', fontWeight: '600', fontSize: '13.5px' }}>Category / Subcategory</th>
+                      <th style={{ padding: '10px 16px', textAlign: 'center', fontWeight: '600', fontSize: '13.5px' }}>Stock</th>
+                      <th style={{ padding: '10px 16px', textAlign: 'right', fontWeight: '600', fontSize: '13.5px' }}>Price</th>
+                      <th style={{ padding: '10px 16px', textAlign: 'center', fontWeight: '600', fontSize: '13.5px' }}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -548,38 +552,38 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                           onClick={() => !isOut && addToCart(prod)}
                           onMouseEnter={() => setHighlightedIndex(idx)}
                           style={{
-                            borderBottom: '1px solid #1e293b',
+                            borderBottom: '1px solid #f1f5f9',
                             backgroundColor: isSelected
                               ? '#2563eb'
                               : idx % 2 === 0
-                                ? 'transparent'
-                                : 'rgba(255,255,255,0.02)',
+                                ? '#ffffff'
+                                : '#f8fafc',
                             cursor: isOut ? 'not-allowed' : 'pointer',
-                            opacity: isOut ? 0.5 : 1,
+                            opacity: isOut ? 0.6 : 1,
                             transition: 'background-color 0.1s ease'
                           }}
                         >
                           <td style={{
                             padding: '12px 16px',
                             fontFamily: 'monospace',
-                            color: isSelected ? '#ffffff' : '#94a3b8',
-                            fontSize: '12px',
+                            color: isSelected ? '#ffffff' : '#64748b',
+                            fontSize: '13.5px',
                             fontWeight: isSelected ? '600' : 'normal'
                           }}>
                             {prod.sku}
                           </td>
                           <td style={{
                             padding: '12px 16px',
-                            color: isSelected ? '#ffffff' : '#f8fafc',
+                            color: isSelected ? '#ffffff' : '#0f172a',
                             fontWeight: '600',
-                            fontSize: '13px'
+                            fontSize: '15px'
                           }}>
                             {prod.name}
                           </td>
                           <td style={{
                             padding: '12px 16px',
-                            color: isSelected ? '#e2e8f0' : '#94a3b8',
-                            fontSize: '12px'
+                            color: isSelected ? '#e0e7ff' : '#64748b',
+                            fontSize: '13.5px'
                           }}>
                             {prod.category_name} {prod.subcategory_name && `(${prod.subcategory_name})`}
                           </td>
@@ -587,18 +591,18 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                             <span style={{
                               padding: '3px 10px',
                               borderRadius: '4px',
-                              fontSize: '11px',
+                              fontSize: '13px',
                               fontWeight: '600',
                               backgroundColor: isSelected
-                                ? 'rgba(255, 255, 255, 0.2)'
+                                ? 'rgba(255, 255, 255, 0.25)'
                                 : isOut
-                                  ? 'rgba(239,68,68,0.2)'
-                                  : 'rgba(16,185,129,0.2)',
+                                  ? '#fee2e2'
+                                  : '#dcfce7',
                               color: isSelected
                                 ? '#ffffff'
                                 : isOut
-                                  ? '#ef4444'
-                                  : '#10b981'
+                                  ? '#dc2626'
+                                  : '#15803d'
                             }}>
                               {prod.stock_quantity} {prod.unit}
                             </span>
@@ -607,8 +611,8 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                             padding: '12px 16px',
                             textAlign: 'right',
                             fontWeight: 'bold',
-                            fontSize: '13px',
-                            color: isSelected ? '#ffffff' : '#10b981'
+                            fontSize: '15.5px',
+                            color: isSelected ? '#ffffff' : '#16a34a'
                           }}>
                             Rs {prod.selling_price.toLocaleString()}
                           </td>
@@ -616,12 +620,12 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                             <button
                               disabled={isOut}
                               style={{
-                                padding: '5px 12px',
-                                backgroundColor: isSelected ? '#ffffff' : (isOut ? '#334155' : '#2563eb'),
-                                color: isSelected ? '#2563eb' : '#ffffff',
+                                padding: '6px 14px',
+                                backgroundColor: isSelected ? '#ffffff' : (isOut ? '#e2e8f0' : '#2563eb'),
+                                color: isSelected ? '#2563eb' : (isOut ? '#94a3b8' : '#ffffff'),
                                 border: 'none',
                                 borderRadius: '4px',
-                                fontSize: '11px',
+                                fontSize: '13px',
                                 fontWeight: 'bold',
                                 cursor: isOut ? 'not-allowed' : 'pointer'
                               }}
@@ -635,7 +639,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                   </tbody>
                 </table>
               ) : (
-                <div style={{ padding: '28px', textAlign: 'center', color: '#94a3b8' }}>
+                <div style={{ padding: '28px', textAlign: 'center', color: '#64748b', fontSize: '14px' }}>
                   No active products match "{searchQuery}".
                 </div>
               )}
@@ -646,7 +650,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
 
       {/* Error Alert Message */}
       {errorMessage && (
-        <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', color: '#ef4444', padding: '10px 16px', borderRadius: '6px', marginBottom: '12px', fontSize: '13px', fontWeight: 'bold' }}>
+        <div style={{ backgroundColor: '#fee2e2', border: '1px solid #fca5a5', color: '#dc2626', padding: '10px 16px', borderRadius: '6px', marginBottom: '12px', fontSize: '13px', fontWeight: '600' }}>
           {errorMessage}
         </div>
       )}
@@ -655,23 +659,24 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
       <div style={{
         flex: 1,
         minHeight: 0,
-        backgroundColor: '#1e293b',
-        border: '1px solid #334155',
+        backgroundColor: '#ffffff',
+        border: '1px solid #e2e8f0',
         borderRadius: '8px',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        marginBottom: '14px'
+        marginBottom: '14px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
       }}>
         {/* Cart Headers */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '40px 3fr 1.5fr 1.4fr 1.3fr 1.2fr 1.5fr 50px',
-          backgroundColor: '#0f172a',
+          backgroundColor: '#f8fafc',
           padding: '12px 18px',
-          borderBottom: '1px solid #334155',
-          color: '#94a3b8',
-          fontSize: '12px',
+          borderBottom: '1px solid #e2e8f0',
+          color: '#475569',
+          fontSize: '13.5px',
           fontWeight: '600',
           alignItems: 'center'
         }}>
@@ -695,30 +700,30 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                   display: 'grid',
                   gridTemplateColumns: '40px 3fr 1.5fr 1.4fr 1.3fr 1.2fr 1.5fr 50px',
                   padding: '12px 18px',
-                  borderBottom: '1px solid #293548',
+                  borderBottom: '1px solid #f1f5f9',
                   alignItems: 'center',
-                  backgroundColor: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)'
+                  backgroundColor: idx % 2 === 0 ? '#ffffff' : '#fafafa'
                 }}
               >
-                <div style={{ color: '#64748b', fontSize: '12px', fontWeight: '600' }}>{idx + 1}</div>
+                <div style={{ color: '#64748b', fontSize: '13px', fontWeight: '600' }}>{idx + 1}</div>
 
                 <div style={{ paddingRight: '12px' }}>
-                  <div style={{ fontWeight: '600', color: '#f8fafc', fontSize: '13px' }}>{item.product.name}</div>
-                  <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                  <div style={{ fontWeight: '600', color: '#0f172a', fontSize: '15px' }}>{item.product.name}</div>
+                  <div style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
                     {item.product.category_name} {item.product.subcategory_name && `(${item.product.subcategory_name})`}
                   </div>
                 </div>
 
                 <div>
-                  <span style={{ fontSize: '12px', color: '#94a3b8', fontFamily: 'monospace', display: 'block' }}>{item.product.sku}</span>
-                  <span style={{ fontSize: '11px', color: '#10b981', fontWeight: '500' }}>Stock: {item.product.stock_quantity} {item.product.unit}</span>
+                  <span style={{ fontSize: '13.5px', color: '#475569', fontFamily: 'monospace', display: 'block' }}>{item.product.sku}</span>
+                  <span style={{ fontSize: '12.5px', color: '#16a34a', fontWeight: '600' }}>Stock: {item.product.stock_quantity} {item.product.unit}</span>
                 </div>
 
                 {/* Quantity Input */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                   <button
                     onClick={() => updateQuantity(idx, Math.max(0.1, parseFloat((item.quantity - 1).toFixed(2))))}
-                    style={{ background: '#0f172a', border: '1px solid #334155', color: '#fff', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold' }}
+                    style={{ background: '#f1f5f9', border: '1px solid #cbd5e1', color: '#0f172a', padding: '6px 11px', borderRadius: '4px', cursor: 'pointer', fontSize: '15px', fontWeight: 'bold' }}
                   >
                     -
                   </button>
@@ -730,20 +735,20 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                     onFocus={e => e.target.select()}
                     onChange={e => updateQuantity(idx, e.target.value === '' ? 0 : parseFloat(e.target.value) || 0)}
                     style={{
-                      width: '72px',
+                      width: '74px',
                       padding: '7px 8px',
-                      backgroundColor: '#0f172a',
-                      border: '1px solid #475569',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #cbd5e1',
                       borderRadius: '4px',
-                      color: '#ffffff',
+                      color: '#0f172a',
                       fontWeight: 'bold',
                       textAlign: 'center',
-                      fontSize: '13px'
+                      fontSize: '15px'
                     }}
                   />
                   <button
                     onClick={() => updateQuantity(idx, parseFloat((item.quantity + 1).toFixed(2)))}
-                    style={{ background: '#0f172a', border: '1px solid #334155', color: '#fff', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold' }}
+                    style={{ background: '#f1f5f9', border: '1px solid #cbd5e1', color: '#0f172a', padding: '6px 11px', borderRadius: '4px', cursor: 'pointer', fontSize: '15px', fontWeight: 'bold' }}
                   >
                     +
                   </button>
@@ -759,15 +764,15 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                     onFocus={e => e.target.select()}
                     onChange={e => updateUnitPrice(idx, e.target.value === '' ? 0 : parseFloat(e.target.value) || 0)}
                     style={{
-                      width: '95px',
+                      width: '100px',
                       padding: '7px 10px',
-                      backgroundColor: '#0f172a',
-                      border: '1px solid #475569',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #cbd5e1',
                       borderRadius: '4px',
-                      color: '#f8fafc',
+                      color: '#0f172a',
                       fontWeight: 'bold',
                       textAlign: 'right',
-                      fontSize: '13px'
+                      fontSize: '15px'
                     }}
                   />
                 </div>
@@ -782,39 +787,39 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                     onFocus={e => e.target.select()}
                     onChange={e => updateDiscount(idx, e.target.value === '' ? 0 : parseFloat(e.target.value) || 0)}
                     style={{
-                      width: '85px',
+                      width: '90px',
                       padding: '7px 10px',
-                      backgroundColor: '#0f172a',
-                      border: '1px solid #475569',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #cbd5e1',
                       borderRadius: '4px',
-                      color: '#ef4444',
+                      color: '#dc2626',
                       fontWeight: 'bold',
                       textAlign: 'right',
-                      fontSize: '13px'
+                      fontSize: '15px'
                     }}
                   />
                 </div>
 
-                <div style={{ textAlign: 'right', fontWeight: 'bold', color: '#10b981', fontSize: '14px' }}>
+                <div style={{ textAlign: 'right', fontWeight: 'bold', color: '#16a34a', fontSize: '15.5px' }}>
                   Rs {item.line_total.toLocaleString()}
                 </div>
 
                 <div style={{ textAlign: 'center' }}>
                   <button
                     onClick={() => removeFromCart(idx)}
-                    style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '6px' }}
+                    style={{ background: 'none', border: 'none', color: '#dc2626', cursor: 'pointer', padding: '6px' }}
                     title="Remove item"
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={18} />
                   </button>
                 </div>
               </div>
             ))
           ) : (
             <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#64748b', padding: '40px' }}>
-              <ShoppingCart size={52} style={{ marginBottom: '12px', opacity: 0.3 }} />
-              <h3 style={{ color: '#f8fafc', fontSize: '15px', fontWeight: '600', margin: '0 0 4px 0' }}>Billing Cart is Empty</h3>
-              <p style={{ fontSize: '13px', margin: 0, color: '#94a3b8' }}>
+              <ShoppingCart size={56} style={{ marginBottom: '14px', opacity: 0.3 }} />
+              <h3 style={{ color: '#0f172a', fontSize: '17px', fontWeight: '600', margin: '0 0 6px 0' }}>Billing Cart is Empty</h3>
+              <p style={{ fontSize: '14px', margin: 0, color: '#64748b' }}>
                 Type product name or model in search bar above and press Enter to add items to invoice.
               </p>
             </div>
@@ -824,25 +829,26 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
 
       {/* BOTTOM FULL-WIDTH CALCULATION & BILLING SUMMARY PANEL */}
       <div style={{
-        backgroundColor: '#1e293b',
+        backgroundColor: '#ffffff',
         borderRadius: '8px',
-        border: '1px solid #334155',
+        border: '1px solid #e2e8f0',
         padding: '16px 22px',
         display: 'grid',
         gridTemplateColumns: '1.1fr 1.5fr 1.4fr',
         gap: '24px',
-        alignItems: 'center'
+        alignItems: 'center',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
       }}>
         {/* Left Stats & Clear Cart */}
         <div>
-          <div style={{ display: 'flex', gap: '20px', marginBottom: '10px' }}>
+          <div style={{ display: 'flex', gap: '22px', marginBottom: '10px' }}>
             <div>
-              <span style={{ fontSize: '11px', color: '#94a3b8', display: 'block' }}>Total Items</span>
-              <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#f8fafc' }}>{cart.length} Types</span>
+              <span style={{ fontSize: '13px', color: '#64748b', display: 'block' }}>Total Items</span>
+              <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#0f172a' }}>{cart.length} Types</span>
             </div>
             <div>
-              <span style={{ fontSize: '11px', color: '#94a3b8', display: 'block' }}>Total Quantity</span>
-              <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#2563eb' }}>{totalQty} Units/Meters</span>
+              <span style={{ fontSize: '13px', color: '#64748b', display: 'block' }}>Total Quantity</span>
+              <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#2563eb' }}>{totalQty} Units/Meters</span>
             </div>
           </div>
 
@@ -850,33 +856,33 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
             <button
               onClick={clearCart}
               style={{
-                backgroundColor: 'rgba(239,68,68,0.12)',
-                color: '#ef4444',
-                border: '1px solid rgba(239,68,68,0.3)',
-                padding: '7px 14px',
+                backgroundColor: '#fee2e2',
+                color: '#dc2626',
+                border: '1px solid #fecaca',
+                padding: '8px 14px',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                fontSize: '12px',
+                fontSize: '13px',
                 fontWeight: '600'
               }}
             >
-              <RotateCcw size={14} /> Clear All Items
+              <RotateCcw size={15} /> Clear All Items
             </button>
           )}
         </div>
 
         {/* Center Calculations & Payment Method */}
-        <div style={{ borderLeft: '1px solid #334155', borderRight: '1px solid #334155', padding: '0 24px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '13px', color: '#cbd5e1' }}>
+        <div style={{ borderLeft: '1px solid #e2e8f0', borderRight: '1px solid #e2e8f0', padding: '0 24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '14.5px', color: '#475569' }}>
             <span>Subtotal Amount:</span>
-            <span style={{ fontWeight: 'bold', color: '#f8fafc' }}>Rs {subtotal.toLocaleString()}</span>
+            <span style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '16px' }}>Rs {subtotal.toLocaleString()}</span>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-            <span style={{ fontSize: '12px', color: '#cbd5e1' }}>Overall Discount (Rs):</span>
+            <span style={{ fontSize: '14px', color: '#475569' }}>Overall Discount (Rs):</span>
             <input
               type="number"
               min="0"
@@ -888,34 +894,34 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                 setIsAmountPaidCustom(false);
               }}
               style={{
-                width: '110px',
-                padding: '6px 10px',
-                backgroundColor: '#0f172a',
-                border: '1px solid #334155',
+                width: '115px',
+                padding: '7px 10px',
+                backgroundColor: '#ffffff',
+                border: '1px solid #cbd5e1',
                 borderRadius: '4px',
-                color: '#ef4444',
+                color: '#dc2626',
                 fontWeight: 'bold',
                 textAlign: 'right',
-                fontSize: '13px'
+                fontSize: '15px'
               }}
             />
           </div>
 
           <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-            <span style={{ fontSize: '11px', color: '#94a3b8', width: '60px' }}>Payment:</span>
+            <span style={{ fontSize: '13px', color: '#64748b', width: '65px' }}>Payment:</span>
             {(['CASH', 'BANK', 'OTHER'] as PaymentMethod[]).map(m => (
               <button
                 key={m}
                 onClick={() => setPaymentMethod(m)}
                 style={{
                   flex: 1,
-                  padding: '7px 10px',
-                  fontSize: '12px',
+                  padding: '8px 10px',
+                  fontSize: '13px',
                   fontWeight: '600',
                   borderRadius: '4px',
-                  border: 'none',
-                  backgroundColor: paymentMethod === m ? '#2563eb' : '#0f172a',
-                  color: '#ffffff',
+                  border: paymentMethod === m ? '1px solid #2563eb' : '1px solid #cbd5e1',
+                  backgroundColor: paymentMethod === m ? '#2563eb' : '#f1f5f9',
+                  color: paymentMethod === m ? '#ffffff' : '#334155',
                   cursor: 'pointer'
                 }}
               >
@@ -929,22 +935,22 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
             <div>
-              <span style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase' }}>Grand Total</span>
-              <div style={{ fontSize: '24px', fontWeight: '800', color: '#10b981', lineHeight: '1.1' }}>
+              <span style={{ fontSize: '13px', color: '#64748b', textTransform: 'uppercase', fontWeight: '600' }}>Grand Total</span>
+              <div style={{ fontSize: '28px', fontWeight: '800', color: '#16a34a', lineHeight: '1.1' }}>
                 Rs {grandTotal.toLocaleString()}
               </div>
             </div>
 
             <div style={{ textAlign: 'right' }}>
-              <div style={{ display: 'flex', gap: '6px', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '3px' }}>
-                <span style={{ fontSize: '11px', color: '#94a3b8' }}>Amount Paid:</span>
+              <div style={{ display: 'flex', gap: '6px', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '4px' }}>
+                <span style={{ fontSize: '13px', color: '#64748b' }}>Amount Paid:</span>
                 <button
                   type="button"
                   onClick={() => {
                     setAmountPaid(grandTotal);
                     setIsAmountPaidCustom(false);
                   }}
-                  style={{ background: 'none', border: 'none', color: '#2563eb', fontSize: '11px', fontWeight: '600', cursor: 'pointer', textDecoration: 'underline' }}
+                  style={{ background: 'none', border: 'none', color: '#2563eb', fontSize: '13px', fontWeight: '600', cursor: 'pointer', textDecoration: 'underline' }}
                 >
                   Exact Cash
                 </button>
@@ -959,13 +965,13 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                   setIsAmountPaidCustom(true);
                 }}
                 style={{
-                  width: '130px',
+                  width: '135px',
                   padding: '7px 10px',
-                  backgroundColor: '#0f172a',
-                  border: '1px solid #334155',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #cbd5e1',
                   borderRadius: '4px',
-                  color: '#f8fafc',
-                  fontSize: '15px',
+                  color: '#0f172a',
+                  fontSize: '16px',
                   fontWeight: 'bold',
                   textAlign: 'right'
                 }}
@@ -974,7 +980,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
           </div>
 
           {amountPaid > grandTotal && (
-            <div style={{ textAlign: 'right', fontSize: '12px', color: '#10b981', fontWeight: '600', marginBottom: '8px' }}>
+            <div style={{ textAlign: 'right', fontSize: '14px', color: '#16a34a', fontWeight: '600', marginBottom: '8px' }}>
               Change to return: Rs {changeReturn.toLocaleString()}
             </div>
           )}
@@ -984,13 +990,13 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
             disabled={cart.length === 0}
             style={{
               width: '100%',
-              padding: '12px',
-              backgroundColor: cart.length === 0 ? '#334155' : '#2563eb',
+              padding: '13px',
+              backgroundColor: cart.length === 0 ? '#94a3b8' : '#2563eb',
               color: '#ffffff',
               border: 'none',
               borderRadius: '6px',
               fontWeight: '600',
-              fontSize: '14px',
+              fontSize: '15.5px',
               cursor: cart.length === 0 ? 'not-allowed' : 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -998,51 +1004,51 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               gap: '8px'
             }}
           >
-            <Printer size={18} /> Complete Sale & Print Invoice
+            <Printer size={20} /> Complete Sale & Print Invoice
           </button>
         </div>
       </div>
 
       {/* CHECKOUT & CUSTOMER DETAILS MODAL */}
       {showCheckoutModal && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-          <div style={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '10px', width: '500px', padding: '24px' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', width: '520px', padding: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}>
             
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '10px' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#f8fafc', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Printer size={18} color="#2563eb" /> Customer Details & Invoice Printing
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px' }}>
+              <h3 style={{ fontSize: '17px', fontWeight: 'bold', color: '#0f172a', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Printer size={20} color="#2563eb" /> Customer Details & Invoice Printing
               </h3>
-              <button onClick={() => setShowCheckoutModal(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
-                <X size={18} />
+              <button onClick={() => setShowCheckoutModal(false)} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer' }}>
+                <X size={20} />
               </button>
             </div>
 
             {checkoutError && (
-              <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', color: '#ef4444', padding: '10px 14px', borderRadius: '6px', marginBottom: '14px', fontSize: '13px', fontWeight: 'bold' }}>
+              <div style={{ backgroundColor: '#fee2e2', border: '1px solid #fca5a5', color: '#dc2626', padding: '10px 14px', borderRadius: '6px', marginBottom: '14px', fontSize: '14px', fontWeight: 'bold' }}>
                 {checkoutError}
               </div>
             )}
 
             {/* Bill Summary Card */}
-            <div style={{ backgroundColor: '#0f172a', padding: '14px 18px', borderRadius: '8px', border: '1px solid #334155', marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ backgroundColor: '#f8fafc', padding: '16px 20px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <span style={{ fontSize: '11px', color: '#94a3b8', display: 'block' }}>Total Bill Amount</span>
-                <span style={{ fontSize: '22px', fontWeight: '800', color: '#10b981' }}>Rs {grandTotal.toLocaleString()}</span>
+                <span style={{ fontSize: '13px', color: '#64748b', display: 'block', fontWeight: '500' }}>Total Bill Amount</span>
+                <span style={{ fontSize: '26px', fontWeight: '800', color: '#16a34a' }}>Rs {grandTotal.toLocaleString()}</span>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: '11px', color: '#94a3b8', display: 'block' }}>Items Count</span>
-                <span style={{ fontSize: '14px', fontWeight: '600', color: '#2563eb' }}>{cart.length} Products ({totalQty} Qty)</span>
+                <span style={{ fontSize: '13px', color: '#64748b', display: 'block', fontWeight: '500' }}>Items Count</span>
+                <span style={{ fontSize: '15px', fontWeight: '600', color: '#2563eb' }}>{cart.length} Products ({totalQty} Qty)</span>
               </div>
             </div>
 
             <form onSubmit={handleFinalizeSaleAndPrint}>
               {/* Optional Saved Customer Selector */}
-              <div style={{ marginBottom: '14px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Pick Existing Customer (Optional)</label>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Pick Existing Customer (Optional)</label>
                 <select
                   value={selectedCustomerId || ''}
                   onChange={e => handleSelectCustomer(e.target.value)}
-                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '13px' }}
+                  style={{ width: '100%', padding: '11px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '14.5px' }}
                 >
                   <option value="">Walk-in Customer (or type custom below)</option>
                   {customers.map(c => (
@@ -1052,8 +1058,8 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
               </div>
 
               {/* Customer Name */}
-              <div style={{ marginBottom: '14px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Customer Name on Invoice *</label>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Customer Name on Invoice *</label>
                 <input
                   ref={checkoutCustNameRef}
                   type="text"
@@ -1062,13 +1068,13 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                   value={custName}
                   onFocus={e => e.target.select()}
                   onChange={e => setCustName(e.target.value)}
-                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#ffffff', fontSize: '14px', fontWeight: '600' }}
+                  style={{ width: '100%', padding: '11px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '15px', fontWeight: '600', boxSizing: 'border-box' }}
                 />
               </div>
 
               {/* Customer Phone */}
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ fontSize: '12px', color: '#94a3b8', display: 'block', marginBottom: '6px' }}>Customer Phone Number on Invoice *</label>
+              <div style={{ marginBottom: '22px' }}>
+                <label style={{ fontSize: '13.5px', color: '#334155', fontWeight: '600', display: 'block', marginBottom: '6px' }}>Customer Phone Number on Invoice *</label>
                 <input
                   type="text"
                   required
@@ -1076,22 +1082,22 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                   value={custPhone}
                   onFocus={e => e.target.select()}
                   onChange={e => setCustPhone(e.target.value)}
-                  style={{ width: '100%', padding: '10px 12px', backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px', color: '#f8fafc', fontSize: '14px', fontWeight: '600' }}
+                  style={{ width: '100%', padding: '11px 12px', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#0f172a', fontSize: '15px', fontWeight: '600', boxSizing: 'border-box' }}
                 />
               </div>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
+              <div style={{ display: 'flex', gap: '12px' }}>
                 <button
                   type="submit"
                   style={{
                     flex: 1,
-                    padding: '12px',
+                    padding: '13px',
                     backgroundColor: '#2563eb',
                     color: '#fff',
                     border: 'none',
                     borderRadius: '6px',
                     fontWeight: '600',
-                    fontSize: '14px',
+                    fontSize: '15px',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
@@ -1105,7 +1111,7 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
                 <button
                   type="button"
                   onClick={() => setShowCheckoutModal(false)}
-                  style={{ padding: '12px 18px', backgroundColor: '#334155', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}
+                  style={{ padding: '13px 20px', backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', color: '#334155', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '14.5px' }}
                 >
                   Cancel
                 </button>
@@ -1117,51 +1123,51 @@ export const POSPage: React.FC<POSPageProps> = ({ currentUser, onSaleSuccess }) 
 
       {/* FULL CATALOG BROWSE MODAL */}
       {showFullCatalogModal && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
-          <div style={{ backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '10px', width: '850px', height: '600px', display: 'flex', flexDirection: 'column', padding: '20px', boxSizing: 'border-box' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', borderBottom: '1px solid #1e293b', paddingBottom: '10px' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#f8fafc', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <PackageCheck size={20} color="#2563eb" /> Full Product Inventory Catalog
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '10px', width: '900px', height: '620px', display: 'flex', flexDirection: 'column', padding: '22px', boxSizing: 'border-box', boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px' }}>
+              <h3 style={{ fontSize: '17px', fontWeight: 'bold', color: '#0f172a', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <PackageCheck size={22} color="#2563eb" /> Full Product Inventory Catalog
               </h3>
-              <button onClick={() => setShowFullCatalogModal(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
-                <X size={18} />
+              <button onClick={() => setShowFullCatalogModal(false)} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer' }}>
+                <X size={20} />
               </button>
             </div>
 
-            <div style={{ flex: 1, overflowY: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+            <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
                 <thead>
-                  <tr style={{ color: '#94a3b8', borderBottom: '1px solid #334155', textAlign: 'left', backgroundColor: '#1e293b' }}>
-                    <th style={{ padding: '10px' }}>SKU</th>
-                    <th style={{ padding: '10px' }}>Product Name</th>
-                    <th style={{ padding: '10px' }}>Category</th>
-                    <th style={{ padding: '10px', textAlign: 'center' }}>Stock</th>
-                    <th style={{ padding: '10px', textAlign: 'right' }}>Selling Price</th>
-                    <th style={{ padding: '10px', textAlign: 'center' }}>Action</th>
+                  <tr style={{ color: '#475569', borderBottom: '1px solid #e2e8f0', textAlign: 'left', backgroundColor: '#f8fafc' }}>
+                    <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '13.5px' }}>SKU</th>
+                    <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '13.5px' }}>Product Name</th>
+                    <th style={{ padding: '12px 16px', fontWeight: '600', fontSize: '13.5px' }}>Category</th>
+                    <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '13.5px' }}>Stock</th>
+                    <th style={{ padding: '12px 16px', textAlign: 'right', fontWeight: '600', fontSize: '13.5px' }}>Selling Price</th>
+                    <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', fontSize: '13.5px' }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((prod, idx) => {
                     const isOut = prod.stock_quantity <= 0;
                     return (
-                      <tr key={prod.id} style={{ borderBottom: '1px solid #1e293b', backgroundColor: idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)' }}>
-                        <td style={{ padding: '10px', fontFamily: 'monospace', color: '#60a5fa' }}>{prod.sku}</td>
-                        <td style={{ padding: '10px', color: '#f8fafc', fontWeight: 'bold' }}>{prod.name}</td>
-                        <td style={{ padding: '10px', color: '#94a3b8' }}>{prod.category_name}</td>
-                        <td style={{ padding: '10px', textAlign: 'center' }}>
-                          <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold', backgroundColor: isOut ? 'rgba(239,68,68,0.2)' : 'rgba(16,185,129,0.2)', color: isOut ? '#ef4444' : '#10b981' }}>
+                      <tr key={prod.id} style={{ borderBottom: '1px solid #f1f5f9', backgroundColor: idx % 2 === 0 ? '#ffffff' : '#fafafa' }}>
+                        <td style={{ padding: '12px 16px', fontFamily: 'monospace', color: '#64748b', fontSize: '13.5px' }}>{prod.sku}</td>
+                        <td style={{ padding: '12px 16px', color: '#0f172a', fontWeight: '600', fontSize: '15px' }}>{prod.name}</td>
+                        <td style={{ padding: '12px 16px', color: '#475569', fontSize: '13.5px' }}>{prod.category_name}</td>
+                        <td style={{ padding: '12px 16px', textAlign: 'center' }}>
+                          <span style={{ padding: '3px 10px', borderRadius: '4px', fontSize: '12.5px', fontWeight: 'bold', backgroundColor: isOut ? '#fee2e2' : '#dcfce7', color: isOut ? '#dc2626' : '#15803d' }}>
                             {prod.stock_quantity} {prod.unit}
                           </span>
                         </td>
-                        <td style={{ padding: '10px', textAlign: 'right', fontWeight: 'bold', color: '#10b981' }}>Rs {prod.selling_price.toLocaleString()}</td>
-                        <td style={{ padding: '10px', textAlign: 'center' }}>
+                        <td style={{ padding: '12px 16px', textAlign: 'right', fontWeight: 'bold', color: '#16a34a', fontSize: '15.5px' }}>Rs {prod.selling_price.toLocaleString()}</td>
+                        <td style={{ padding: '12px 16px', textAlign: 'center' }}>
                           <button
                             disabled={isOut}
                             onClick={() => {
                               addToCart(prod);
                               setShowFullCatalogModal(false);
                             }}
-                            style={{ padding: '5px 12px', backgroundColor: isOut ? '#334155' : '#2563eb', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold', cursor: isOut ? 'not-allowed' : 'pointer' }}
+                            style={{ padding: '7px 14px', backgroundColor: isOut ? '#e2e8f0' : '#2563eb', color: isOut ? '#94a3b8' : '#fff', border: 'none', borderRadius: '5px', fontSize: '13px', fontWeight: 'bold', cursor: isOut ? 'not-allowed' : 'pointer' }}
                           >
                             {isOut ? 'Out of Stock' : '+ Add to Cart'}
                           </button>

@@ -5,11 +5,9 @@ import { User, ShopSettings } from '../../shared/types';
 interface HeaderProps {
   currentUser: User | null;
   shopSettings: ShopSettings | null;
-  theme: 'dark' | 'light';
-  onToggleTheme: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings, theme, onToggleTheme }) => {
+export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings }) => {
   const [timeStr, setTimeStr] = useState<string>('');
   
   // Auto Updater State
@@ -61,24 +59,21 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings, theme
     }
   };
 
-  const isLight = theme === 'light';
-
   return (
     <header style={{
-      height: '60px',
-      backgroundColor: 'var(--bg-header)',
-      borderBottom: '1px solid var(--border-color)',
+      height: '64px',
+      backgroundColor: '#ffffff',
+      borderBottom: '1px solid #e2e8f0',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '0 24px',
-      transition: 'background-color 0.2s ease, border-color 0.2s ease'
+      padding: '0 24px'
     }}>
       <div>
-        <h2 style={{ fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>
+        <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>
           {shopSettings?.shop_name || 'Shami Computer and CCTV'}
         </h2>
-        <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+        <p style={{ fontSize: '13px', color: '#64748b', margin: '3px 0 0 0' }}>
           {shopSettings?.address || 'Safa Wala Chowk, Farooqabad'}
         </p>
       </div>
@@ -94,15 +89,15 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings, theme
               gap: '6px',
               backgroundColor: '#10b981',
               color: '#ffffff',
-              padding: '6px 14px',
+              padding: '7px 16px',
               borderRadius: '20px',
               border: 'none',
-              fontSize: '12px',
+              fontSize: '13px',
               fontWeight: 'bold',
               cursor: 'pointer'
             }}
           >
-            <CheckCircle2 size={15} /> Update Ready! Click to Restart
+            <CheckCircle2 size={16} /> Update Ready! Click to Restart
           </button>
         ) : downloadProgress !== null ? (
           <div style={{
@@ -111,12 +106,12 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings, theme
             gap: '6px',
             backgroundColor: '#2563eb',
             color: '#ffffff',
-            padding: '6px 14px',
+            padding: '7px 16px',
             borderRadius: '20px',
-            fontSize: '12px',
+            fontSize: '13px',
             fontWeight: 'bold'
           }}>
-            <RefreshCw size={14} className="animate-spin" /> Downloading Update {downloadProgress}%
+            <RefreshCw size={15} className="animate-spin" /> Downloading Update {downloadProgress}%
           </div>
         ) : updateAvailable ? (
           <button
@@ -127,64 +122,32 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings, theme
               gap: '6px',
               backgroundColor: '#f59e0b',
               color: '#ffffff',
-              padding: '6px 14px',
+              padding: '7px 16px',
               borderRadius: '20px',
               border: 'none',
-              fontSize: '12px',
+              fontSize: '13px',
               fontWeight: 'bold',
               cursor: 'pointer'
             }}
           >
-            <Download size={14} /> New Version Available — Download
+            <Download size={15} /> New Version Available — Download
           </button>
         ) : null}
-
-        {/* Dark / Bright Mode Toggle Button */}
-        <button
-          onClick={onToggleTheme}
-          title={isLight ? 'Switch to Dark Mode' : 'Switch to Bright Mode'}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            backgroundColor: 'var(--bg-input)',
-            border: '1px solid var(--border-color)',
-            borderRadius: '20px',
-            padding: '6px 14px',
-            color: 'var(--text-main)',
-            fontSize: '12px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          {isLight ? (
-            <>
-              <Moon size={15} color="#f59e0b" />
-              <span>Dark Mode</span>
-            </>
-          ) : (
-            <>
-              <Sun size={15} color="#f59e0b" />
-              <span>Bright Mode</span>
-            </>
-          )}
-        </button>
 
         {/* Offline indicator */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          backgroundColor: 'var(--bg-input)',
-          padding: '6px 12px',
+          backgroundColor: '#f1f5f9',
+          padding: '6px 14px',
           borderRadius: '20px',
-          border: '1px solid var(--border-color)',
-          fontSize: '12px',
-          color: '#10b981',
-          fontWeight: '500'
+          border: '1px solid #e2e8f0',
+          fontSize: '13px',
+          color: '#059669',
+          fontWeight: '600'
         }}>
-          <WifiOff size={14} color="#10b981" />
+          <WifiOff size={15} color="#059669" />
           <span>Local DB</span>
         </div>
 
@@ -193,11 +156,12 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings, theme
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          fontSize: '13px',
-          color: 'var(--text-sub)',
-          fontFamily: 'monospace'
+          fontSize: '14px',
+          color: '#334155',
+          fontFamily: 'monospace',
+          fontWeight: '500'
         }}>
-          <Clock size={15} color="#3b82f6" />
+          <Clock size={16} color="#2563eb" />
           <span>{timeStr}</span>
         </div>
 
@@ -207,13 +171,13 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, shopSettings, theme
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            backgroundColor: 'var(--bg-input)',
-            padding: '6px 14px',
+            backgroundColor: '#f8fafc',
+            padding: '7px 16px',
             borderRadius: '8px',
-            border: '1px solid var(--border-color)'
+            border: '1px solid #e2e8f0'
           }}>
-            <UserCheck size={16} color="#60a5fa" />
-            <span style={{ fontSize: '13px', color: 'var(--text-main)', fontWeight: '600' }}>{currentUser.name}</span>
+            <UserCheck size={18} color="#2563eb" />
+            <span style={{ fontSize: '14px', color: '#0f172a', fontWeight: '600' }}>{currentUser.name}</span>
           </div>
         )}
       </div>
